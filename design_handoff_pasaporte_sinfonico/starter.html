@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi episodio — El Pasaporte Sinfónico</title>
+  <link rel="stylesheet" href="./ds/styles.css">
+  <style>
+    /* ── Layout helpers (no son parte del DS, escribe los tuyos) ── */
+    .section      { padding: 5rem 2rem; }
+    .section--alt { padding: 5rem 2rem; background: var(--surface-deep); }
+    .inner        { max-width: var(--container); margin: 0 auto; }
+    .grid-3       { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      height: var(--nav-height);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: var(--surface-nav); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-faint);
+    }
+    .nav__brand   { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+    .nav__brand img { height: 38px; }
+    .nav__brand span { font-family: var(--f-label); font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--bone); }
+    .nav__links   { display: flex; gap: 1.6rem; }
+    .nav__links a { font-family: var(--f-label); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--smoke); text-decoration: none; }
+    .nav__links a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; min-height: 88vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem; overflow: hidden;
+    }
+    .hero__bg  { position: absolute; inset: 0; z-index: 0; background: var(--hero-bg); }
+    .hero__inner {
+      position: relative; z-index: 1;
+      max-width: 760px; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__city {
+      font-family: var(--f-display); font-size: var(--fs-hero);
+      line-height: .9; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--bone); text-shadow: var(--glow-hero); margin: .6rem 0;
+    }
+    .hero__kicker { font-family: var(--f-label); font-size: .7rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--smoke); }
+    .hero__lead   { font-family: var(--f-body); font-size: 1.05rem; line-height: 1.9; color: var(--text-soft); max-width: 620px; margin: 1.4rem 0 2rem; }
+    .hero__cta    { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Footer ── */
+    .footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--rule); background: var(--base-1); }
+    .footer img  { height: 80px; width: auto; margin: 0 auto 1rem; opacity: .9; }
+    .footer__tag  { font-family: var(--f-head); font-style: italic; font-size: 1.1rem; color: var(--accent); margin: 0 0 .6rem; }
+    .footer__copy { font-family: var(--f-label); font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--smoke); margin: 0; }
+  </style>
+</head>
+
+<!-- Cambia data-theme para re-temar el episodio:
+     "" (vacío) = casa (gold+crimson)
+     "blues"    = Delta del Blues (ámbar + azul río)
+     "psych"    = Londres (gold + violeta eléctrico)
+     "merseybeat" = Liverpool (gold + rojo Liverpool) -->
+<body data-theme="">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+          integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+          integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+          integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+          crossorigin="anonymous"></script>
+  <script src="./ds/_ds_bundle.js"></script>
+
+  <script type="text/babel">
+    // ── Desestructurar todos los componentes del DS ──────────────────────────
+    const {
+      Button, Card, SectionHeader,
+      Timeline, TimelineItem,
+      StatGrid, Stat,
+      Quote, TipBox, Tag
+    } = window.PasaporteSinfNicoDesignSystem_fc650e;
+
+    const { useState } = React;
+
+    // ── Nav ──────────────────────────────────────────────────────────────────
+    function Nav() {
+      return (
+        <nav className="nav">
+          <a className="nav__brand" href="#top">
+            <img src="./assets/logo-white.png" alt="El Pasaporte Sinfónico" />
+            <span>El Pasaporte Sinfónico</span>
+          </a>
+          <div className="nav__links">
+            <a href="#llegar">Cómo llegar</a>
+            <a href="#circuito">Circuito</a>
+            <a href="#historia">Historia</a>
+            <a href="#escuchar">Escuchar</a>
+          </div>
+          <Button variant="ghost" size="sm" href="#escuchar">▶ Escuchar</Button>
+        </nav>
+      );
+    }
+
+    // ── Hero ─────────────────────────────────────────────────────────────────
+    function Hero() {
+      return (
+        <header className="hero" id="top">
+          <div className="hero__bg" />
+          <div className="hero__inner">
+            <span className="hero__kicker">El Pasaporte Sinfónico presenta</span>
+            <h1 className="hero__city">Birmingham</h1>
+            <span className="hero__kicker">Inglaterra · Heavy Metal · 1968 — Para Siempre</span>
+            <p className="hero__lead">
+              La ciudad que forjó el acero — y el heavy metal. Recorremos los pubs,
+              fábricas y venues donde Black Sabbath inventó el sonido más pesado del planeta.
+            </p>
+            <div className="hero__cta">
+              <Button variant="primary" href="#escuchar">Escuchar episodio</Button>
+              <Button variant="ghost" href="#circuito">Ver circuito</Button>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // ── Cómo llegar ──────────────────────────────────────────────────────────
+    function ComoLlegar() {
+      return (
+        <section className="section" id="llegar">
+          <div className="inner">
+            <SectionHeader
+              tag="Cómo llegar"
+              title="Cómo llegar a<br><em>Birmingham</em>"
+              lead="Tres rutas para aterrizar en la cuna del metal, vengas de donde vengas."
+            />
+            <div className="grid-3">
+              <Card
+                type="✈ Desde Norteamérica"
+                title="Vuelo vía Londres o directo a BHX"
+                description="American y British conectan NYC/Miami con Birmingham (BHX) en ~8–9 h con escala en Heathrow."
+                links={['Skyscanner', 'BHX']}
+              />
+              <Card
+                type="✈ Desde Latinoamérica"
+                title="Conexión por Madrid o Londres"
+                description="Iberia y British vía MAD/LHR. Desde Bogotá o Buenos Aires, calcula 16–18 h totales."
+                links={['Skyscanner']}
+              />
+              <Card
+                type="🚆 Desde Londres"
+                title="Avanti West Coast — 1h 24m"
+                description="Tren directo desde Euston a New Street, en el corazón de la ciudad."
+                links={['Trainline']}
+              />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Circuito ─────────────────────────────────────────────────────────────
+    function Circuito() {
+      return (
+        <section className="section--alt" id="circuito">
+          <div className="inner">
+            <SectionHeader
+              tag="El circuito"
+              title="Cinco días en<br><em>la cuna del metal</em>"
+              lead="Nuestro itinerario fuera de lo convencional, paso a paso."
+            />
+            <Timeline>
+              <TimelineItem
+                time="Día 1 · Mañana"
+                place="Jewellery Quarter"
+                description="Café en el barrio de los orfebres y caminata por las callecitas victorianas."
+              />
+              <TimelineItem
+                time="Día 1 · Noche"
+                place="The Crown (histórico)"
+                description="El pub donde Black Sabbath y Led Zeppelin tocaron antes de ser leyenda."
+              />
+              <TimelineItem
+                time="Día 2 · Tarde"
+                place="Back to Black — tour de fábricas"
+                description="El sonido del metal salió del acero. Recorremos las naves industriales."
+              />
+              <TimelineItem
+                time="Día 3 · Mañana"
+                place="Reforestación del canal"
+                description="Jornada regenerativa: plantamos especies nativas con una cooperativa local."
+                regen
+              />
+            </Timeline>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Historia ─────────────────────────────────────────────────────────────
+    function Historia() {
+      return (
+        <section className="section" id="historia">
+          <div className="inner">
+            <SectionHeader
+              tag="La historia"
+              title="El metal que<br><em>nació aquí</em>"
+              lead="Por qué una ciudad industrial inglesa cambió la música para siempre."
+            />
+            <StatGrid>
+              <Stat value="1968" label="Año cero"            description="Nace Black Sabbath" />
+              <Stat value="6"    label="Bandas fundacionales" />
+              <Stat value="12"   label="Venues en el circuito" />
+              <Stat value="∞"    label="Decibeles" />
+            </StatGrid>
+            <Quote source="— Tony Iommi, Black Sabbath">
+              El sonido vino de la fábrica. Birmingham era acero, humo y ruido — y eso
+              es exactamente lo que queríamos que sonara.
+            </Quote>
+            <TipBox variant="regen" icon="🌱" label="Turismo regenerativo">
+              Reserva la jornada de reforestación del canal con al menos una semana de anticipación.
+              El cupo es pequeño y el dinero va directo a la cooperativa.
+            </TipBox>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Player (cosmético) ────────────────────────────────────────────────────
+    function Escuchar() {
+      const [playing, setPlaying] = useState(false);
+      return (
+        <section className="section--alt" id="escuchar">
+          <div className="inner">
+            <SectionHeader
+              align="center"
+              tag="Dale play"
+              title="Escucha el<br><em>episodio completo</em>"
+              lead="57 minutos por la cuna del metal."
+            />
+            <div style={{ display:'flex', alignItems:'center', gap:'1.5rem', background:'var(--surface-card)', border:'1px solid var(--rule)', padding:'1.5rem', maxWidth:'720px', margin:'0 auto' }}>
+              <div style={{ width:84, height:84, flex:'none', background:'var(--hero-bg)', border:'1px solid var(--rule)' }} />
+              <div style={{ flex:1, minWidth:0 }}>
+                <span style={{ fontFamily:'var(--f-label)', fontSize:'.58rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--accent)', display:'block' }}>EP. 07 · TEMPORADA 04</span>
+                <h4 style={{ fontFamily:'var(--f-head)', fontSize:'1.05rem', color:'var(--bone)', margin:'.3rem 0 .8rem' }}>Birmingham — La cuna del Heavy Metal</h4>
+                <div style={{ height:4, background:'rgba(255,255,255,.1)', position:'relative' }}>
+                  <span style={{ position:'absolute', left:0, top:0, bottom:0, background:'var(--accent)', width: playing ? '38%' : '0%', transition:'width .3s' }} />
+                </div>
+                <div style={{ display:'flex', justifyContent:'space-between', fontFamily:'var(--f-label)', fontSize:'.6rem', color:'var(--smoke)', marginTop:'.5rem' }}>
+                  <span>{playing ? '21:40' : '0:00'}</span><span>57:00</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setPlaying(p => !p)}
+                style={{ width:56, height:56, flex:'none', borderRadius:'999px', border:'none', background:'var(--accent)', color:'var(--on-accent)', fontSize:'1.1rem', cursor:'pointer' }}
+                aria-label="Reproducir"
+              >{playing ? '❚❚' : '▶'}</button>
+            </div>
+            <div style={{ display:'flex', gap:'.8rem', justifyContent:'center', flexWrap:'wrap', marginTop:'2rem' }}>
+              <Button variant="ghost" size="sm" href="#">Spotify</Button>
+              <Button variant="ghost" size="sm" href="#">Apple Podcasts</Button>
+              <Button variant="ghost" size="sm" href="#">iVoox</Button>
+              <Button variant="ghost" size="sm" href="#">YouTube</Button>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Footer ────────────────────────────────────────────────────────────────
+    function Footer() {
+      return (
+        <footer className="footer">
+          <img src="./assets/logo-white.png" alt="El Pasaporte Sinfónico" />
+          <p className="footer__tag">El podcast donde la música viaja</p>
+          <p className="footer__copy">© 2026 El Pasaporte Sinfónico · Turismo sonoro y regenerativo</p>
+        </footer>
+      );
+    }
+
+    // ── App ───────────────────────────────────────────────────────────────────
+    function App() {
+      return (
+        <>
+          <Nav />
+          <Hero />
+          <ComoLlegar />
+          <Circuito />
+          <Historia />
+          <Escuchar />
+          <Footer />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

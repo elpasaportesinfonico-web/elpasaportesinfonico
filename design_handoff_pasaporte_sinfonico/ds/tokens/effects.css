@@ -1,0 +1,45 @@
+/* ============================================================
+   El Pasaporte Sinfónico — Effects: radii, borders, shadows,
+   glows, motion. The guides are FLAT and SQUARE — sharp corners,
+   1px hairline rules, atmospheric radial glows instead of drop
+   shadows, accent left-borders on quotes/tips.
+   ============================================================ */
+
+:root {
+  /* ---- Corner radii (square — engraved / printed) - @kind other */
+  --radius-none: 0;       /* default — cards, buttons, panels are SQUARE */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-pill: 999px;   /* only for round chips / avatars */
+
+  /* ---- Border widths ------------------------------ @kind other */
+  --bw-hair:   1px;       /* card / panel hairline */
+  --bw-accent: 2px;       /* active tab underline */
+  --bw-quote:  3px;       /* quote / tip left border */
+
+  /* ---- Shadows & glows ---------------------------- @kind other */
+  --shadow-none: none;
+  --shadow-nav:  0 1px 0 var(--border-faint);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.45);    /* lifted card on dark */
+  --shadow-pop:  0 20px 60px rgba(0, 0, 0, 0.6);     /* dialogs / overlays */
+  /* Atmospheric text glow — gold halo behind hero type */
+  --glow-hero:   0 0 80px rgba(212, 170, 58, 0.15);
+  --glow-accent: 0 0 24px rgba(212, 170, 58, 0.25);
+
+  /* Hero background — layered radial glows over near-black.
+     Re-themes automatically via --secondary-glow / --accent. */
+  --hero-bg:
+    radial-gradient(ellipse 80% 60% at 50% 40%, color-mix(in srgb, var(--secondary-glow) 18%, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, var(--base-1) 0%, var(--base-2) 60%, var(--base-1) 100%);
+
+  /* ---- Focus ring --------------------------------- @kind other */
+  --ring: 0 0 0 2px var(--base-1), 0 0 0 4px var(--focus-ring);
+
+  /* ---- Motion ---- */
+  --ease-out:  cubic-bezier(0.2, 0.7, 0.3, 1);  /* @kind other */
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);    /* @kind other */
+  --dur-fast:  0.2s;  /* @kind other */
+  --dur-base:  0.3s;  /* @kind other */
+  --dur-slow:  0.6s;  /* @kind other */
+}

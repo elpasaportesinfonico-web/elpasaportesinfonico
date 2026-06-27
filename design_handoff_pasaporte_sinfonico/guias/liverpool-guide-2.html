@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liverpool · The Beatles — El Pasaporte Sinfónico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ COLOR TOKENS — ELECTRIC ROCK · "Liverpool/Beatles" variant ═══
+   Based on Electric Rock palette, tuned with Mersey river blue accent,
+   stadium-gold primary, scarlet for Liverpool FC heritage
+*/
+:root {
+  --base-1:  #060608;
+  --base-2:  #0e0e14;
+  --base-3:  #181820;
+  --base-4:  #242430;
+
+  --accent:       #d4a93a;
+  --accent-bright:#f0c860;
+  --accent-deep:  #9a7418;
+
+  --secondary:    #8b1a2a;
+  --secondary-glow:#c42438;
+
+  --bone:    #f0ece8;
+  --parch:   #e0d8cc;
+  --smoke:   #8a8490;
+
+  --rule:    #2a2835;
+
+  --f-display: 'Cinzel', serif;
+  --f-head:    'Playfair Display', serif;
+  --f-body:    'Libre Baskerville', serif;
+  --f-label:   'Oswald', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--base-1);
+  color: var(--parch);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(6,6,8,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(212,169,58,0.2);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--f-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-logo em {
+  color: rgba(224,216,204,0.4);
+  font-style: normal;
+  font-size: 0.7em;
+  display: block;
+  letter-spacing: 0.3em;
+  font-family: var(--f-label);
+  font-weight: 300;
+}
+
+.nav-links { display: flex; gap: 0.1rem; list-style: none; }
+
+.nav-links a {
+  display: block;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 2rem 5rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(139,26,42,0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 20% 70%, rgba(14,14,20,0.95) 0%, transparent 80%),
+    linear-gradient(180deg, #0a0a10 0%, var(--base-1) 100%);
+}
+
+.hero-watermark {
+  position: absolute;
+  font-family: var(--f-display);
+  font-size: 28vw;
+  color: rgba(212,169,58,0.03);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  user-select: none;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.episode-badge {
+  position: relative;
+  display: inline-block;
+  font-family: var(--f-label);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(212,169,58,0.4);
+  padding: 0.4rem 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.episode-badge::before, .episode-badge::after {
+  content: '✦';
+  margin: 0 0.6em;
+  opacity: 0.5;
+}
+
+.hero-title {
+  position: relative;
+  font-family: var(--f-display);
+  font-size: clamp(2.8rem, 9vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.hero-title .city {
+  color: var(--accent);
+  display: block;
+  font-size: 1.4em;
+  line-height: 0.85;
+  text-shadow: 0 0 60px rgba(212,169,58,0.4);
+}
+
+.hero-title .under {
+  color: rgba(224,216,204,0.25);
+  font-size: 0.38em;
+  letter-spacing: 0.25em;
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--f-label);
+  font-weight: 300;
+}
+
+.hero-subtitle {
+  position: relative;
+  font-family: var(--f-label);
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--smoke);
+  text-transform: uppercase;
+  margin: 1.5rem 0 3rem;
+  font-style: italic;
+}
+
+.hero-ctas {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--base-1);
+  background: var(--accent);
+  text-decoration: none;
+  transition: all 0.25s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover { background: var(--accent-bright); transform: translateY(-2px); }
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid rgba(212,169,58,0.4);
+  text-decoration: none;
+  transition: all 0.25s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-ghost:hover { border-color: var(--accent); background: rgba(212,169,58,0.08); }
+
+/* SECTIONS */
+.section { padding: 5rem 0; position: relative; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-rule::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,169,58,0.3));
+}
+
+.section-rule::after {
+  content: '';
+  flex: 2;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212,169,58,0.3), transparent);
+}
+
+.section-tag {
+  font-family: var(--f-label);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.section-title {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.section-lead {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(224,216,204,0.7);
+  max-width: 700px;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.section-lead em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* TRIBUTE BOX */
+.tribute-box {
+  background: linear-gradient(135deg, rgba(139,26,42,0.12), rgba(24,24,32,0.95));
+  border: 1px solid rgba(139,26,42,0.35);
+  padding: 2.5rem;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tribute-box::before {
+  content: '♪';
+  position: absolute;
+  font-size: 14rem;
+  opacity: 0.03;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: var(--secondary);
+  pointer-events: none;
+}
+
+.tribute-box h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem,4vw,3rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.tribute-box p {
+  font-size: 0.96rem;
+  color: rgba(224,216,204,0.65);
+  line-height: 1.9;
+  max-width: 620px;
+  margin: 0 auto 1rem;
+  font-style: italic;
+}
+
+/* TRANSPORT */
+.transport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.transport-card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  padding: 1.8rem;
+  transition: border-color 0.2s;
+}
+
+.transport-card:hover { border-color: rgba(212,169,58,0.3); }
+
+.transport-card h3 {
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.transport-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.transport-row:last-of-type { border-bottom: none; }
+.transport-name { font-size: 0.88rem; color: var(--parch); }
+
+/* CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212,169,58,0.25);
+}
+
+.card-type {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card-type.hotel    { background: rgba(212,169,58,0.10); color: var(--accent); }
+.card-type.food     { background: rgba(192,56,10,0.10);  color: #e07840; }
+.card-type.cafe     { background: rgba(120,80,20,0.15);  color: #c8943a; }
+.card-type.culture  { background: rgba(30,80,160,0.10);  color: #6090d0; }
+.card-type.festival { background: rgba(80,160,30,0.10);  color: #70b050; }
+.card-type.nature   { background: rgba(30,140,100,0.10); color: #50c080; }
+.card-type.music    { background: rgba(160,30,120,0.10); color: #d060a0; }
+.card-type.tour     { background: rgba(100,60,180,0.10); color: #9070d0; }
+.card-type.sustain  { background: rgba(50,130,90,0.12);  color: #70c098; }
+
+.card-body { padding: 1.3rem; }
+
+.card-title {
+  font-family: var(--f-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+  color: var(--bone);
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: rgba(224,216,204,0.65);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.card-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--smoke);
+}
+
+.btn:hover { color: var(--accent); border-color: rgba(212,169,58,0.4); }
+
+.btn-map {
+  background: rgba(139,26,42,0.15);
+  color: var(--secondary-glow);
+  border-color: rgba(139,26,42,0.3);
+}
+
+.btn-map:hover {
+  color: var(--accent-bright);
+  background: rgba(139,26,42,0.25);
+  border-color: var(--secondary);
+}
+
+.btn-web {
+  background: rgba(212,169,58,0.10);
+  color: var(--accent);
+  border-color: rgba(212,169,58,0.30);
+}
+
+.btn-web:hover {
+  background: rgba(212,169,58,0.20);
+  border-color: rgba(212,169,58,0.60);
+}
+
+/* BAND SPOTLIGHT */
+.band-spotlight { border-top: 1px solid var(--rule); padding: 2rem 0; }
+.band-spotlight:first-of-type { border-top: none; }
+.band-name { font-family: var(--f-display); font-size: 1.8rem; color: var(--bone); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+.band-years { font-family: var(--f-label); font-size: 0.62rem; font-weight: 400; letter-spacing: 0.2em; color: var(--secondary-glow); text-transform: uppercase; margin-bottom: 1rem; }
+.band-desc { font-family: var(--f-body); font-size: 0.9rem; line-height: 1.9; color: rgba(224,216,204,0.75); max-width: 740px; }
+
+/* TIP BOX */
+.tip-box {
+  background: rgba(212,169,58,0.06);
+  border: 1px solid rgba(212,169,58,0.2);
+  border-left: 3px solid var(--accent);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 4px 4px 0;
+  margin-top: 2rem;
+}
+
+.tip-box p {
+  font-size: 0.9rem;
+  color: rgba(224,216,204,0.8);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 3rem; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  top: 0.6rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--secondary), transparent);
+  opacity: 0.4;
+}
+
+.tl-item { position: relative; margin-bottom: 2.5rem; }
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -3rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  background: var(--secondary);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.tl-time {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  margin-bottom: 0.3rem;
+}
+
+.tl-place {
+  font-family: var(--f-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bone);
+  margin-bottom: 0.4rem;
+}
+
+.tl-desc {
+  font-size: 0.86rem;
+  color: rgba(224,216,204,0.6);
+  line-height: 1.75;
+  margin-bottom: 0.7rem;
+  font-style: italic;
+}
+
+.tl-links { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+/* TABS */
+.tabs-nav {
+  background: var(--base-3);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 62px;
+  z-index: 50;
+}
+
+.tabs-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs-nav-inner::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  padding: 1rem 1.5rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover { color: var(--bone); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* QUOTE */
+.quote-block {
+  background: var(--base-3);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.5rem;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.quote-text {
+  font-family: var(--f-head);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(224,216,204,0.85);
+}
+
+.quote-source {
+  margin-top: 1rem;
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* STATS */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  margin-top: 4rem;
+  border: 1px solid var(--rule);
+}
+
+.stat-cell {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--rule);
+}
+
+.stat-cell:last-child { border-right: none; }
+
+.stat-cell .num {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.stat-cell .num em { font-style: italic; font-weight: 400; font-size: 0.6em; }
+
+.stat-cell .lbl {
+  font-family: var(--f-label);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 0.6rem;
+}
+
+.stat-cell .desc {
+  font-size: 0.85rem;
+  color: rgba(224,216,204,0.55);
+  font-style: italic;
+}
+
+/* MAP */
+.map-embed {
+  width: 100%;
+  height: 380px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin-top: 2rem;
+  filter: sepia(30%) contrast(1.05) brightness(0.85);
+  transition: filter 0.3s;
+}
+
+.map-embed:hover { filter: sepia(10%) contrast(1.05) brightness(0.95); }
+.map-embed iframe { width: 100%; height: 100%; border: none; }
+
+/* HR */
+.hr {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+  margin: 3rem 0;
+}
+
+/* FOOTER */
+footer {
+  background: var(--base-2);
+  border-top: 1px solid rgba(212,169,58,0.15);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tag {
+  font-family: var(--f-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 2rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: rgba(224,216,204,0.3);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* FESTIVAL CARD */
+.festival-card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  padding: 0;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.festival-card:hover { border-color: rgba(212,169,58,0.3); }
+
+.festival-header {
+  background: linear-gradient(135deg, rgba(80,160,30,0.12), transparent);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.4rem 1.5rem;
+}
+
+.festival-dates {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #70b050;
+  margin-bottom: 0.4rem;
+}
+
+.festival-name {
+  font-family: var(--f-head);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--bone);
+}
+
+.festival-body { padding: 1.2rem 1.5rem; }
+
+.festival-desc {
+  font-size: 0.875rem;
+  color: rgba(224,216,204,0.65);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+  position: relative;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-hint span {
+  font-family: var(--f-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(138,132,144,0.4);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(212,169,58,0.4), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-title { line-height: 0.92; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .transport-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">
+    <em>El Pasaporte Sinfónico</em>
+    Liverpool
+  </a>
+  <ul class="nav-links">
+    <li><a href="#llegada">Cómo Llegar</a></li>
+    <li><a href="#hoteles">Hoteles</a></li>
+    <li><a href="#bandas">Las Bandas</a></li>
+    <li><a href="#itinerario">Itinerario</a></li>
+    <li><a href="#cultura">Cultura</a></li>
+    <li><a href="#festivales">Festivales</a></li>
+    <li><a href="#gastronomia">Gastronomía</a></li>
+  </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-watermark">♪</div>
+
+  <div class="episode-badge" style="position:relative">The Beatles · Rock and Roll · Episodio 3</div>
+
+  <h1 class="hero-title" style="position:relative">
+    <span class="under">El Pasaporte Sinfónico presenta</span>
+    <span class="city">Liverpool</span>
+    <span style="color:rgba(224,216,204,0.5);font-size:0.25em;font-family:var(--f-label);font-weight:300;letter-spacing:0.4em;display:block;margin-top:1.5rem">England · Merseyside · 1960</span>
+  </h1>
+
+  <p class="hero-subtitle" style="position:relative">
+    The Beatles · Mathew Street · Mersey River · El Legado Que Cambió El Mundo
+  </p>
+
+  <div class="hero-ctas" style="position:relative">
+    <a href="#itinerario" class="btn-primary">Ver el Itinerario →</a>
+    <a href="#llegada" class="btn-ghost">Cómo Llegar</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Desciende</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- TRIBUTE -->
+<section style="background:var(--base-2);border-top:1px solid rgba(139,26,42,0.4);padding:4rem 2rem">
+  <div class="tribute-box fade-up">
+    <h2>La ciudad que lo cambió todo</h2>
+    <p>Había una ciudad portuaria al noroeste de Inglaterra. Gris, húmeda, construida sobre el comercio y el océano. Una ciudad que sabía perder — guerras, barcos, familias enteras. Y precisamente por eso, cuando cuatro chicos de sus calles de ladrillo rojo tomaron sus guitarras a principios de los años 60, lo que hicieron no fue inventar la música pop. Lo que hicieron fue convertir todo lo que Liverpool sentía — la melancolía del Mersey, la energía de los dockworkers, el ruido de los pubs del Saturday night — en algo que el mundo nunca olvidaría.</p>
+    <p>John Lennon creció en Woolton. Paul McCartney en Allerton. George Harrison en Wavertree. Ringo Starr en Dingle. Cuatro barrios distintos. Una sola ciudad. Y el resto, como dice la leyenda, es historia del rock and roll.</p>
+    <p style="margin-top:1rem;font-size:0.8rem;letter-spacing:0.2em;font-family:var(--f-label);color:var(--accent);font-style:normal">1957 — 1963 · De Quarrymen a Beatlemania</p>
+  </div>
+</section>
+
+
+<!-- STATS -->
+<section style="background:var(--base-1);padding:0">
+  <div class="section-inner" style="padding-top:0;padding-bottom:0">
+    <div class="stats-row">
+      <div class="stat-cell fade-up">
+        <div class="lbl">Actuaciones en el Cavern</div>
+        <div class="num">292</div>
+        <div class="desc">entre 1961 y 1963, antes de Beatlemania</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Discos vendidos</div>
+        <div class="num">1.6<em>B</em></div>
+        <div class="desc">la banda más vendida de la historia</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Visitantes anuales</div>
+        <div class="num">1.2<em>M</em></div>
+        <div class="desc">turistas en busca del circuito beatle</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Años del Cavern Club</div>
+        <div class="num">65<em>+</em></div>
+        <div class="desc">el sótano que no para de vibrar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TRANSPORT -->
+<section class="section" id="llegada" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Antes de salir</span></div>
+    <h2 class="section-title">Cómo llegar<br>a <em>Liverpool</em></h2>
+    <p class="section-lead">Liverpool tiene su propio aeropuerto — el John Lennon Airport, con el tagline "Above us only sky" grabado en la fachada. Pero para quienes llegan desde Latinoamérica o Europa, el hub es Manchester o Londres Heathrow, con conexión directa en tren. El tren es, de hecho, la opción más sinfónica: el viaje desde Londres cruza paisajes industriales que Lennon habría reconocido.</p>
+
+    <div class="transport-grid">
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Norteamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuela a Manchester (MAN) o Heathrow (LHR), luego tren directo a Liverpool Lime Street.</p>
+        <div class="transport-row">
+          <span class="transport-name">American Airlines</span>
+          <a href="https://www.aa.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Air Canada</span>
+          <a href="https://www.aircanada.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">United Airlines</span>
+          <a href="https://www.united.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Delta Air Lines</span>
+          <a href="https://www.delta.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Latinoamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vía Madrid, Amsterdam o Londres. Iberia y KLM tienen buenas conexiones desde Buenos Aires, Bogotá y Santiago.</p>
+        <div class="transport-row">
+          <span class="transport-name">LATAM (vía MIA o LHR)</span>
+          <a href="https://www.latam.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Iberia (vía Madrid)</span>
+          <a href="https://www.iberia.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">KLM (vía Amsterdam)</span>
+          <a href="https://www.klm.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Air Europa (vía Madrid)</span>
+          <a href="https://www.aireuropa.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚆 Tren desde Londres</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La opción más recomendada. 2h10 desde London Euston directamente a Liverpool Lime Street con Avanti West Coast.</p>
+        <div class="transport-row">
+          <span class="transport-name">Avanti West Coast</span>
+          <a href="https://www.avantiwestcoast.co.uk" target="_blank" class="btn btn-web">🚆 Billetes</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">TransPennine Express</span>
+          <a href="https://www.tpexpress.co.uk" target="_blank" class="btn btn-web">🚆 Billetes</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">National Rail (buscador)</span>
+          <a href="https://www.nationalrail.co.uk" target="_blank" class="btn btn-web">🔍 Consultar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Aeropuerto John Lennon</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos desde ciudades europeas. Ryanair y EasyJet cubren España, Irlanda, Francia, Alemania y más.</p>
+        <div class="transport-row">
+          <span class="transport-name">Ryanair</span>
+          <a href="https://www.ryanair.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">EasyJet</span>
+          <a href="https://www.easyjet.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Vueling</span>
+          <a href="https://www.vueling.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:2.5rem">
+      <p><strong>Truco práctico:</strong> El aeropuerto John Lennon (LPL) está a 11 km del centro. El Airlink 500 bus llega en 30 minutos. Pero si entras por Manchester o Londres, el tren a Liverpool Lime Street es más rápido que cualquier coche de alquiler y te deja en pleno corazón de la ciudad, a diez minutos caminando del Albert Dock. Reserva tu rail pass con anticipación — en temporada alta los billetes se disparan.</p>
+    </div>
+
+    <div class="map-embed" style="margin-top:2.5rem">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75989.73694897!2d-3.0001895!3d53.4083714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b211655a43569%3A0x8fc8f25d7d95dc0b!2sLiverpool!5e0!3m2!1ses!2ses!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="text-align:center;margin-top:1rem">
+      <a href="https://www.google.com/maps/search/Liverpool+England" target="_blank" class="btn btn-map">📍 Abrir Liverpool en Google Maps</a>
+    </div>
+
+    <!-- TRANSPORTE LOCAL -->
+    <div style="margin-top:3.5rem">
+      <div class="section-rule"><span class="section-tag">Moverse por la ciudad</span></div>
+      <h3 style="font-family:var(--f-display);font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:0.06em;text-transform:uppercase;color:var(--bone);margin:1rem 0 0.6rem">Transporte <em style="color:var(--accent);font-style:italic;font-weight:400">local</em></h3>
+      <p style="font-size:0.92rem;color:rgba(224,216,204,0.6);font-style:italic;margin-bottom:1.8rem;max-width:620px">Liverpool es compacta — el circuito beatle del centro se puede hacer a pie. Para los suburbios de Woolton y Allerton, el Merseyrail es la opción más rápida. Y para ver la ciudad desde el agua, el River Explorer Cruise en el Mersey Ferry es una experiencia que ningún beatle fan debería saltarse.</p>
+      <div class="transport-grid">
+
+        <div class="transport-card fade-up">
+          <h3>🚇 Merseyrail</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La red de tren suburbano de Liverpool — limpia, frecuente, cubre todos los destinos del circuito beatle. Línea Northern: Central → Allerton (casa de McCartney) → Woolton (Strawberry Field, Mendips). Usa Tap & Go con tu tarjeta bancaria directamente.</p>
+          <div class="transport-row">
+            <span class="transport-name">Merseyrail — Horarios y tarifas</span>
+            <a href="https://www.merseyrail.org" target="_blank" class="btn btn-web">🔍 Web</a>
+          </div>
+          <div class="transport-row">
+            <span class="transport-name">Tap & Go — desde £4.80 adulto</span>
+            <a href="https://www.merseyrail.org/tickets-passes/daily-travel/day-saver/" target="_blank" class="btn btn-web">🎟 Tarifas</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>⛴ Ferry del Mersey — River Explorer Cruise</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">El paseo en barco más icónico de Inglaterra — 50 minutos recorriendo el Mersey con vistas al skyline de Liverpool, comentario en audio incluido. Los Beatles actuaron cuatro veces en el Royal Iris durante los Riverboat Shuffle del Cavern Club en 1961 y 1962. Zarpa desde el Pier Head.</p>
+          <div class="transport-row">
+            <span class="transport-name">River Explorer Cruise — Horarios y tickets</span>
+            <a href="https://www.merseyferries.co.uk/our-cruises/river-explorer-cruise/" target="_blank" class="btn btn-web">⛴ Reservar</a>
+          </div>
+          <div class="transport-row">
+            <span class="transport-name">Pier Head Ferry Terminal — Maps</span>
+            <a href="https://www.google.com/maps/search/Pier+Head+Ferry+Terminal+Liverpool+Mersey" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🚌 Arriva Bus & Airlink 500</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La red de autobuses cubre barrios que el Merseyrail no alcanza. El Airlink 500 conecta el aeropuerto John Lennon con el centro en 30 minutos directos — la opción más económica desde el aeropuerto.</p>
+          <div class="transport-row">
+            <span class="transport-name">Arriva — Planificador de rutas</span>
+            <a href="https://www.arrivabus.co.uk" target="_blank" class="btn btn-web">🔍 Web</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🚕 Uber & Taxi</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Para traslados nocturnos o cuando el tiempo no acompaña, Uber cubre toda la ciudad. Los taxis negros están disponibles en cualquier punto del centro — precio fijo desde el aeropuerto al centro, alrededor de £25.</p>
+          <div class="transport-row">
+            <span class="transport-name">Uber Liverpool</span>
+            <a href="https://www.uber.com/global/en/r/cities/liverpool-eng-gb/" target="_blank" class="btn btn-web">🚕 App</a>
+          </div>
+          <div class="transport-row">
+            <span class="transport-name">ComCab — Taxis Liverpool</span>
+            <a href="https://comcab.co.uk/liverpool/" target="_blank" class="btn btn-web">🚖 Web</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tip-box" style="margin-top:1.5rem">
+        <div style="display:flex;align-items:flex-start;gap:0.9rem;margin-bottom:0.8rem">
+          <div style="font-size:1.5rem;line-height:1.2">🌐</div>
+          <div>
+            <div style="font-family:var(--f-head);font-style:italic;font-weight:700;font-size:1.1rem;color:var(--bone);margin-bottom:0.3rem;line-height:1.3">Traductor de viaje — que el idioma no sea una barrera</div>
+            <div style="font-family:var(--f-label);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent)">Modo conversación · 130+ idiomas · Funciona sin conexión</div>
+          </div>
+        </div>
+        <p>Habla en español y que tu interlocutor escuche en su idioma — y al revés. Google Translate, en modo Conversación, traduce voz en tiempo real, fotos de menús y carteles, y permite descargar paquetes de idioma para usar sin internet. Para grupos con varios idiomas a la vez, Microsoft Translator conecta hasta 100 personas en la misma conversación, cada una en su propio teléfono.</p>
+        <div class="card-links">
+          <a href="https://translate.google.com/intl/es/about/" target="_blank" class="btn btn-web">📱 Descargar Google Translate</a>
+          <a href="https://www.microsoft.com/en-us/translator/apps/" target="_blank" class="btn btn-map">👥 Microsoft Translator (grupos)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- HOTELS -->
+<section class="section" id="hoteles" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Dónde alojarnos</span></div>
+    <h2 class="section-title">Hoteles con<br><em>alma</em></h2>
+    <p class="section-lead">Liverpool tiene hoteles para quien busca dormir cerca del Cavern Club y hotels para quien quiere dormir dentro de la historia. Los mejores se encuentran entre el Albert Dock, el Cavern Quarter y Hope Street — los tres vértices de la ciudad que importan.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Beatles · Cavern Quarter</div>
+        <div class="card-body">
+          <div class="card-title">Hard Days Night Hotel</div>
+          <p class="card-desc">El único hotel en el mundo dedicado íntegramente a The Beatles. Instalado en un edificio Grade II Heritage de 1884, cada habitación tiene ilustraciones originales de los Fab Four por el artista Mike McCartney. El bar cocktail se llama Blake's. El restaurante también. A media cuadra del Cavern Club — literalmente llegas con el eco del bajo todavía en los oídos.</p>
+          <div class="card-links">
+            <a href="https://www.booking.com/hotel/gb/hard-days-night.html" target="_blank" class="btn btn-web">🌐 Reservar</a>
+            <a href="https://www.google.com/maps/search/Hard+Days+Night+Hotel+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Lujo · Heritage · Stanley Dock</div>
+        <div class="card-body">
+          <div class="card-title">Titanic Hotel Liverpool</div>
+          <p class="card-desc">Un antiguo almacén victoriano junto al Stanley Dock, convertido en hotel con paredes de ladrillo expuesto, techos abovedados y habitaciones de proporciones imposibles. La historia del Titanic está entretejida con Liverpool — fue aquí donde zarpó. El hotel lo recuerda sin solemnidad, con estilo. Piscina cubierta incluida.</p>
+          <div class="card-links">
+            <a href="https://www.titanichotelliverpool.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Titanic+Hotel+Liverpool+Stanley+Dock" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Design · Hope Street · Cultural Quarter</div>
+        <div class="card-body">
+          <div class="card-title">Hope Street Hotel</div>
+          <p class="card-desc">En el corazón del barrio más culto de Liverpool, entre las dos catedrales. Habitaciones con diseño contemporáneo, restaurante con menú británico de temporada y esa energía de ciudad universitaria que convierte cada cena en una conversación interesante. A cinco minutos del Liverpool Institute for Performing Arts que fundó Paul McCartney.</p>
+          <div class="card-links">
+            <a href="https://www.hopestreethotel.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hope+Street+Hotel+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Ropewalks · Náutico</div>
+        <div class="card-body">
+          <div class="card-title">The Halyard Liverpool</div>
+          <p class="card-desc">El recién llegado más interesante de la ciudad. En el barrio Ropewalks, parte del portfolio IHG Vignette, su diseño homenajea el pasado marítimo de Liverpool con guiños al Meccano — el juguete de ingeniería inventado aquí. Las suites superiores tienen terrazas con vistas panorámicas. El restaurante Voyages sirve menú de pequeños platos con influencias de todos los puertos que pasaron por este muelle.</p>
+          <div class="card-links">
+            <a href="https://thehalyardliverpool.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Halyard+Hotel+Liverpool+Ropewalks" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Heritage · Georgian · Maximalist</div>
+        <div class="card-body">
+          <div class="card-title">Lock & Key Hotel</div>
+          <p class="card-desc">Una casa georgiana convertida en manifiesto estético. 26 habitaciones con papel tapiz de Mind The Gap y House of Hackney, cabeceras de terciopelo, teléfonos vintage. No es para quienes prefieren el minimalismo. Es para quienes entienden que viajar bien significa rodearse de cosas con carácter. Concierge 24 horas, para cuando la noche se alarga.</p>
+          <div class="card-links">
+            <a href="https://www.booking.com/hotel/gb/lock-and-key-hotels-duke-street-liverpool-liverpool.html" target="_blank" class="btn btn-web">🌐 Reservar</a>
+            <a href="https://www.google.com/maps/search/Lock+and+Key+Hotel+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- BANDS SPOTLIGHT -->
+<section class="section" id="bandas" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Las Bandas</span></div>
+    <h2 class="section-title">El sonido<br><em>que salió de aquí</em></h2>
+    <p class="section-lead">Todo empezó en un radio de una milla — Woolton, Allerton, Wavertree, Dingle — y desde ahí se expandió hasta convertirse en la música más escuchada de la historia. Pero Liverpool no es solo el origen de Los Beatles: es la ciudad que convirtió el Merseybeat en una exportación mundial, y que hoy sigue escuchando "You'll Never Walk Alone" cada sábado en Anfield.</p>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">The Beatles</div>
+      <div class="band-years">1960 – 1970 · Liverpool · John Lennon · Paul McCartney · George Harrison · Ringo Starr</div>
+      <p class="band-desc">Empezaron como The Quarrymen, un grupo de skiffle que John Lennon armó en 1956 con compañeros de la Quarry Bank High School. El 6 de julio de 1957, en la fiesta parroquial de St. Peter's en Woolton, un chico de quince años llamado Paul McCartney le mostró a Lennon que sabía afinar una guitarra y cantar "Twenty Flight Rock" de memoria. Esa tarde cambió la historia de la música. George Harrison se sumó poco después, Ringo Starr llegó en 1962, y el resto ocurrió a una velocidad que nadie en Liverpool podía haber anticipado: el Cavern Club, Hamburgo, Brian Epstein, y trece álbumes en siete años que siguen vendiéndose más que los de cualquier otro grupo en la historia. Todo — todo — empezó en estas calles.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">John Lennon</div>
+      <div class="band-years">1970 – 1980 · Solista · Nueva York / Reino Unido</div>
+      <p class="band-desc">Cuando Los Beatles se separaron en 1970, Lennon ya llevaba un año publicando con la Plastic Ono Band — más cruda, más confesional, más política que nada que hubiera grabado antes. "Imagine" (1971) se convirtió en el himno pacifista más grabado del siglo XX, casi a pesar de su autor, que más tarde diría que era "prácticamente comunista" disfrazado de balada para piano. Pasó los años 70 entre Nueva York y largos silencios creativos, hasta que en 1980 regresó con "Double Fantasy" — un álbum sobre la paternidad y el amor doméstico, grabado junto a Yoko Ono. Tres semanas después de su lanzamiento, Lennon fue asesinado frente a su edificio en Manhattan. Tenía 40 años. Su casa de la infancia, Mendips, en Woolton, sigue exactamente como él la dejó.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/4x1nvY2FN8jxqAFA0DA02H" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Paul McCartney</div>
+      <div class="band-years">1970 – Presente · Solista & Wings · Liverpool / Reino Unido</div>
+      <p class="band-desc">Mientras Lennon buscaba la confesión, McCartney buscaba la melodía — y la encontró una y otra vez durante más de cinco décadas. Formó Wings en 1971 junto a su esposa Linda, y con "Band on the Run" (1973) demostró que la vida después de Los Beatles podía ser tan enorme como la vida dentro de ellos. Desde entonces no ha parado: diecisiete álbumes solistas, una gira mundial casi constante, y en 2022 se convirtió — a los 80 años — en el headliner más longevo en la historia de Glastonbury. Sigue siendo, según Spotify, el ex-Beatle más escuchado del planeta. El chico de Forthlin Road, la casa donde compuso "I Saw Her Standing There" con Lennon en la sala de estar, nunca dejó de escribir canciones.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/4STHEaNw4mPZ2tzheohgXB" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Gerry & The Pacemakers</div>
+      <div class="band-years">1959 – 1966 · Liverpool · Merseybeat · Gerry Marsden</div>
+      <p class="band-desc">Por unos meses de 1963, fueron la banda más popular de Gran Bretaña — sí, más que Los Beatles. Gerry Marsden y su grupo, también descubiertos en el Cavern Club y también gestionados por Brian Epstein, lograron algo que ni siquiera Lennon y McCartney consiguieron: sus primeras tres canciones — "How Do You Do It", "I Like It" y "You'll Never Walk Alone" — llegaron al número uno en el Reino Unido. La última, una vieja balada de musical de Broadway que Marsden reinterpretó como himno de esperanza colectiva, fue adoptada por los hinchas del Liverpool FC en Anfield a mediados de los 60 y nunca la soltaron. Cada sábado de partido, sesenta mil personas siguen cantándola. Esa es la otra cara del Merseybeat: la que no necesitó cruzar el Atlántico para volverse eterna.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/3UmBeGyNwr4iDWi1vTxWi8" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ITINERARY -->
+<section class="section" id="itinerario" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">El circuito</span></div>
+    <h2 class="section-title">Tres días en<br><em>Liverpool</em></h2>
+    <p class="section-lead">Un viaje al Liverpool beatle no es un tour de memorabilia. Es un ejercicio de arqueología emocional. Caminar las mismas calles que caminaron John y Paul de niños. Entrar al sótano donde todo comenzó. Pararse frente a una casa de ladrillo rojo y entender que la música más escuchada de la historia salió de ahí.</p>
+  </div>
+</section>
+
+<div class="tabs-nav">
+  <div class="tabs-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('dia1', this)">Día 1 — El Corazón</button>
+    <button class="tab-btn" onclick="switchTab('dia2', this)">Día 2 — Los Orígenes</button>
+    <button class="tab-btn" onclick="switchTab('dia3', this)">Día 3 — El Puerto & Más Allá</button>
+  </div>
+</div>
+
+<section style="background:var(--base-2);padding:3rem 0 5rem">
+  <div class="section-inner">
+
+    <!-- DIA 1 -->
+    <div id="dia1" class="tab-content active">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,216,204,0.6);max-width:600px">El Cavern Quarter, el Albert Dock y Mathew Street — el núcleo de donde todo irradió.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">The Beatles Story Museum</div>
+          <div class="tl-desc">Empieza aquí. No porque sea el principio de la historia — empieza en las calles de Woolton y Allerton — sino porque este museo en el Royal Albert Dock te da el mapa emocional del resto del viaje. Réplicas del Cavern Club, del Abbey Road Studios, del Ed Sullivan Stage. Más de 1.000 objetos auténticos. Permite 2-3 horas mínimo antes de salir.</div>
+          <div class="tl-links">
+            <a href="https://www.beatlesstory.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Beatles+Story+Museum+Albert+Dock+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Royal Albert Dock</div>
+          <div class="tl-desc">El complejo de almacenes victorianos más grande del mundo cuando fue construido, en 1846. Hoy es el centro cultural de Liverpool — galerías, restaurantes, la Tate Liverpool, el Museo Marítimo. Camina los muelles, respira el Mersey, y piensa que fue este puerto el que conectó Liverpool con el mundo — y con los discos de rhythm and blues americano que influirían en los Beatles.</div>
+          <div class="tl-links">
+            <a href="https://www.albertdock.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Royal+Albert+Dock+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">Mathew Street y el Cavern Club</div>
+          <div class="tl-desc">La calle donde está el Cavern es corta, peatonal y siempre suena a algo. El club abre siete días a la semana — actuaciones en vivo cada tarde y cada noche, sin excepción. The Beatles tocaron aquí 292 veces entre 1961 y 1963. El sótano original fue demolido en 1973, pero la reconstrucción fiel de 1984 capta algo difícil de nombrar: el olor a historia sudada. Entra, pide una pinta, y escucha tocar a quien toca hoy.</div>
+          <div class="tl-links">
+            <a href="https://www.cavernclub.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Cavern+Club+Mathew+Street+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Éramos el mejor grupo en vivo que ha existido. Cuando tocábamos en el Cavern, dábamos miedo."</p>
+          <div class="quote-source">— John Lennon · 1963</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍺 Noche</div>
+          <div class="tl-place">The Grapes Pub, Mathew Street</div>
+          <div class="tl-desc">El pub donde los Beatles se tomaban la pinta entre actuación y actuación. Sigue en pie, sigue sirviendo cerveza, sigue teniendo la madera de roble de entonces. No hay placa espectacular. Solo la barra y el conocimiento de que John Lennon estuvo aquí muchas más veces de las que la historia oficial reconoce.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/The+Grapes+Pub+Mathew+Street+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 2 -->
+    <div id="dia2" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,216,204,0.6);max-width:600px">Los suburbios donde crecieron John, Paul, George y Ringo. El viaje que nadie hace pero que cambia todo.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Mendips — Casa de Lennon, Woolton</div>
+          <div class="tl-desc">251 Menlove Avenue. Una casa de dos plantas con jardín, propiedad del National Trust. Aquí vivió John Lennon de los 5 a los 23 años, criado por su tía Mimi. La habitación donde escribió sus primeras canciones sigue igual — la cama, la ventana, el silencio que lo impulsó a escapar hacia algo más grande. Las visitas son con guía y requieren reserva anticipada.</div>
+          <div class="tl-links">
+            <a href="https://www.nationaltrust.org.uk/visit/liverpool-lancashire/the-beatles-childhood-homes" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Mendips+Lennon+251+Menlove+Avenue+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">20 Forthlin Road — Casa de McCartney, Allerton</div>
+          <div class="tl-desc">La casa de los McCartney es más pequeña, más modesta, más silenciosa. Paul y John ensayaban en el salón cuando la madre de Paul no estaba. Fue aquí donde se escribieron las primeras versiones de "I Saw Her Standing There" y "Love Me Do". Las paredes no lo saben. El suelo de linóleo tampoco. Pero tú sí lo sabes, y eso ya cambia la forma en que lo ves todo.</div>
+          <div class="tl-links">
+            <a href="https://www.nationaltrust.org.uk/visit/liverpool-lancashire/the-beatles-childhood-homes/booking-your-visit-to-the-beatles-childhood-homes" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/20+Forthlin+Road+McCartney+Allerton+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">Penny Lane, Mossley Hill</div>
+          <div class="tl-desc">Es una calle real en el barrio de Mossley Hill. Corta, sin pretensiones, flanqueada por casas de ladrillo rojo y un par de comercios. No hay barber shop con fotos de soldados. No hay banker con automóvil. Pero hay algo que ningún museo puede replicar: la experiencia de estar aquí, bajo el cielo azul suburbano, y escuchar la canción en tu cabeza mientras caminas la misma acera que Lennon y McCartney caminaban juntos de adolescentes rumbo al autobús.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Penny+Lane+Mossley+Hill+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌳 Tarde</div>
+          <div class="tl-place">Strawberry Field, Woolton</div>
+          <div class="tl-desc">Era un hogar de niños del Ejército de Salvación. Las puertas rojas originales siguen ahí. Lennon las veía desde pequeño, se colaba al jardín a jugar. Hoy hay un centro de visitantes, jardines cuidados y una pequeña exposición. Nada es ruidoso. Todo es tranquilo. Exactamente como debe ser un lugar que en 1967 se convirtió en sinónimo de dejar ir — de entender que nada es real, y que eso no importa.</div>
+          <div class="tl-links">
+            <a href="https://www.strawberryfieldliverpool.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Strawberry+Field+Woolton+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">⛪ Tarde</div>
+          <div class="tl-place">St. Peter's Church & Eleanor Rigby's Grave</div>
+          <div class="tl-desc">En el cementerio de la iglesia de St. Peter's en Woolton hay una lápida con el nombre Eleanor Rigby. Fue aquí donde Lennon y McCartney se conocieron el 6 de julio de 1957, en un festival parroquial. La pregunta de si McCartney vio la lápida ese día y guardó el nombre en algún lugar del subconsciente sigue sin respuesta. La lápida está ahí. Tú decides qué creer.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/St+Peters+Church+Woolton+Liverpool+Eleanor+Rigby" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 3 -->
+    <div id="dia3" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,216,204,0.6);max-width:600px">El Liverpool más allá de The Beatles — el Pier Head, el Baltic Triangle y el museo que convierte la historia británica en experiencia.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Liverpool Beatles Museum, Mathew Street</div>
+          <div class="tl-desc">Si el día 1 fue el Beatles Story en el Albert Dock, hoy es el Liverpool Beatles Museum — la colección privada más grande del mundo, cinco plantas de memorabilia auténtica que ni siquiera el National Trust tiene acceso. Del Casbah Coffee Club al Rooftop Concert en una sola visita. Más pequeño que el primero, más íntimo, más lleno de detalles que hacen que te detengas a leer dos veces.</div>
+          <div class="tl-links">
+            <a href="https://www.beatlesmuseum.net" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Liverpool+Beatles+Museum+Mathew+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Pier Head — Las Tres Gracias</div>
+          <div class="tl-desc">El Pier Head es la cara de Liverpool al mar: tres edificios edwardianos — el Royal Liver Building con sus Liver Birds en lo alto, el Cunard Building y el Port of Liverpool Building. Frente a ellos, la estatua de los Fab Four en bronce, mirando hacia el Mersey. La ciudad que los vio nacer todavía los contempla, y ellos todavía la miran a ella. Es una imagen que no te abandona.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Pier+Head+Liverpool+Liver+Building" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">British Music Experience, Cunard Building</div>
+          <div class="tl-desc">Instalado en el Cunard Building del Pier Head, este museo interactivo traza la historia de la música popular británica desde 1944 hasta hoy. Los Beatles ocupan un capítulo central, pero el contexto ayuda — entender que no surgieron de la nada sino de una tradición skiffle, de la influencia del blues americano que llegaba por los barcos al puerto de Liverpool, cambia la forma en que escuchas cada canción.</div>
+          <div class="tl-links">
+            <a href="https://www.britishmusicexperience.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/British+Music+Experience+Liverpool+Cunard+Building" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍺 Tarde</div>
+          <div class="tl-place">Baltic Triangle — Camp and Furnace</div>
+          <div class="tl-desc">El barrio más vivo de Liverpool actual. Lo que fue zona industrial se convirtió en el centro de la escena independiente — breweries, galerías, estudios de diseño, salas de conciertos. Camp and Furnace es el eje de todo: un espacio de eventos convertido en bar y restaurante dentro de una nave industrial que conserva la chimenea original. Aquí se entiende que Liverpool no terminó con The Beatles.</div>
+          <div class="tl-links">
+            <a href="https://www.campandfurnace.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Camp+and+Furnace+Baltic+Triangle+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">The Jacaranda — El Primer Escenario</div>
+          <div class="tl-desc">El Jacaranda en Slater Street fue el primer club donde tocaron los Beatles — antes incluso del Cavern. Alan Williams, el propietario, les consiguió sus primeros contratos en Hamburgo. El sótano está igual que entonces. Hoy es uno de los mejores clubs de la escena indie de Liverpool. Si Sound City está en ciudad, muchos de los showcases más interesantes terminan aquí.</div>
+          <div class="tl-links">
+            
+            <a href="https://www.google.com/maps/search/The+Jacaranda+Slater+Street+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CULTURA -->
+<section class="section" id="cultura" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Patrimonio & Cultura</span></div>
+    <h2 class="section-title">La ciudad<br>más allá del <em>mito</em></h2>
+    <p class="section-lead">Liverpool tiene un patrimonio que va mucho más allá de las cuatro guitarras de Mathew Street. Es una ciudad de museos de clase mundial, de arquitectura victoriana que sobrevivió a los bombardeos, de un frente marítimo que es Patrimonio de la Humanidad UNESCO.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Museo · Arte Moderno · Albert Dock</div>
+        <div class="card-body">
+          <div class="card-title">Tate Liverpool</div>
+          <p class="card-desc">La colección nacional de arte moderno y contemporáneo en el norte de Inglaterra, instalada en los almacenes del Albert Dock. Picasso, Warhol, Hockney, artistas locales emergentes — todo en el mismo espacio donde antes se guardaba algodón de las colonias. La entrada permanente es gratuita. Las exposiciones temporales valen cada centavo.</p>
+          <div class="card-links">
+            <a href="https://www.tate.org.uk/visit/tate-liverpool" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Tate+Liverpool+Albert+Dock" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">⚓ Museo · Marítimo · Historia</div>
+        <div class="card-body">
+          <div class="card-title">Museo Marítimo de Liverpool</div>
+          <p class="card-desc">El puerto que hizo a Liverpool hizo también al mundo moderno — por él pasaron inmigrantes irlandeses hacia América, barcos esclavistas que la ciudad prefiere no olvidar, y los discos de rhythm and blues que los marineros traían de vuelta. Este museo cuenta todo eso sin eufemismos, incluyendo una sección entera sobre la participación de la ciudad en el comercio de esclavos. Honesto y necesario.</p>
+          <div class="card-links">
+            <a href="https://www.liverpoolmuseums.org.uk/maritime-museum" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Maritime+Museum+Liverpool+Albert+Dock" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎓 LIPA · Música · Educación</div>
+        <div class="card-body">
+          <div class="card-title">Liverpool Institute for Performing Arts</div>
+          <p class="card-desc">El edificio donde George Harrison y Paul McCartney fueron al colegio — el Liverpool Institute High School for Boys — fue reconvertido por McCartney en una de las mejores escuelas de artes escénicas de Europa. LIPA graduó a músicos, actores y técnicos que hoy trabajan en producciones de todo el mundo. No es visitable libremente, pero los alrededores en Mount Street son parte del paseo obligatorio.</p>
+          <div class="card-links">
+            <a href="https://www.lipa.ac.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/LIPA+Liverpool+Institute+Performing+Arts+Mount+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">⛪ Arquitectura · Cathedral · Gótico</div>
+        <div class="card-body">
+          <div class="card-title">Liverpool Cathedral</div>
+          <p class="card-desc">La catedral anglicana más grande del Reino Unido, y una de las mayores del mundo. John Lennon intentó entrar al coro aquí de niño — fue rechazado. George Harrison se casó cerca. La torre tiene vistas que cubren todo Merseyside hasta el horizonte. La arquitectura neogótica del siglo XX es imponente al nivel que pocos edificios modernos logran ser.</p>
+          <div class="card-links">
+            <a href="https://www.liverpoolcathedral.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Liverpool+Cathedral+Anglican+St+James+Mount" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🔮 Arte · Walker · Colección Nacional</div>
+        <div class="card-body">
+          <div class="card-title">Walker Art Gallery</div>
+          <p class="card-desc">La colección de arte europeo más importante fuera de Londres — desde los prerrafaelitas hasta Rubens, pasando por los impresionistas y la cerámica medieval. Entrada gratuita. En el mismo edificio hay una sección dedicada a la historia de Liverpool como ciudad creativa que ayuda a entender por qué la música que surgió aquí en los 60 tenía esa textura particular de riqueza y precariedad a la vez.</p>
+          <div class="card-links">
+            <a href="https://www.liverpoolmuseums.org.uk/walker-art-gallery" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Walker+Art+Gallery+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏘 Barrio · Quartier · Arthur Dooley</div>
+        <div class="card-body">
+          <div class="card-title">Cavern Quarter & Wall of Fame</div>
+          <p class="card-desc">El barrio alrededor de Mathew Street tiene más capas de las que parece a primera vista. La escultura de Arthur Dooley "Four Lads Who Shook the World" en la pared. Las placas de los artistas que tocaron aquí en el suelo. El Mathew Street Festival, cuando llega el verano y la calle se convierte en la fiesta beatle más grande del mundo fuera de las casas de sus protagonistas.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Cavern+Quarter+Mathew+Street+Liverpool+Wall+of+Fame" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FESTIVALES -->
+<section class="section" id="festivales" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Música en Vivo</span></div>
+    <h2 class="section-title">Festivales<br>& <em>Venues</em></h2>
+    <p class="section-lead">Liverpool vive de la música en presente, no solo del pasado. La ciudad que fue cuna del rock and roll sigue siendo laboratorio de nuevas escenas — desde el indie alternativo hasta la electrónica del Baltic Triangle. Aquí están los eventos y los espacios que lo demuestran.</p>
+
+    <div class="cards-grid">
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 2–3 de Mayo · Anual · 16+</div>
+          <div class="festival-name">Liverpool Sound City 2026</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">El festival de nueva música independiente más importante de Europa, instalado en el Baltic Triangle y el Grand Central Hall. Ed Sheeran, Stormzy, Lizzo y Fontaines DC hicieron aquí sus debuts en el UK. Fiercely indie, con actitud norteña que no pide disculpas. Si tu visita coincide con el primer fin de semana de mayo, re-organiza el itinerario entero para incluir esto.</p>
+          <div class="card-links">
+            <a href="https://www.soundcity.uk.com" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Sound+City+Festival+Liverpool+Baltic+Triangle" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 Junio – Agosto · Anual</div>
+          <div class="festival-name">Liverpool Summer of Music</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">La respuesta de la ciudad a la pregunta de qué hacer cuando Sound City termina. Un programa coordinado por Culture Liverpool que cubre toda la región desde junio hasta agosto — conciertos en el Cavern, festivales en los parques, eventos de barrio, actuaciones callejeras. No es un festival con una sola fecha: es una ciudad que decidió que el verano entero es un programa musical.</p>
+          <div class="card-links">
+            <a href="https://www.visitliverpool.com" target="_blank" class="btn btn-web">🌐 Visit Liverpool</a>
+            <a href="https://www.google.com/maps/search/Liverpool+city+centre" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 23–24 Mayo 2026 · Baltic Triangle</div>
+          <div class="festival-name">Outer Waves Festival</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">La novedad que más habla sobre el futuro de la escena. En su segunda edición, Outer Waves toma la Invisible Wind Factory y Make North Docks con música experimental, performance y arte visual. No es para el turista casual — es para quien quiere entender que Liverpool 2026 tiene tanto que decir como Liverpool 1963. Programación que cruza géneros sin disculparse.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Invisible+Wind+Factory+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Indie · Histórico</div>
+        <div class="card-body">
+          <div class="card-title">The Cavern Club</div>
+          <p class="card-desc">Música en vivo siete días a la semana, tarde y noche. No es solo un museo — es un venue activo que programa artistas emergentes, tributos, y sesiones de blues y rock que comienzan temprano y terminan tarde. La mejor forma de vivir el Cavern no es mirando las paredes: es con una pinta en la mano mientras alguien toca.</p>
+          <div class="card-links">
+            <a href="https://www.cavernclub.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Cavern+Club+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Clásico · Orquesta</div>
+        <div class="card-body">
+          <div class="card-title">Liverpool Philharmonic Hall</div>
+          <p class="card-desc">La Royal Liverpool Philharmonic Orchestra es la más antigua orquesta permanente de Gran Bretaña. El auditorio, construido en 1939 con elementos art déco y modernistas, es uno de los más bellos del norte de Inglaterra. Programa cruzado que incluye clásico, pop sinfónico y colaboraciones con artistas contemporáneos — es un programa que los Beatles habrían reconocido como propio.</p>
+          <div class="card-links">
+            <a href="https://www.liverpoolphil.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Liverpool+Philharmonic+Hall+Hope+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Electrónico · Industrial</div>
+        <div class="card-body">
+          <div class="card-title">Invisible Wind Factory</div>
+          <p class="card-desc">La nave industrial más importante de la escena alternativa del norte. Baltic Triangle, frente al Mersey, con capacidad para 1.800 personas y programación que incluye desde techno hasta bandas de jazz experimental. Es el tipo de venue que no existe en muchas ciudades — una sala que fuerza a los artistas a sonar grande porque el espacio lo exige.</p>
+          <div class="card-links">
+            <a href="https://www.invisiblewindfactory.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Invisible+Wind+Factory+Liverpool+Baltic+Triangle" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- GASTRONOMY -->
+<section class="section" id="gastronomia" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Gastronomía</span></div>
+    <h2 class="section-title">Comer en<br><em>Liverpool</em></h2>
+    <p class="section-lead">La cocina de Liverpool es un reflejo de su historia portuaria — una ciudad que absorbió influencias de todo el mundo. Hay curry houses que existen desde los años 70, pubs que sirven scouse (el estofado local que le da nombre a sus habitantes) y una nueva escena de restaurantes en el Baltic Triangle que rivaliza con cualquier ciudad del norte.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type food">🍽 Restaurante · Modern British · Baltic</div>
+        <div class="card-body">
+          <div class="card-title">Manifest</div>
+          <p class="card-desc">En un almacén reconvertido de Watkinson Street, Manifest hace algo difícil: cocina de temporada con ingredientes locales en un espacio que huele a ladrillos centenarios. El menú cambia con la estación — venado ahumado en invierno, pescado del Mersey en verano. Cocina abierta, para quien quiere ver el proceso. El tipo de restaurante que Liverpool necesita para que el Baltic Triangle sea tomado en serio.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Manifest+Restaurant+Liverpool+Watkinson+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍺 Cervecería · Craft · Baltic</div>
+        <div class="card-body">
+          <div class="card-title">Love Lane Brewery</div>
+          <p class="card-desc">La mejor cervecería artesanal de Liverpool tiene una sala de degustación con vistas a los tanques de fermentación. No hay mejor forma de entender un barrio que bebiendo su cerveza mirando cómo la hacen. Las Love Lane ales son locales en el sentido más literal — el agua del Mersey está en cada vaso. Van rotando las marcas y temporadas; pregunta siempre qué hay de nueva producción.</p>
+          <div class="card-links">
+            <a href="https://www.lovelanebrewing.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Love+Lane+Brewery+Baltic+Triangle+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Café · Cultura · Baltic</div>
+        <div class="card-body">
+          <div class="card-title">Leaf Tea Shop & Bar</div>
+          <p class="card-desc">Una institución de Bold Street que abrió antes de que el barrio se volviera cool — y por eso tiene credibilidad que los locales no les dan a los recién llegados. Tés del mundo, desayunos lentos, música en vivo los fines de semana. El tipo de sitio donde uno llega a tomar algo y termina cuatro horas después con planes de volver mañana.</p>
+          <div class="card-links">
+            <a href="https://www.thisisleaf.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Leaf+Tea+Shop+Bold+Street+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🥐 Panadería · Artesanal · Liverpool</div>
+        <div class="card-body">
+          <div class="card-title">Pastille Bakery</div>
+          <p class="card-desc">La panadería artesanal que se ha convertido en el nuevo referente del desayuno en Liverpool — nacida durante el confinamiento por un chef con formación en pastelería de alto nivel, con menú rotativo semanal de croissants, cruffins, cheesecake vasco y cookies que se agotan antes del mediodía. Si vas a arrancar el día 3 con energía antes de abrir el mapa beatle, empieza aquí.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Pastille+Bakery+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍜 Mercado · Street Food · Indoor</div>
+        <div class="card-body">
+          <div class="card-title">Baltic Market</div>
+          <p class="card-desc">El mercado de street food cubierto del Baltic Triangle — una nave con diez o doce puestos que rotan, sirviendo desde ramen hasta tacos pasando por pizza napolitana y curries. Lo mejor para la noche de llegada o el almuerzo del tercer día: sentarse con algo en la mano, escuchar la música que suena, y mirar a Liverpool vivir su presente mientras tú procesas su pasado.</p>
+          <div class="card-links">
+            <a href="https://www.balticmarket.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Baltic+Market+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Pub Histórico · Mathew Street</div>
+        <div class="card-body">
+          <div class="card-title">Ye Cracke</div>
+          <p class="card-desc">El pub más viejo del barrio bohemio de Liverpool, en Rice Street — John Lennon lo frecuentó durante sus años en el Liverpool College of Art justo al lado. La sala de la guerra en el fondo conserva su boiserie original. Ales bien tiradas, conversaciones lentas. No hay música en vivo ni pantallas de fútbol. Solo lo que un pub debería ser: un lugar donde puedes pensar mientras bebes.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Ye+Cracke+Pub+Rice+Street+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- REGENERATIVE -->
+<section class="section" id="regenerativo" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Turismo Regenerativo</span></div>
+    <h2 class="section-title">Dar algo<br><em>a Liverpool</em></h2>
+    <p class="section-lead">Liverpool es una ciudad que ha dado más de lo que ha recibido. Una ciudad que perdió la UNESCO Heritage porque los desarrolladores ganaron. Una ciudad que lucha por sus comunidades con la misma energía con que defiende su legado musical. Si vas a estar aquí, hay formas de dejar algo más que tus huellas.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Comunidad · Transición · Sostenibilidad</div>
+        <div class="card-body">
+          <div class="card-title">Transition Liverpool</div>
+          <p class="card-desc">La red de iniciativas comunitarias de sostenibilidad más activa de Merseyside — jardines comunitarios, talleres de reparación, grupos de reducción de residuos. Sus sesiones abiertas aceptan participantes ocasionales. Una tarde en el huerto de Wavertree, uno de los barrios más precarios de la ciudad, enseña más sobre el Liverpool real que cualquier museo.</p>
+          <div class="card-links">
+            <a href="https://transitionliverpool.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Transition+Liverpool+community+garden+Wavertree" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🎓 Educación · Música · Futuros Beatles</div>
+        <div class="card-body">
+          <div class="card-title">LIPA Foundation & Outreach</div>
+          <p class="card-desc">El Liverpool Institute for Performing Arts tiene programas de extensión para jóvenes de barrios con pocos recursos — el mismo circuito del que salieron los Beatles. Donar o participar como voluntario en sus actividades comunitarias es la forma más directa de contribuir a que la próxima generación musical de Liverpool tenga las herramientas que John y Paul tuvieron que inventar desde cero.</p>
+          <div class="card-links">
+            <a href="https://www.lipa.ac.uk" target="_blank" class="btn btn-web">🌐 LIPA</a>
+            <a href="https://www.google.com/maps/search/LIPA+Liverpool+Mount+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">♻ Residuos · Comunidad · Liverpool City Region</div>
+        <div class="card-body">
+          <div class="card-title">Zero Waste Community Fund — Merseyside</div>
+          <p class="card-desc">La autoridad regional de Merseyside financia doce grupos comunitarios de reducción de residuos — talleres escolares, hubs de reparación eléctrica, cocina con desperdicio cero. Muchos de los proyectos buscan voluntarios ocasionales para sus sesiones abiertas. Consulta su agenda antes de llegar — puede que coincidas con una jornada de trabajo comunitario en el barrio que estás visitando.</p>
+          <div class="card-links">
+            <a href="https://www.merseysidewda.gov.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Merseyside+Recycling+Waste+Authority+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🎵 Patrimonio · Conservación · Historia</div>
+        <div class="card-body">
+          <div class="card-title">Strawberry Field — Ejército de Salvación</div>
+          <p class="card-desc">El Ejército de Salvación mantiene el centro Strawberry Field no solo como destino turístico sino como programa de integración laboral para jóvenes con necesidades de apoyo. Parte de los ingresos de las entradas financia directamente estos programas. Visitar Strawberry Field es una de las pocas formas en que el turismo beatle tiene un impacto real y medible en la comunidad que Lennon habría reconocido.</p>
+          <div class="card-links">
+            <a href="https://www.strawberryfieldliverpool.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Strawberry+Field+Liverpool+Salvation+Army" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- QUOTE FINAL -->
+<section style="background:var(--base-1);padding:4rem 2rem">
+  <div class="section-inner">
+    <div class="quote-block" style="max-width:800px;margin:0 auto">
+      <p class="quote-text">"Liverpool es el lugar que me hizo. Cuando eres de ahí, lo llevas contigo a todas partes. No puedes quitártelo. Ni querrías."</p>
+      <div class="quote-source">— John Lennon · 1971</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CLOSING MANIFESTO -->
+<section style="background:var(--base-2);border-top:1px solid rgba(212,169,58,0.15);padding:5rem 2rem">
+  <div class="section-inner" style="text-align:center;max-width:760px">
+    <div class="section-rule" style="justify-content:center"><span class="section-tag">El viaje continúa</span></div>
+    <h2 style="font-family:var(--f-display);font-size:clamp(1.8rem,5vw,3.5rem);letter-spacing:0.08em;text-transform:uppercase;color:var(--bone);margin-bottom:2rem;line-height:1.1">Liverpool<br><em style="color:var(--accent);font-style:italic;font-weight:400">para siempre</em></h2>
+    <p style="font-family:var(--f-body);font-size:1.05rem;line-height:1.95;color:rgba(224,216,204,0.7);font-style:italic;margin-bottom:1.5rem">
+      Los grandes viajes no son los que te llevan a lugares nuevos. Son los que te devuelven a ti mismo con algo extra. Liverpool hace eso. Te muestra que cuatro chicos de ladrillo rojo y lluvia constante pudieron cambiar la frecuencia emocional del planeta entero — no por talento solo, sino porque tenían algo que decir y la urgencia de decirlo. Esa urgencia está todavía en las calles, en el sótano del Cavern, en las puertas rojas de Strawberry Field.
+    </p>
+    <p style="font-family:var(--f-body);font-size:1.05rem;line-height:1.95;color:rgba(224,216,204,0.7);font-style:italic;margin-bottom:3rem">
+      Cuando salgas por la puerta del John Lennon Airport de regreso, vas a llevar algo de aquí. No un souvenir. Algo más difícil de nombrar. El conocimiento de que la música que más quieres salió de una ciudad que nunca tuvo nada garantizado. <em style="color:var(--accent)">Y que eso es exactamente por qué importa.</em>
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.visitliverpool.com" target="_blank" class="btn-primary">Planifica tu visita →</a>
+      <a href="https://open.spotify.com/episode/3rPUkwmgMQoDQE3crPk8gq" target="_blank" class="btn-ghost">🎧 El Podcast</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- PREMIER LEAGUE -->
+<section style="background:var(--base-1);border-top:1px solid rgba(212,169,58,0.15);padding:4rem 2rem" id="football">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Para los Fanáticos del Fútbol</span></div>
+    <h2 class="section-title">La otra<br><em>religión</em> de Liverpool</h2>
+    <p class="section-lead">Liverpool no es solo música. Es fútbol. El Liverpool FC y el Everton FC comparten una ciudad que vive el fútbol con la misma intensidad que vive el rock and roll. Anfield, el estadio del Liverpool FC, está a 20 minutos del centro. Si tu visita coincide con un partido de la Premier League, no hay excusa para no ir.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(200,16,46,0.12);color:#e8102e;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Premier League · Tickets Oficiales</div>
+        <div class="card-body">
+          <div class="card-title">Premier League — Compra de Entradas</div>
+          <p class="card-desc">La página oficial de la Premier League para consultar el calendario completo de partidos, fechas, estadios y acceder a las plataformas de venta de entradas de cada club. El punto de partida para planificar tu jornada de fútbol en Liverpool, Manchester, Londres o cualquier ciudad de la liga.</p>
+          <div class="card-links">
+            <a href="https://www.premierleague.com/tickets" target="_blank" class="btn btn-web">⚽ Tickets PL</a>
+            <a href="https://www.google.com/maps/search/Anfield+Stadium+Liverpool" target="_blank" class="btn btn-map">📍 Anfield</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(200,16,46,0.12);color:#e8102e;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Liverpool FC · Anfield · You'll Never Walk Alone</div>
+        <div class="card-body">
+          <div class="card-title">Liverpool FC — Entradas Oficiales</div>
+          <p class="card-desc">El sitio oficial del Liverpool FC para comprar entradas en Anfield, reservar el tour del estadio y acceder al Liverpool FC Museum. Las entradas para partidos de Premier League se agotan con semanas o meses de anticipación — reserva en cuanto confirmes las fechas de tu viaje. El tour del estadio y el museo están disponibles sin necesidad de partido.</p>
+          <div class="card-links">
+            <a href="https://www.liverpoolfc.com/tickets" target="_blank" class="btn btn-web">⚽ LFC Tickets</a>
+            <a href="https://www.google.com/maps/search/Anfield+Road+Liverpool+FC+Stadium" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(39,68,136,0.12);color:#4169b8;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Everton FC · Goodison Park · The Toffees</div>
+        <div class="card-body">
+          <div class="card-title">Everton FC — Entradas Oficiales</div>
+          <p class="card-desc">El eterno rival local, uno de los clubes fundadores de la Football League en 1888. Everton FC inauguró su nuevo estadio en Bramley-Moore Dock en 2025 — un recinto de 52.000 espectadores en el frente marítimo del norte de Liverpool. Ver un partido aquí es ver historia en tiempo real: el primer estadio de Premier League construido desde cero en décadas.</p>
+          <div class="card-links">
+            <a href="https://www.evertonfc.com/tickets" target="_blank" class="btn btn-web">⚽ EFC Tickets</a>
+            <a href="https://www.google.com/maps/search/Everton+Stadium+Bramley+Moore+Dock+Liverpool" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:2.5rem">
+      <p><strong>Consejo del viajero:</strong> Las entradas para partidos de Premier League en Liverpool se agotan con meses de antelación, especialmente los derbis locales y los grandes encuentros europeos. Usa siempre los canales oficiales de cada club o el sitio de la Premier League — los revendedores secundarios cobran hasta tres veces el precio original. El tour de Anfield con el LFC Museum está disponible casi todos los días sin partido y es una experiencia que vale por sí sola.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">El Pasaporte Sinfónico</div>
+  <div class="footer-tag">El podcast donde la música viaja</div>
+  <p class="footer-note">Episodio 3 — El Rock and Roll · Liverpool · The Beatles<br>Todos los enlaces son orientativos. Verifica horarios y disponibilidad antes de tu visita. Los lugares cambian; la música, no.<br><br>© 2026 El Pasaporte Sinfónico. Todos los derechos reservados.</p>
+</footer>
+
+
+<script>
+// Tabs
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Fade-up on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav active states
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birmingham — El Pasaporte Sinfónico · Episodio 4 · Heavy Metal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --base-1: #05050a;
+  --base-2: #0a080f;
+  --base-3: #110d18;
+  --base-4: #1a1020;
+  --accent:        #d4aa3a;
+  --accent-bright: #f0c84a;
+  --accent-deep:   #8a6820;
+  --secondary:       #7a1515;
+  --secondary-glow:  #b02020;
+  --secondary-light: rgba(122,21,21,0.15);
+  --bone:  #f0ece8;
+  --parch: #e0d5cc;
+  --smoke: #8a7a88;
+  --rule:  #2a1520;
+  --f-display: 'Cinzel', serif;
+  --f-head: 'Playfair Display', serif;
+  --f-body: 'Libre Baskerville', serif;
+  --f-label: 'Oswald', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--base-1);
+  color: var(--parch);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(5,5,10,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,170,58,0.12);
+}
+.nav-logo {
+  font-family: var(--f-label); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none; line-height: 1.3;
+}
+.nav-logo em { display: block; font-style: normal; color: var(--smoke); font-size: 0.6rem; letter-spacing: 0.3em; }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; }
+.nav-links a {
+  font-family: var(--f-label); font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--smoke); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+@media (max-width: 900px) { .nav-links { display: none; } }
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 2rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(122,21,21,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(212,170,58,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--base-1) 0%, #080510 60%, #0a0510 100%);
+}
+.hero-watermark {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 30vw; line-height: 1; color: var(--secondary);
+  opacity: 0.04; font-family: var(--f-display);
+  pointer-events: none; user-select: none; z-index: 1;
+}
+.episode-badge {
+  position: relative; z-index: 2;
+  font-family: var(--f-label); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--secondary-glow);
+  border: 1px solid rgba(176,32,32,0.3);
+  padding: 0.5rem 1.4rem; margin-bottom: 2rem;
+  background: rgba(122,21,21,0.08);
+}
+.hero-title {
+  position: relative; z-index: 2;
+  font-family: var(--f-display);
+  display: flex; flex-direction: column; gap: 0.4rem;
+  margin-bottom: 1.6rem;
+}
+.hero-title .under {
+  font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+  letter-spacing: 0.3em; color: var(--smoke); font-weight: 700; text-transform: uppercase;
+}
+.hero-title .city {
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  letter-spacing: 0.05em; color: var(--bone); line-height: 0.9;
+  text-shadow: 0 0 80px rgba(212,170,58,0.15);
+}
+.hero-subtitle {
+  position: relative; z-index: 2;
+  font-family: var(--f-label); font-size: 0.72rem; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase; color: rgba(212,170,58,0.6);
+  margin-bottom: 2.5rem;
+}
+.hero-ctas {
+  position: relative; z-index: 2;
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+}
+.btn-primary {
+  font-family: var(--f-label); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  background: var(--accent); color: #05050a;
+  padding: 0.85rem 2rem; text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--accent-bright); transform: translateY(-1px); }
+.btn-ghost {
+  font-family: var(--f-label); font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  border: 1px solid rgba(212,170,58,0.4); color: var(--accent);
+  padding: 0.85rem 2rem; text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--accent); background: rgba(212,170,58,0.06); }
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2; text-align: center;
+  font-family: var(--f-label); font-size: 0.52rem; letter-spacing: 0.3em;
+  color: var(--smoke); text-transform: uppercase;
+}
+.scroll-arrow {
+  width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent);
+  margin: 0.5rem auto 0;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+.section { padding: 5rem 2rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-rule {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.section-rule::before, .section-rule::after {
+  content: ''; flex: 1; height: 1px; background: var(--rule);
+}
+.section-tag {
+  font-family: var(--f-label); font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--secondary-glow);
+  white-space: nowrap;
+}
+.section-title {
+  font-family: var(--f-display); font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--bone); line-height: 1.05; margin-bottom: 1.5rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.section-title em { color: var(--accent); font-style: italic; font-family: var(--f-head); text-transform: none; }
+.section-lead {
+  font-family: var(--f-body); font-size: 1rem; line-height: 1.9;
+  color: rgba(224,213,204,0.7); max-width: 680px; margin-bottom: 3rem;
+}
+.tribute-box {
+  border-left: 3px solid var(--secondary);
+  padding: 2rem 2.5rem;
+  background: rgba(122,21,21,0.06);
+  max-width: 780px;
+}
+.tribute-box h2 {
+  font-family: var(--f-head); font-size: 1.6rem; font-weight: 700;
+  color: var(--bone); margin-bottom: 1.2rem; font-style: italic;
+}
+.tribute-box p {
+  font-family: var(--f-body); font-size: 0.95rem; line-height: 1.95;
+  color: rgba(224,213,204,0.75); margin-bottom: 1rem;
+}
+.stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  border: 1px solid var(--rule); margin-bottom: 3rem;
+}
+.stat-cell {
+  padding: 2rem 1.5rem; text-align: center;
+  border-right: 1px solid var(--rule);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell .lbl {
+  font-family: var(--f-label); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--smoke);
+  margin-bottom: 0.5rem;
+}
+.stat-cell .num {
+  font-family: var(--f-display); font-size: 2.2rem; color: var(--accent);
+  line-height: 1; margin-bottom: 0.4rem;
+}
+.stat-cell .num em { font-size: 0.9rem; font-style: normal; color: var(--smoke); margin-left: 2px; }
+.stat-cell .desc {
+  font-family: var(--f-body); font-size: 0.72rem; font-style: italic;
+  color: rgba(224,213,204,0.45); line-height: 1.5;
+}
+@media (max-width: 600px) { .stats-row { grid-template-columns: repeat(2,1fr); } }
+.transport-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.transport-card {
+  background: var(--base-3); border: 1px solid var(--rule);
+  padding: 1.5rem;
+}
+.transport-card h3 {
+  font-family: var(--f-label); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+.transport-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.5rem; margin-top: 0.5rem; padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+.transport-name {
+  font-family: var(--f-label); font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.1em; color: var(--parch);
+}
+.map-embed-container {
+  width: 100%; height: 340px; border: 1px solid var(--rule);
+  margin: 2rem 0 1rem; overflow: hidden;
+}
+.map-embed-container iframe { width: 100%; height: 100%; border: none; }
+.tip-box {
+  background: rgba(212,170,58,0.06); border-left: 3px solid var(--accent);
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+}
+.tip-box p {
+  font-family: var(--f-body); font-size: 0.85rem; line-height: 1.75;
+  color: rgba(224,213,204,0.75);
+}
+.btn { display: inline-block; text-decoration: none; padding: 0.5rem 1rem; font-family: var(--f-label); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.2s; }
+.btn:hover { opacity: 0.8; }
+.btn-web { background: rgba(212,170,58,0.12); color: var(--accent); border: 1px solid rgba(212,170,58,0.25); }
+.btn-map { background: rgba(122,21,21,0.12); color: var(--secondary-glow); border: 1px solid rgba(122,21,21,0.25); }
+.card-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.card { background: var(--base-3); border: 1px solid var(--rule); overflow: hidden; }
+.card-type {
+  font-family: var(--f-label); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 0.65rem 1.3rem; border-bottom: 1px solid var(--rule);
+}
+.card-type.hotel { background: rgba(212,170,58,0.08); color: var(--accent); }
+.card-type.food { background: rgba(200,100,30,0.08); color: #e07830; }
+.card-type.cafe { background: rgba(180,130,40,0.08); color: #c8a030; }
+.card-type.culture { background: rgba(107,47,160,0.08); color: #9b4fd0; }
+.card-type.music { background: rgba(80,40,140,0.1); color: #8060c8; }
+.card-type.festival { background: rgba(30,130,60,0.08); color: #48a868; }
+.card-type.sustain { background: rgba(30,110,100,0.08); color: #40a898; }
+.card-type.tour { background: rgba(160,40,40,0.08); color: #c05050; }
+.card-body { padding: 1.4rem 1.5rem; }
+.card-title { font-family: var(--f-head); font-size: 1.05rem; font-weight: 700; color: var(--bone); margin-bottom: 0.6rem; line-height: 1.3; }
+.card-desc { font-family: var(--f-body); font-size: 0.82rem; line-height: 1.8; color: rgba(224,213,204,0.65); }
+.band-spotlight {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 0;
+}
+.band-spotlight:first-of-type { border-top: none; }
+.band-name {
+  font-family: var(--f-display); font-size: 1.8rem; color: var(--bone);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem;
+}
+.band-years {
+  font-family: var(--f-label); font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.2em; color: var(--secondary-glow); text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.band-desc { font-family: var(--f-body); font-size: 0.9rem; line-height: 1.9; color: rgba(224,213,204,0.7); max-width: 740px; }
+.tabs-nav {
+  position: sticky; top: 62px; z-index: 100;
+  background: rgba(5,5,10,0.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tabs-nav-inner { display: flex; min-width: max-content; }
+.tab-btn {
+  font-family: var(--f-label); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--smoke); background: none; border: none;
+  padding: 1.1rem 1.6rem; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--parch); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; padding: 2rem 0; }
+.tab-content.active { display: block; }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(to bottom, var(--secondary), transparent);
+}
+.tl-item { position: relative; padding: 0 0 2.5rem 1.5rem; }
+.tl-item::before {
+  content: ''; position: absolute; left: -0.3rem; top: 0.4rem;
+  width: 7px; height: 7px; background: var(--accent);
+  border-radius: 50%;
+}
+.tl-time {
+  font-family: var(--f-label); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--secondary-glow);
+  margin-bottom: 0.3rem;
+}
+.tl-place {
+  font-family: var(--f-head); font-size: 1.05rem; font-weight: 700;
+  color: var(--bone); margin-bottom: 0.5rem; line-height: 1.3;
+}
+.tl-desc { font-family: var(--f-body); font-size: 0.85rem; line-height: 1.85; color: rgba(224,213,204,0.65); margin-bottom: 0.8rem; }
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem 2rem; margin: 2rem 0;
+  background: rgba(212,170,58,0.04);
+}
+.quote-text {
+  font-family: var(--f-head); font-size: 1.15rem; font-style: italic;
+  color: var(--bone); line-height: 1.7; margin-bottom: 0.8rem;
+}
+.quote-source {
+  font-family: var(--f-label); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent);
+}
+.festival-card {
+  background: var(--base-3); border: 1px solid var(--rule);
+  padding: 1.8rem; margin-bottom: 1.5rem;
+}
+.festival-header { margin-bottom: 1rem; }
+.festival-dates {
+  font-family: var(--f-label); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--secondary-glow);
+  margin-bottom: 0.3rem;
+}
+.festival-name {
+  font-family: var(--f-display); font-size: 1.4rem; color: var(--bone);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.festival-desc { font-family: var(--f-body); font-size: 0.85rem; line-height: 1.85; color: rgba(224,213,204,0.65); }
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">
+    <em>El Pasaporte Sinfónico</em>
+    Birmingham
+  </a>
+  <ul class="nav-links">
+    <li><a href="#llegada">Cómo Llegar</a></li>
+    <li><a href="#local">En la Ciudad</a></li>
+    <li><a href="#hoteles">Hoteles</a></li>
+    <li><a href="#bandas">Las Bandas</a></li>
+    <li><a href="#itinerario">Itinerario</a></li>
+    <li><a href="#cultura">Cultura</a></li>
+    <li><a href="#gastronomia">Gastronomía</a></li>
+    <li><a href="#regenerativo">Regenerativo</a></li>
+    <li><a href="#festivales">Festivales</a></li>
+    <li><a href="#football">Deportes</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-watermark">⛧</div>
+  <div class="episode-badge">Black Sabbath · Judas Priest · Ozzy Osbourne · Episodio 4 · Temporada 1</div>
+  <h1 class="hero-title">
+    <span class="under">El Pasaporte Sinfónico presenta</span>
+    <span class="city">Birmingham</span>
+    <span class="under">Inglaterra · Heavy Metal · 1968 — Para Siempre</span>
+  </h1>
+  <p class="hero-subtitle">Heavy Metal · Black Sabbath · Judas Priest · Duran Duran · Ozzy Osbourne</p>
+  <div class="hero-ctas">
+    <a href="#itinerario" class="btn-primary">Ver el Itinerario →</a>
+    <a href="#bandas" class="btn-ghost">Las Bandas</a>
+  </div>
+  <div class="scroll-hint"><span>Desciende</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- TRIBUTE -->
+<section style="background:var(--base-2);padding:5rem 2rem" id="tribute">
+  <div class="section-inner">
+    <div class="tribute-box fade-up">
+      <h2>La ciudad que forjó el acero — y el heavy metal</h2>
+      <p>Birmingham, 1968. Cuatro chicos de Aston — un barrio destruido por las bombas de Hitler y reconstruido con chapa y polvo de acero — se juntaron en sótanos, ensayaron en pubs, y crearon un sonido que nadie había escuchado antes. La industrial City of a Thousand Trades fue el único lugar donde ese sonido podía nacer: las guitarras afinadas hacia abajo, la oscuridad lírica, el volumen que aplasta, todo venía del ruido de las fundiciones, de los martillos, del sonido del metal contra el metal que acompañó la infancia de Ozzy, Tony, Geezer y Bill.</p>
+      <p>No fue suerte. Fue geografía convertida en destino. Birmingham le dio al mundo el heavy metal, el hard rock de Judas Priest, la new wave de Duran Duran y el balti. También le dio al mundo los escenarios reales que hoy reconoces de Peaky Blinders — los mismos canales, los mismos almacenes de ladrillo. Esta guía recorre esa historia durante cinco días: música, canales, gastronomía y un turismo que devuelve algo a la ciudad que tanto dio.</p>
+      <p style="font-family:var(--f-label);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--secondary-glow);margin-top:1rem">1968 · 1969 · Aston · Birmingham · La Cuna del Heavy Metal</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background:var(--base-1);padding:3rem 2rem">
+  <div class="section-inner">
+    <div class="stats-row">
+      <div class="stat-cell fade-up">
+        <div class="lbl">Bandas de heavy metal</div>
+        <div class="num">200<em>+</em></div>
+        <div class="desc">formadas en el área metropolitana desde 1968</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Último concierto</div>
+        <div class="num">5 JUL<em>'25</em></div>
+        <div class="desc">Villa Park · Back to the Beginning · Ozzy & Sabbath</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Álbumes vendidos</div>
+        <div class="num">70M<em>+</em></div>
+        <div class="desc">Black Sabbath + Judas Priest combinados</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Millas de canal</div>
+        <div class="num">35<em>mi</em></div>
+        <div class="desc">más que Venecia · escenario real de Peaky Blinders</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT INTER-CIUDAD -->
+<section class="section" id="llegada" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Antes de salir</span></div>
+    <h2 class="section-title">Cómo llegar a<br><em>Birmingham</em></h2>
+    <p class="section-lead">Birmingham International Airport conecta la ciudad con Europa y Norteamérica. Para llegar desde el continente americano, la mayoría de vuelos hacen escala en Londres o Amsterdam. Una vez en tierra, el tren del aeropuerto al centro tarda exactamente 9 minutos.</p>
+    <div class="transport-grid">
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Norteamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos desde Newark (EWR) con United. Conexiones desde Toronto, Montreal y Ciudad de México vía London Heathrow, Amsterdam o Madrid.</p>
+        <div class="transport-row">
+          <span class="transport-name">British Airways</span>
+          <a href="https://www.britishairways.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">United Airlines</span>
+          <a href="https://www.united.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Air Canada</span>
+          <a href="https://www.aircanada.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Latinoamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Conexiones desde Bogotá, Ciudad de México, Buenos Aires y Lima vía Madrid (Iberia), Amsterdam (KLM) o París (Air France). Vuelos directos desde Cancún en temporada estival.</p>
+        <div class="transport-row">
+          <span class="transport-name">Iberia</span>
+          <a href="https://www.iberia.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">KLM / Air France</span>
+          <a href="https://www.klm.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Aeromexico</span>
+          <a href="https://www.aeromexico.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Europa</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos desde Amsterdam, París, Frankfurt, Madrid, Dublín y más de 30 destinos europeos con Ryanair, easyJet y Jet2.</p>
+        <div class="transport-row">
+          <span class="transport-name">Ryanair</span>
+          <a href="https://www.ryanair.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">easyJet</span>
+          <a href="https://www.easyjet.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Jet2</span>
+          <a href="https://www.jet2.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚆 Desde Londres</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Avanti West Coast desde London Euston hasta Birmingham New Street en 1h20. Trenes cada 20 minutos en horas punta. Desde Manchester: 1h10. Desde Edinburgh: 3h20.</p>
+        <div class="transport-row">
+          <span class="transport-name">Avanti West Coast</span>
+          <a href="https://www.avantiwestcoast.co.uk" target="_blank" class="btn btn-web">🚆 Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">National Rail</span>
+          <a href="https://www.nationalrail.co.uk" target="_blank" class="btn btn-web">🚆 Horarios</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">
+      <p><strong>Truco práctico:</strong> Si llegas a Birmingham International Airport, el AirRail Link conecta la terminal con la estación en 90 segundos. Desde ahí, el tren Cross-City llega al centro en 9 minutos. No cojas taxi desde el aeropuerto — el tren es más rápido y cuesta £3.20 con tarjeta Swift.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT LOCAL -->
+<section class="section" id="local" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Moverse por la ciudad</span></div>
+    <h2 class="section-title">Birmingham<br><em>desde adentro</em></h2>
+    <div class="transport-grid">
+
+      <div class="transport-card fade-up">
+        <h3>🚊 Metro — West Midlands Metro</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">El tranvía conecta el centro con Digbeth, Broad Street, la Jewellery Quarter y Wolverhampton. La tarjeta Swift es el equivalente local al Oyster londinense.</p>
+        <div class="transport-row">
+          <span class="transport-name">West Midlands Metro</span>
+          <a href="https://www.westmidlandsmetro.com" target="_blank" class="btn btn-web">🚊 Rutas</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Tarjeta Swift</span>
+          <a href="https://www.swiftcard.org.uk" target="_blank" class="btn btn-web">💳 Cargar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚌 Bus — National Express West Midlands</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La red de autobuses cubre el Balti Triangle, Moseley, Kings Heath y zonas no conectadas por metro. La app permite comprar sin efectivo.</p>
+        <div class="transport-row">
+          <span class="transport-name">National Express WM</span>
+          <a href="https://www.nationalexpresswm.com" target="_blank" class="btn btn-web">🚌 App</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚲 Bicicleta — West Midlands Cycle Hire</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Más de 350 bicicletas disponibles en el centro. Ideal para recorrer la red de canales y los carriles-bici entre Gas Street Basin y Brindleyplace.</p>
+        <div class="transport-row">
+          <span class="transport-name">WM Cycle Hire</span>
+          <a href="https://www.westmidlandscyclehire.co.uk" target="_blank" class="btn btn-web">🚲 App</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>⛵ Canal — Narrowboat Tours</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Birmingham tiene más millas de canal que Venecia. Los tours desde Gas Street Basin navegan por la red victoriana del centro — los mismos canales donde se filmó Peaky Blinders: The Immortal Man.</p>
+        <div class="transport-row">
+          <span class="transport-name">Sherborne Wharf</span>
+          <a href="https://www.sherbornewharf.co.uk" target="_blank" class="btn btn-web">⛵ Tours</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚕 Uber & Taxis</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Uber opera en toda la ciudad. Para el Balti Triangle o Digbeth de noche, es la opción más cómoda. Los Black Cabs se paran en cualquier parte del centro.</p>
+        <div class="transport-row">
+          <span class="transport-name">Uber Birmingham</span>
+          <a href="https://www.uber.com/global/en/r/cities/birmingham-eng-gb/" target="_blank" class="btn btn-web">🚕 App</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="map-embed-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19476.2!2d-1.8904!3d52.4862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suk!4v1699000000000!5m2!1ses!2suk" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="text-align:center;margin-bottom:1rem">
+      <a href="https://www.google.com/maps/search/Birmingham+UK+city+centre" target="_blank" class="btn btn-web" style="font-size:0.65rem">📍 Abrir Birmingham en Google Maps</a>
+    </div>
+    <div class="tip-box">
+      <p><strong>La tarjeta Swift:</strong> Funciona en metro, autobús y tren Cross-City. Cómprala en cualquier estación o en Transport for West Midlands. Precio tope diario £5.00 — independientemente de cuántos viajes hagas.</p>
+    </div>
+    <div class="tip-box">
+      <div style="display:flex;align-items:flex-start;gap:0.9rem;margin-bottom:0.8rem">
+        <div style="font-size:1.5rem;line-height:1.2">🌐</div>
+        <div>
+          <div style="font-family:var(--f-head);font-style:italic;font-weight:700;font-size:1.1rem;color:var(--bone);margin-bottom:0.3rem;line-height:1.3">Traductor de viaje — que el idioma no sea una barrera</div>
+          <div style="font-family:var(--f-label);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent)">Modo conversación · 130+ idiomas · Funciona sin conexión</div>
+        </div>
+      </div>
+      <p>Habla en español y que tu interlocutor escuche en su idioma — y al revés. Google Translate, en modo Conversación, traduce voz en tiempo real, fotos de menús y carteles, y permite descargar paquetes de idioma para usar sin internet. Para grupos con varios idiomas a la vez, Microsoft Translator conecta hasta 100 personas en la misma conversación, cada una en su propio teléfono.</p>
+      <div class="card-links">
+        <a href="https://translate.google.com/intl/es/about/" target="_blank" class="btn btn-web">📱 Descargar Google Translate</a>
+        <a href="https://www.microsoft.com/en-us/translator/apps/" target="_blank" class="btn btn-map">👥 Microsoft Translator (grupos)</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- HOTELS -->
+<section class="section" id="hoteles" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Dónde alojarse</span></div>
+    <h2 class="section-title">Hoteles en<br><em>Birmingham</em></h2>
+    <p class="section-lead">Desde el hospital victoriano reconvertido en boutique hasta la torre de cristal sobre los canales. Birmingham tiene alojamiento para todos los viajes, pero estos seis son los que cuentan una historia.</p>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Heritage · Jewellery Quarter</div>
+        <div class="card-body">
+          <div class="card-title">Hotel du Vin Birmingham</div>
+          <p class="card-desc">El antiguo hospital oftalmológico victoriano de 1884 reconvertido en boutique de lujo en la Jewellery Quarter. A dos minutos del mercado y a diez del Black Sabbath Bridge. El Bistro du Vin sirve cocina francesa con ingredientes locales en el patio interior, uno de los rincones más tranquilos del centro. 66 habitaciones, cada una decorada de forma diferente.</p>
+          <div class="card-links">
+            <a href="https://www.hotelduvin.com/locations/birmingham/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hotel+du+Vin+Birmingham+Jewellery+Quarter" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Lujo · Canal · Brindleyplace</div>
+        <div class="card-body">
+          <div class="card-title">Hyatt Regency Birmingham</div>
+          <p class="card-desc">318 habitaciones frente al canal en Brindleyplace, a cien metros del Utilita Arena. Spa con piscina de 16 metros, jacuzzi y gimnasio Matrix. Las habitaciones de los pisos superiores tienen vistas sobre los canales y la silueta industrial de la ciudad — la Birmingham que lo explica todo.</p>
+          <div class="card-links">
+            <a href="https://www.hyatt.com/en-US/hotel/england-united-kingdom/hyatt-regency-birmingham/bhxbm" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hyatt+Regency+Birmingham+Brindleyplace" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Design · Colmore Row · Victorian</div>
+        <div class="card-body">
+          <div class="card-title">The Grand Hotel Birmingham</div>
+          <p class="card-desc">Reabierto en 2021 tras una restauración de £45 millones, el Grand lleva en Colmore Row desde 1879. Winston Churchill y Charlie Chaplin se hospedaron aquí. La gran escalinata de mármol con columnas doradas y el salón ballroom Louis XIV hacen de este el hotel con más carácter de la ciudad — y el favorito de los itinerarios temáticos de Peaky Blinders.</p>
+          <div class="card-links">
+            <a href="https://www.thegrandbirmingham.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Grand+Hotel+Birmingham+Colmore+Row" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Industrial · Centro</div>
+        <div class="card-body">
+          <div class="card-title">Malmaison Birmingham</div>
+          <p class="card-desc">189 habitaciones con paredes de ladrillo visto, iluminación cálida y camas grandes en el corazón del centro. El Chez Mal Brasserie sirve cócteles artesanales hasta las 2am — el punto de partida perfecto para las noches en Broad Street.</p>
+          <div class="card-links">
+            <a href="https://www.malmaison.com/locations/birmingham/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Malmaison+Birmingham+Wharfside+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Skyline · Broad Street · Vistas</div>
+        <div class="card-body">
+          <div class="card-title">The Cube Hotel Birmingham</div>
+          <p class="card-desc">52 habitaciones boutique en los pisos 23 y 24 de The Cube — el edificio más singular del skyline de Birmingham, una espiral dorada de cristal junto al canal. Las vistas panorámicas sobre Broad Street, el Mailbox y la red de canales son únicas en la ciudad: nada en Birmingham se ve igual desde ningún otro punto. El restaurante Marco Pierre White está en el mismo edificio. A diez minutos a pie del Utilita Arena.</p>
+          <div class="card-links">
+            <a href="https://www.thecube.co.uk/the-cube-hotel-birmingham/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Cube+Birmingham+Wharfside+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 City Centre · Broad Street · Rock</div>
+        <div class="card-body">
+          <div class="card-title">Park Regis Birmingham</div>
+          <p class="card-desc">El hotel más alto de la ciudad — 253 habitaciones en Broad Street, a menos de diez minutos del Black Sabbath Bridge con parada de tranvía en la puerta. El restaurante Skai en el piso 16 tiene las mejores vistas nocturnas del centro.</p>
+          <div class="card-links">
+            <a href="https://www.parkregisbirmingham.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Park+Regis+Hotel+Broad+Street+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BANDS SPOTLIGHT -->
+<section class="section" id="bandas" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Las Bandas</span></div>
+    <h2 class="section-title">El metal que<br><em>nació aquí</em></h2>
+    <p class="section-lead">Todas crecieron en el mismo radio de tres millas. Todas vienen de las mismas calles trabajadoras de Aston, Handsworth y Selly Oak. Ninguna sonó como nada que existiera antes.</p>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Black Sabbath</div>
+      <div class="band-years">1968 · Aston, Birmingham · Ozzy Osbourne · Tony Iommi · Geezer Butler · Bill Ward</div>
+      <p class="band-desc">Los cuatro se criaron a media milla los unos de los otros en Aston, un barrio obrero marcado por los cráteres de las bombas de la Segunda Guerra Mundial que nadie había rellenado todavía. Pasaron por los nombres Polka Tulk Blues Band y Earth antes de que Geezer Butler escribiera una canción titulada "Black Sabbath" — y el nombre quedó sellado para siempre. El 13 de febrero de 1970 publicaron su primer álbum. La primera nota ya sonaba diferente a todo. Tony Iommi había perdido las puntas de dos dedos en un accidente industrial y usó dedales de cuero, afinando la guitarra hacia abajo para poder tocar sin dolor. Ese accidente fue el origen del sonido más pesado de la historia del rock. Su último concierto fue el 5 de julio de 2025 en Villa Park, Birmingham. En casa, donde todo empezó.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/5M52tdBnJaKSvOpJGz8mfZ" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Judas Priest</div>
+      <div class="band-years">1969 · Birmingham · Rob Halford · Glenn Tipton · K.K. Downing · Ian Hill</div>
+      <p class="band-desc">Formados en Birmingham un año después que Black Sabbath, Judas Priest eligió un camino diferente: donde Sabbath era oscuridad y desconcierto, Priest era velocidad y precisión quirúrgica. Rob Halford, nacido en Walsall, definió el arquetipo vocal del heavy metal con British Steel (1980) — el disco que puso el género en las listas del mundo. La doble guitarra de Tipton y Downing, el cuero y las tachuelas, la motocicleta en el escenario: Judas Priest convirtió el heavy metal en una identidad que cincuenta millones de álbumes vendidos no han agotado.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/2tRsMl4eGxwoNabM08Dm4I" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Ozzy Osbourne</div>
+      <div class="band-years">1979 – 2025 · Aston, Birmingham · El Príncipe de las Tinieblas</div>
+      <p class="band-desc">Expulsado de Black Sabbath en 1979, Ozzy regresó en 1980 con Blizzard of Ozz y construyó una de las carreras solistas más longevas del rock. Crazy Train, Mr. Crowley, No More Tears — canciones que dos generaciones han escuchado sin saber que venían de un chico de Aston. Murió el 22 de julio de 2025, diecisiete días después del último concierto de Black Sabbath en Villa Park, donde tocó ante cincuenta mil personas. Su mural en Navigation Street — firmado por él mismo — sigue ahí.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/6ZLTlhejhndI4Rh53vYhrY" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Duran Duran</div>
+      <div class="band-years">1978 · Birmingham · Simon Le Bon · Nick Rhodes · John Taylor · Roger Taylor</div>
+      <p class="band-desc">La otra cara de Birmingham — la new wave, los trajes de seda y los videoclips rodados en yates. Duran Duran nació en Birmingham en 1978, se formó alrededor del Rum Runner Club en Broad Street y lanzó Hungry Like the Wolf, Rio y Girls on Film antes de que la ciudad que los vio crecer terminara de creerles. Se fueron a Londres, luego al mundo. El 20 de octubre de 2026 vuelven a casa: concierto en el Utilita Arena Birmingham. Si estás en la ciudad esa noche, no hay excusa.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/0lZoBs4Pzo7R89JM9lxwoT" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="section" id="itinerario" style="background:var(--base-2);padding-top:0">
+  <div class="section-inner" style="padding-top:3rem">
+    <div class="section-rule"><span class="section-tag">El circuito</span></div>
+    <h2 class="section-title">Cinco días en<br><em>la cuna del metal</em></h2>
+    <p class="section-lead">Cinco días para leer Birmingham de verdad — desde las calles de Aston donde Ozzy y Tony crecieron hasta los canales victorianos que hoy son escenario de Peaky Blinders, los barrios creativos de Digbeth y la gastronomía más auténtica de Inglaterra.</p>
+  </div>
+</section>
+
+<div class="tabs-nav">
+  <div class="tabs-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('dia1',this)">Día 1 — Aston & Los Orígenes</button>
+    <button class="tab-btn" onclick="switchTab('dia2',this)">Día 2 — El Circuito del Metal</button>
+    <button class="tab-btn" onclick="switchTab('dia3',this)">Día 3 — Canales & Peaky Blinders</button>
+    <button class="tab-btn" onclick="switchTab('dia4',this)">Día 4 — Digbeth & El Sur</button>
+    <button class="tab-btn" onclick="switchTab('dia5',this)">Día 5 — Birmingham como un Local</button>
+  </div>
+</div>
+
+<section style="background:var(--base-2);padding:0 2rem 4rem">
+  <div class="section-inner">
+
+    <!-- DIA 1 -->
+    <div id="dia1" class="tab-content active">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">El primer día pertenece a Aston — el barrio donde el heavy metal nació entre cráteres de bombas y fundiciones.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Lodge Road, Aston — La casa donde nació Ozzy</div>
+          <div class="tl-desc">La dirección donde John Michael Osbourne nació el 3 de diciembre de 1948. La casa de ladrillo rojo sigue en pie en Lodge Road, Aston. Caminar por estas calles a primera hora de la mañana — con el ruido de los autobuses y los comercios que abren — es la mejor forma de entender de dónde venía ese sonido: de aquí, de este mismo suelo.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Lodge+Road+Aston+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Navigation Street — Mural de Black Sabbath</div>
+          <div class="tl-desc">El mural de los cuatro miembros originales de Black Sabbath, creado por Mr Murals, ocupa la pared lateral de Navigation Street. Ozzy lo firmó en persona antes de fallecer. A dos minutos de la estación de New Street, es el punto de partida oficial de la peregrinación musical de Birmingham. También hay murales en Rea Street, Digbeth, y en Granville Street.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Black+Sabbath+Mural+Navigation+Street+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Vi la oscuridad como una salida. No de las tinieblas, sino de la mediocridad."</p>
+          <div class="quote-source">— Ozzy Osbourne · Aston, Birmingham · 1948–2025</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Black Sabbath Bridge & Bench — Broad Street</div>
+          <div class="tl-desc">El puente sobre el canal en Broad Street fue rebautizado oficialmente como "Black Sabbath Bridge". El banco conmemorativo de 2019 reproduce en acero las imágenes de los cuatro miembros originales. Un código QR abre una transmisión en directo desde la posición exacta donde fue tomada la foto histórica. Es el kilómetro cero del heavy metal mundial.</div>
+          <div class="tl-links">
+            <a href="https://visitbirmingham.com" target="_blank" class="btn btn-web">🌐 Visit Birmingham</a>
+            <a href="https://www.google.com/maps/search/Black+Sabbath+Bridge+Broad+Street+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Working Class Hero — Birmingham Museum & Art Gallery</div>
+          <div class="tl-desc">La exposición dedicada a Ozzy Osbourne — premios, discos de oro, memorabilia personal y fotografías inéditas desde Aston hasta la fama global. Contacta con el museo para confirmar disponibilidad de actividades derivadas en 2026. Entrada por Chamberlain Square.</div>
+          <div class="tl-links">
+            <a href="https://www.birminghammuseums.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Museum+Art+Gallery+Chamberlain+Square" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">The Old Contemptibles — Colmore Row</div>
+          <div class="tl-desc">Un pub victoriano de 1898, con vidrieras originales, suelos de mosaico y techos altos de madera oscura, escondido entre los edificios de banca de Colmore Row. El nombre rinde homenaje a la "Vieja Contemptible" Fuerza Expedicionaria Británica de 1914. Cerveza real de barril, ambiente tranquilo, y la sensación de haber encontrado el Birmingham de antes de que existiera el turismo.</div>
+          <div class="tl-links">
+            <a href="https://visitbirmingham.com/listing/the-old-contemptibles/133081101/" target="_blank" class="btn btn-web">🌐 Visit Birmingham</a>
+            <a href="https://www.google.com/maps/search/The+Old+Contemptibles+Birmingham+Edmund+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 2 -->
+    <div id="dia2" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">El día del circuito musical clásico — desde la plaza central hasta Digbeth y el Custard Factory.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Victoria Square — Exposición Black Sabbath</div>
+          <div class="tl-desc">La plaza central de Birmingham, frente al Ayuntamiento, alberga una exposición fotográfica al aire libre sobre Black Sabbath — imágenes de archivo, datos históricos y una cronología desde los ensayos en Aston hasta el concierto de despedida de 2025. Libre, a cielo abierto, en el centro de la ciudad.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Victoria+Square+Birmingham+City+Centre" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Rum Runner Club — Brindleyplace</div>
+          <div class="tl-desc">La placa en Brindleyplace recuerda que aquí fue donde Duran Duran se formó y residió en sus primeros años desde 1978. Simon Le Bon fue reclutado aquí tras responder a un anuncio en la puerta. El club era el epicentro del new wave de Birmingham — la versión más elegante de la energía que Black Sabbath había liberado diez años antes.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Brindleyplace+Birmingham+Canal" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Custard Factory — Digbeth</div>
+          <div class="tl-desc">La antigua fábrica de natillas de Bird's reconvertida en el centro creativo de Birmingham — estudios de artistas, galerías, boutiques independientes y el mural de Ozzy en la pared exterior. Aquí mismo, en Digbeth Loc. Studios, se rodaron escenas de Peaky Blinders: The Immortal Man en 2024 y 2025. En el Custard Factory, la historia industrial de la ciudad respira hacia el futuro sin pedir disculpas.</div>
+          <div class="tl-links">
+            <a href="https://www.custard-factory.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Custard+Factory+Digbeth+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"No tocamos para ser populares. Tocamos porque es lo único que sabemos hacer sin destruir algo."</p>
+          <div class="quote-source">— Tony Iommi · Black Sabbath · Birmingham</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Digbeth High Street — Street Art</div>
+          <div class="tl-desc">Las paredes de Digbeth tienen la mayor concentración de arte callejero del Midlands — murales en los costados de las antiguas naves industriales. El mural de Ozzy, el de Sabbath en Rea Street, y decenas más. La distancia desde el Custard Factory hasta la estación de autobuses es un museo a cielo abierto.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Digbeth+Street+Art+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">O2 Academy & O2 Institute Birmingham</div>
+          <div class="tl-desc">Dos salas hermanas a pocos minutos una de otra: el O2 Academy Birmingham, con capacidad para más de 3.000 personas y una historia de conciertos legendarios desde los 90, y el O2 Institute en Digbeth, más íntimo, con tres espacios de 200 a 1.400 personas para rock, indie y metal. Entre las dos cubren prácticamente toda la programación en vivo de la ciudad. Si hay concierto esta noche, es en una de las dos.</div>
+          <div class="tl-links">
+            <a href="https://www.academymusicgroup.com/o2academybirmingham" target="_blank" class="btn btn-web">🌐 O2 Academy</a>
+            <a href="https://www.academymusicgroup.com/o2institutebirmingham" target="_blank" class="btn btn-web">🌐 O2 Institute</a>
+            <a href="https://www.google.com/maps/search/O2+Academy+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 3 -->
+    <div id="dia3" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Canales, joyas y los escenarios reales de Peaky Blinders — el día más lento, el que más dura.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Gas Street Basin — Los canales de Peaky Blinders</div>
+          <div class="tl-desc">Gas Street Basin es el punto de convergencia de la red de canales victorianos — donde el Worcester & Birmingham Canal se encuentra con el Old Line. Los narrowboats pintados amarran aquí desde hace doscientos años. En octubre de 2024, este mismo tramo de canal —junto al Tap & Spile y el Verve Lounge— fue escenario de rodaje de Peaky Blinders: The Immortal Man, con Cillian Murphy de vuelta como Tommy Shelby. A esta hora, con café y la luz en el agua, es el rincón más cinematográfico de la ciudad — literalmente.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Gas+Street+Basin+Birmingham+Canal" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎨 Mañana</div>
+          <div class="tl-place">Jewellery Quarter — Museum & The Church JQ</div>
+          <div class="tl-desc">El Jewellery Quarter produce el 40% de toda la joyería del Reino Unido. El Museum of the Jewellery Quarter preserva la última joyería activa del barrio exactamente como estaba el día que cerró en 1981. A pocos pasos, The Church JQ ocupa una capilla del siglo XIX reconvertida en bar y espacio de eventos — vidrieras originales, techos de bóveda y cócteles bajo la nave central. La combinación de industria, fe reconvertida y comercio define el barrio entero.</div>
+          <div class="tl-links">
+            <a href="https://www.birminghammuseums.org.uk/jewellery-quarter" target="_blank" class="btn btn-web">🌐 Museo</a>
+            <a href="https://www.thechurchjq.co.uk" target="_blank" class="btn btn-web">🌐 The Church JQ</a>
+            <a href="https://www.google.com/maps/search/Jewellery+Quarter+Museum+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Brindleyplace & The Mailbox</div>
+          <div class="tl-desc">Brindleyplace — edificios de cristal frente al canal, con la Ikon Gallery y restaurantes canaleros. El Mailbox, antigua central de correos reconvertida, tiene el cine Everyman y algunos de los mejores restaurantes del centro. El almuerzo en cualquier local con terraza es el punto medio perfecto del itinerario.</div>
+          <div class="tl-links">
+            <a href="https://www.brindleyplace.com" target="_blank" class="btn btn-web">🌐 Brindleyplace</a>
+            <a href="https://www.google.com/maps/search/Brindleyplace+Birmingham+Canal" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Birmingham no es bonita. Pero tiene más carácter en una calle que Londres en un barrio entero."</p>
+          <div class="quote-source">— Dicho popular · West Midlands</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Symphony Hall & Town Hall — bmusic</div>
+          <div class="tl-desc">La Birmingham Symphony Hall es considerada una de las tres mejores salas de conciertos clásicos del mundo en términos acústicos — junto al Concertgebouw de Amsterdam y el Carnegie Hall de Nueva York. A pocos metros, el Town Hall neoclásico de 1834 —el primer gran auditorio de la ciudad— sigue programando conciertos, charlas y eventos bajo la gestión de bmusic. Dos salas, dos siglos de música, la misma manzana.</div>
+          <div class="tl-links">
+            <a href="https://bmusic.co.uk/your-visit/symphony-hall" target="_blank" class="btn btn-web">🌐 Symphony Hall</a>
+            <a href="https://bmusic.co.uk/your-visit/town-hall" target="_blank" class="btn btn-web">🌐 Town Hall</a>
+            <a href="https://www.google.com/maps/search/Symphony+Hall+Birmingham+ICC" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">Luna Springs — Floating Bar, Gas Street</div>
+          <div class="tl-desc">Un bar flotante y de canal en el corazón de Gas Street — terrazas escalonadas sobre el agua, cócteles, y la mejor vista nocturna de los narrowboats iluminados. Es uno de los puntos que VisitBritain señala en su recorrido oficial por las localizaciones de Peaky Blinders, justo al lado de los almacenes donde se rodaron las escenas de 2024. Cerrar el día aquí, con el canal a oscuras y las luces de los barcos reflejadas en el agua, es Birmingham en su versión más cinematográfica.</div>
+          <div class="tl-links">
+            <a href="https://www.lunasprings.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Luna+Springs+Gas+Street+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 4 -->
+    <div id="dia4" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Digbeth profundo, el Balti Triangle y los barrios donde la gastronomía más honesta de Birmingham vive.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Digbeth Dining Club — Street Food</div>
+          <div class="tl-desc">El mercado de street food más premiado de Birmingham — traders independientes bajo el Custard Factory cada fin de semana. No hay carta fija: lo que hay es lo que llegó esa mañana. Es el lugar donde Birmingham come con sus propias manos, sin pretensiones, con mucha cerveza artesanal.</div>
+          <div class="tl-links">
+            <a href="https://www.digbethdiningclub.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Digbeth+Dining+Club+Birmingham+Custard+Factory" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Balti Triangle — Ladypool Road, Sparkbrook</div>
+          <div class="tl-desc">Birmingham inventó el balti. El karahi llega a la mesa chisporroteando, el naan sale del tandoor directo al mantel de plástico. Ladypool Road en Sparkbrook es el epicentro — Shababs, Al Frash, Lasan. Sin alcohol pero BYOB. Sin reservas en fin de semana. Comer balti aquí, con los vecinos del barrio, es uno de los momentos más honestos que Birmingham ofrece.</div>
+          <div class="tl-links">
+            <a href="https://visitbirmingham.com/inspire-me/areas/balti/" target="_blank" class="btn btn-web">🌐 Balti Triangle</a>
+            <a href="https://www.google.com/maps/search/Balti+Triangle+Ladypool+Road+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Birmingham es la ciudad donde las ideas llegan antes que el reconocimiento. Siempre ha sido así."</p>
+          <div class="quote-source">— Nick Rhodes · Duran Duran · Birmingham</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Dead Wax Records — Digbeth</div>
+          <div class="tl-desc">La tienda de vinilos más importante del Midlands — dos plantas de discos en Digbeth, con selección de heavy metal, rock clásico y new wave. Dead Wax también es sala de conciertos: DJs, techno y noches temáticas. La combinación más honesta de comercio y cultura musical de Birmingham.</div>
+          <div class="tl-links">
+            <a href="https://www.deadwaxdigbeth.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Dead+Wax+Records+Digbeth+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">Hare & Hounds — Kings Heath</div>
+          <div class="tl-desc">El venue de música en vivo más querido del sur de Birmingham — un pub victoriano en Kings Heath con una sala trasera que ha programado a Laura Marling, The Streets y a buena parte de la escena indie británica antes de que fueran nadie. Kings Heath es el barrio que sigue a Moseley hacia el sur — más residencial, más local, con el mismo espíritu independiente. El Hare & Hounds es la razón por la que vale la pena llegar hasta aquí.</div>
+          <div class="tl-links">
+            <a href="https://hareandhoundskingsheath.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hare+and+Hounds+Kings+Heath+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 5 -->
+    <div id="dia5" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Cadbury World, Villa Park y el cierre de un viaje que ya forma parte de la memoria.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Cadbury World — Bournville</div>
+          <div class="tl-desc">La fábrica de chocolate más visitada del Reino Unido y el barrio que la familia Cadbury construyó desde cero para sus trabajadores en 1879 — casas, parques y ningún pub por decreto del fundador. Un experimento de utopía obrera que sobrevivió intacto. Compra entradas online; la demanda supera siempre la oferta.</div>
+          <div class="tl-links">
+            <a href="https://www.cadburyworld.co.uk" target="_blank" class="btn btn-web">🌐 Entradas</a>
+            <a href="https://www.google.com/maps/search/Cadbury+World+Bournville+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">⚽ Mediodía</div>
+          <div class="tl-place">Villa Park — Aston</div>
+          <div class="tl-desc">Villa Park está en Aston — el mismo barrio donde Ozzy y Tony crecieron. El estadio fue el escenario del último concierto de Black Sabbath el 5 de julio de 2025. Los tours cubren el vestuario, el campo y el Holte End. Visitar el estadio del barrio cierra el círculo del Día 1.</div>
+          <div class="tl-links">
+            <a href="https://www.avfc.co.uk/stadium-tours" target="_blank" class="btn btn-web">🌐 Tours</a>
+            <a href="https://www.google.com/maps/search/Villa+Park+Aston+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎨 Tarde</div>
+          <div class="tl-place">Bullring & Selfridges</div>
+          <div class="tl-desc">15.000 discos de aluminio en una fachada de forma orgánica — Jan Kaplický, 2003. El edificio que anunció que Birmingham había decidido apostar por sí misma. A cien metros, el mercado de St Martin's lleva aquí desde 1166. Los dos extremos de la ciudad en cincuenta metros.</div>
+          <div class="tl-links">
+            <a href="https://www.selfridges.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Selfridges+Bullring+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche de Clausura</div>
+          <div class="tl-place">Utilita Arena — El último concierto del viaje</div>
+          <div class="tl-desc">Consulta la agenda: Duran Duran el 20 de octubre de 2026, Courteeners el 21 de noviembre, Culture Club el 18 de diciembre. Cinco días en la ciudad que inventó el heavy metal terminan bien si terminan con música en vivo.</div>
+          <div class="tl-links">
+            <a href="https://www.utilitaarenabham.co.uk" target="_blank" class="btn btn-web">🌐 Agenda</a>
+            <a href="https://www.google.com/maps/search/Utilita+Arena+Birmingham+King+Edwards+Road" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURA -->
+<section class="section" id="cultura" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Patrimonio & Cultura</span></div>
+    <h2 class="section-title">Más allá<br><em>del metal</em></h2>
+    <p class="section-lead">Birmingham es Tolkien, los prerrafaelitas, el balti, el chocolate y los escenarios reales de Peaky Blinders. La ciudad más rica culturalmente del Reino Unido que nadie menciona en esa frase.</p>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Museo · Joyería · Jewellery Quarter</div>
+        <div class="card-body">
+          <div class="card-title">Museum of the Jewellery Quarter</div>
+          <p class="card-desc">La joyería Smith & Pepper cerró en 1981 y quedó intacta durante décadas. El museo preserva exactamente el estado del último día de trabajo — herramientas, bancos, piezas a medio terminar. El 40% de la joyería del Reino Unido sigue fabricándose en este barrio. Es el museo industrial más íntimo de Birmingham.</p>
+          <div class="card-links">
+            <a href="https://www.birminghammuseums.org.uk/jewellery-quarter" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Museum+Jewellery+Quarter+Birmingham+Vyse+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Heritage · Victorian · Tolkien</div>
+        <div class="card-body">
+          <div class="card-title">Perrott's Folly — Las Torres de Tolkien</div>
+          <p class="card-desc">Las dos torres de Edgbaston que J.R.R. Tolkien veía desde la ventana de su habitación de infancia — se cree que inspiraron las Torres de Minas Tirith y de Isengard en El Señor de los Anillos. Tolkien vivió en Edgbaston entre los 8 y los 18 años. Las torres siguen en pie, visibles desde la calle.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Perrotts+Folly+Edgbaston+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type tour">🎬 Tour · Peaky Blinders · Canales</div>
+        <div class="card-body">
+          <div class="card-title">Peaky Blinders Filming Locations — Gas Street</div>
+          <p class="card-desc">VisitBritain señala Gas Street Basin, los almacenes junto al Tap & Spile y Digbeth Loc. Studios en el Custard Factory como localizaciones reales de rodaje de Peaky Blinders: The Immortal Man (2024-2025), con Cillian Murphy de regreso como Tommy Shelby. Recorrer estos puntos a pie, con un café de Luna Springs en la mano, es la forma más directa de entrar en la serie sin salir de Birmingham.</p>
+          <div class="card-links">
+            <a href="https://www.visitbritain.com/en/things-to-do/visit-peaky-blinders-filming-locations" target="_blank" class="btn btn-web">🌐 VisitBritain</a>
+            <a href="https://www.google.com/maps/search/Gas+Street+Basin+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎨 Galería · Arte Contemporáneo · Canal</div>
+        <div class="card-body">
+          <div class="card-title">Ikon Gallery — Brindleyplace</div>
+          <p class="card-desc">Fundada en 1964, hoy en un edificio neogótico de 1877 frente al canal. Exhibiciones de artistas internacionales, eventos públicos y cafetería con terraza. Entrada gratuita. La galería que demostró que el arte contemporáneo también era una cosa de Birmingham.</p>
+          <div class="card-links">
+            <a href="https://www.ikon-gallery.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ikon+Gallery+Oozells+Square+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 National Trust · Victorian · Hurst Street</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Back to Backs</div>
+          <p class="card-desc">El último patio superviviente de casas back-to-back — donde vivían hasta doce familias por edificio. Gestionado por el National Trust desde 2004. Cuatro viviendas restauradas en diferentes épocas entre 1840 y 1977. El museo de vida urbana trabajadora más íntimo del país. Visita guiada obligatoria, reserva online.</p>
+          <div class="card-links">
+            <a href="https://www.nationaltrust.org.uk/visit/west-midlands/birmingham-back-to-backs" target="_blank" class="btn btn-web">🌐 National Trust</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Back+to+Backs+Hurst+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Museo · Prerrafaelitas · Chamberlain Square</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Museum & Art Gallery</div>
+          <p class="card-desc">La colección prerrafaelita más importante del mundo fuera de Londres, arqueología, historia natural y la sección dedicada al patrimonio musical birminghamense. Entrada gratuita a las colecciones permanentes. El té en el café interior, bajo las bóvedas de ladrillo, es uno de los placeres tranquilos de la ciudad.</p>
+          <div class="card-links">
+            <a href="https://www.birminghammuseums.org.uk/bmag" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Museum+Art+Gallery+Chamberlain+Square" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALES & VENUES -->
+<section class="section" id="festivales-venues" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Música en Vivo</span></div>
+    <h2 class="section-title">Venues &<br><em>Salas</em></h2>
+    <p class="section-lead">La ciudad que inventó el heavy metal tiene una red de salas en vivo que va desde los 200 hasta los 15.800 aficionados.</p>
+
+    <div style="margin-bottom:3rem">
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">Todo el año · King Edwards Road</div>
+          <div class="festival-name">Utilita Arena Birmingham</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">15.800 personas en el corazón del centro — la arena más importante del Midlands. Programación 2026: Duran Duran (20 octubre), Courteeners (21 noviembre), Culture Club (18 diciembre) y más de 30 espectáculos. El lugar donde Birmingham sigue siendo la ciudad donde la música pasa.</p>
+          <div class="card-links">
+            <a href="https://www.utilitaarenabham.co.uk" target="_blank" class="btn btn-web">🌐 Agenda 2026</a>
+            <a href="https://www.google.com/maps/search/Utilita+Arena+Birmingham+King+Edwards+Road" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">Todo el año · NEC Birmingham</div>
+          <div class="festival-name">bp pulse LIVE — NEC Arena</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">El recinto multiusos del NEC a doce minutos del aeropuerto. Lily Allen (26 junio 2026), André Rieu (septiembre) y eventos de temporada completan el calendario. La sala más versátil del Midlands para grandes producciones.</p>
+          <div class="card-links">
+            <a href="https://www.bppulselive.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/bp+pulse+LIVE+NEC+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Rock/Metal · Digbeth</div>
+        <div class="card-body">
+          <div class="card-title">O2 Institute Birmingham</div>
+          <p class="card-desc">Tres espacios (1.400, 600 y 200 personas), programación de rock, indie y metal, en Digbeth. Si hay un concierto aquí la noche que estás en Birmingham, no hay excusa para no ir.</p>
+          <div class="card-links">
+            <a href="https://www.academymusicgroup.com/o2institutebirmingham" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/O2+Institute+Digbeth+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎤 Venue · Conciertos · City Centre</div>
+        <div class="card-body">
+          <div class="card-title">O2 Academy Birmingham</div>
+          <p class="card-desc">Más de 3.000 personas de capacidad en el corazón del centro — la sala que ha programado conciertos legendarios desde los 90. Hermana mayor del O2 Institute, con una agenda que cubre desde rock hasta pop internacional. A diez minutos a pie de New Street.</p>
+          <div class="card-links">
+            <a href="https://www.academymusicgroup.com/o2academybirmingham" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/O2+Academy+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Vinilo · Electrónica · Digbeth</div>
+        <div class="card-body">
+          <div class="card-title">Dead Wax Digbeth</div>
+          <p class="card-desc">Tienda de vinilos de dos plantas con sala de conciertos en el sótano — la combinación más honesta de comercio y cultura musical que existe en Birmingham. Eventos de techno, DJs, noches temáticas de heavy metal y presentaciones de bandas locales.</p>
+          <div class="card-links">
+            <a href="https://www.deadwaxdigbeth.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Dead+Wax+Records+Digbeth+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🍺 Venue · Indie · Kings Heath</div>
+        <div class="card-body">
+          <div class="card-title">Hare & Hounds — Kings Heath</div>
+          <p class="card-desc">El pub-venue más querido del sur de Birmingham — sala trasera donde tocaron Laura Marling y The Streets antes de ser nadie. Programación constante de indie, folk y rock emergente, con la cercanía de un pub de barrio. Kings Heath, justo al sur de Moseley, es donde Birmingham vive sin posar.</p>
+          <div class="card-links">
+            <a href="https://hareandhoundskingsheath.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hare+and+Hounds+Kings+Heath+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- GASTRONOMIA -->
+<section class="section" id="gastronomia" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Gastronomía</span></div>
+    <h2 class="section-title">Comer en<br><em>Birmingham</em></h2>
+    <p class="section-lead">El balti, el canal y el curry. Birmingham inventó dos de los tres platos más importantes de la cocina británica moderna — el balti y el chicken tikka masala. La tercera, las papas fritas, es de otra parte.</p>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type food">🍛 Balti · Sparkbrook · Auténtico</div>
+        <div class="card-body">
+          <div class="card-title">Shababs Balti Restaurant — Ladypool Road</div>
+          <p class="card-desc">El restaurante balti más emblemático del Balti Triangle — fundado en los 70 en Ladypool Road, en el corazón del Sparkbrook paquistaní-bangladesí. El karahi llega a la mesa chisporroteando, el naan sale del tandoor directo al mantel de plástico. Sin alcohol pero BYOB. Sin reservas en fin de semana. Llega antes de las 7pm o espera en la calle.</p>
+          <div class="card-links">
+            <a href="https://www.shababs.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Shababs+Balti+Restaurant+Ladypool+Road+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍛 Bombay · The Mailbox · Contemporáneo</div>
+        <div class="card-body">
+          <div class="card-title">Dishoom — The Mailbox</div>
+          <p class="card-desc">La cadena que rinde homenaje a los cafés iraníes-bombayíes de mediados del siglo XX llegó a Birmingham con su fórmula habitual: colas a la entrada, interiores de azulejo y madera oscura, y un menú que va del bacon naan roll del desayuno al black daal que llevan cocinando 24 horas. En The Mailbox, junto al canal, es la opción de cocina india contemporánea más consistente del centro — y la favorita de quien busca algo entre el balti tradicional y la alta cocina.</p>
+          <div class="card-links">
+            <a href="https://www.dishoom.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Dishoom+Birmingham+Mailbox" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍕 Pizza · Brindleyplace · Artesanal</div>
+        <div class="card-body">
+          <div class="card-title">Rudy's Pizza Napoletana — Brindleyplace</div>
+          <p class="card-desc">Masa napolitana de fermentación lenta, ingredientes italianos certificados y el mejor horno de leña de Birmingham — en la terraza canalera de Brindleyplace. Rudy's es la cadena de pizzas más respetada del norte de Inglaterra, con esta apertura en el corazón de Birmingham. La cerveza de Magic Rock Brewing que sirven de barril está especialmente buena en verano, con el canal detrás.</p>
+          <div class="card-links">
+            <a href="https://www.rudyspizza.co.uk/locations/brindleyplace" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Rudys+Pizza+Brindleyplace+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Café · City Centre · Independiente</div>
+        <div class="card-body">
+          <div class="card-title">Boston Tea Party — Birmingham</div>
+          <p class="card-desc">La cadena de cafeterías independientes del Reino Unido —fundada en Bristol, con tueste propio y vajilla de segunda mano deliberadamente desigual— tiene aquí una de sus aperturas más concurridas. Desayunos hasta media tarde, café de especialidad, y una política de "no lo tires" que ha eliminado los vasos desechables del local. El sitio donde sentarse una hora con un cuaderno entre dos paradas del circuito.</p>
+          <div class="card-links">
+            <a href="https://bostonteaparty.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Boston+Tea+Party+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍺 Pub · Real Ale · Bennett's Hill</div>
+        <div class="card-body">
+          <div class="card-title">The Wellington — Real Ale Pub</div>
+          <p class="card-desc">El templo de la cerveza real en Birmingham — hasta 25 cervezas de barril rotando constantemente, sin música, sin pantallas, sin nada que distraiga de la cerveza. The Wellington en Bennett's Hill es donde los conocedores de cerveza artesanal de toda la región hacen peregrinación. No sirven comida —sí dejan que traigas la tuya— porque la cerveza es lo único que importa aquí.</p>
+          <div class="card-links">
+            <a href="https://www.thewellingtonrealale.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Wellington+Real+Ale+Bennetts+Hill+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍜 Street Food · Digbeth · Multiétnico</div>
+        <div class="card-body">
+          <div class="card-title">Digbeth Dining Club</div>
+          <p class="card-desc">El mercado de street food más premiado del Midlands — traders independientes bajo el Custard Factory cada fin de semana. Lo que hay es lo que llegó esa mañana: ramen, tacos birminghamenses, arepas, smash burgers, helado de nitro. El ambiente es el de una ciudad que come sin pretensiones, con cerveza artesanal y ruido bueno.</p>
+          <div class="card-links">
+            <a href="https://www.digbethdiningclub.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Digbeth+Dining+Club+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍽 Fine Dining · Jewellery Quarter · Premiado</div>
+        <div class="card-body">
+          <div class="card-title">Lasan — Jewellery Quarter</div>
+          <p class="card-desc">El restaurante de cocina india contemporánea más reconocido de Birmingham — ganador del premio Gordon Ramsay al Best Local Restaurant de 2009 y con reputación consistente desde entonces. La cocina de Lasan toma las bases del Balti Triangle y las reescribe con técnica moderna: no es fusion, es evolución. Reserva con días de anticipación para la cena.</p>
+          <div class="card-links">
+            <a href="https://www.lasan.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Lasan+Restaurant+Jewellery+Quarter+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍫 Chocolatería · Bournville · Cadbury</div>
+        <div class="card-body">
+          <div class="card-title">Cadbury World — Bournville</div>
+          <p class="card-desc">La fábrica de chocolate más visitada del Reino Unido — desde la historia de los Cadbury cuáqueros hasta la línea de producción actual. Pero también Bournville el barrio: casas victorianas, parques diseñados para los trabajadores, ningún pub por decreto del fundador. Un experimento de utopía obrera que sobrevivió intacto. La tienda del final del tour es el único souvenir que merece el peso en la maleta.</p>
+          <div class="card-links">
+            <a href="https://www.cadburyworld.co.uk" target="_blank" class="btn btn-web">🌐 Entradas</a>
+            <a href="https://www.google.com/maps/search/Cadbury+World+Bournville+Lane+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REGENERATIVO -->
+<section class="section" id="regenerativo" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Turismo Regenerativo</span></div>
+    <h2 class="section-title">Devolver algo a<br><em>Birmingham</em></h2>
+    <p class="section-lead">La ciudad que inventó el metal también lidera la regeneración urbana y la conservación de su patrimonio industrial. Estas son las formas de participar.</p>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type sustain">⛵ Canales · Conservación · Voluntariado</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Canals Cleanup — Waterway Recovery Group</div>
+          <p class="card-desc">Cada año, 50 voluntarios pasan dos días retirando entre 20 y 30 toneladas de residuos de los canales birminghamenses. El Waterway Recovery Group organiza jornadas anuales en el Birmingham Canal Navigations — los mismos canales que hoy sirven de set de rodaje para Peaky Blinders. Cualquier visitante puede unirse durante el fin de semana de limpieza. Una mañana con guantes y ganchillo en el mismo canal donde los narrowboats llevan moviéndose desde 1770.</p>
+          <div class="card-links">
+            <a href="https://waterways.org.uk/support/ways-to-get-involved/events/birmingham-canals-cleanup" target="_blank" class="btn btn-web">🌐 Apuntarse</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Canal+Navigations+Gas+Street+Basin" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🏛 Patrimonio · Edificios · Restauración</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Conservation Trust — Voluntariado</div>
+          <p class="card-desc">La organización que salva y restaura los edificios históricos de Birmingham desde 1977 — desde los prefabs de Wake Green Road hasta el Golden Lion de Hurst Street. El Trust acepta voluntarios para proyectos de restauración, documentación fotográfica y guías de visitas. Una forma de tocar literalmente la historia construida de la ciudad.</p>
+          <div class="card-links">
+            <a href="https://www.birminghamconservationtrust.org/volunteer" target="_blank" class="btn btn-web">🌐 Voluntariado</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Conservation+Trust" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌿 Espacios Verdes · West Midlands · TCV</div>
+        <div class="card-body">
+          <div class="card-title">TCV Midlands — The Conservation Volunteers</div>
+          <p class="card-desc">La red de voluntariado en espacios verdes más activa del Midlands — jornadas semanales de conservación en parques, jardines comunitarios y espacios naturales de Birmingham. El proyecto Bartley Green and Go! combina jardinería, cultivo de alimentos y caminatas semanales abiertas a todos. Puntos de encuentro en Bartley Green, Quinton y alrededor de los canales del oeste de la ciudad.</p>
+          <div class="card-links">
+            <a href="https://www.tcv.org.uk/midlands/" target="_blank" class="btn btn-web">🌐 Únete</a>
+            <a href="https://www.google.com/maps/search/TCV+Conservation+Volunteers+Birmingham+Bartley+Green" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🎵 Música · Jóvenes · Herencia Cultural</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Music Archive — Apoyo al Patrimonio</div>
+          <p class="card-desc">El archivo digital y físico que documenta la historia musical de Birmingham — desde el jazz de los años 30 hasta el grime actual, pasando por Black Sabbath, Duran Duran y Steel Pulse. El archivo acepta donaciones de memorabilia, fotografías y grabaciones. Participar en sus jornadas de catalogación o en sus eventos públicos es contribuir a que la historia de la ciudad que inventó el metal no se pierda.</p>
+          <div class="card-links">
+            <a href="https://www.birminghammusicarchive.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Music+Archive+Digbeth" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Comida · Comunidad · Aston</div>
+        <div class="card-body">
+          <div class="card-title">Aston Community Allotments & Growing Projects</div>
+          <p class="card-desc">Los huertos comunitarios de Aston — el mismo barrio donde Ozzy y Tony crecieron — trabajan con residentes para convertir solares vacíos en espacios de cultivo colectivo. Varios proyectos aceptan voluntarios los fines de semana: desde la siembra hasta la distribución de productos frescos entre familias del barrio. Una mañana en los huertos de Aston con los vecinos de los descendientes de los Sabbath.</p>
+          <div class="card-links">
+            <a href="https://www.groundworkwestmidlands.org.uk" target="_blank" class="btn btn-web">🌐 Groundwork WM</a>
+            <a href="https://www.google.com/maps/search/Community+Allotments+Aston+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🏭 Canal & River Trust · Patrimonio · Birmingham</div>
+        <div class="card-body">
+          <div class="card-title">Canal & River Trust — West Midlands</div>
+          <p class="card-desc">La organización que mantiene los 2.000 millas de canales del Reino Unido acepta voluntarios en Birmingham para tareas de conservación del patrimonio fluvial — desde pintar esclusas hasta mantener los caminos de sirga. La oficina regional está en Cambrian Wharf, King Edwards Road, a diez minutos del centro. El voluntariado semanal es gratuito y abierto a cualquier visitante que pase tiempo en la ciudad.</p>
+          <div class="card-links">
+            <a href="https://canalrivertrust.org.uk/volunteer" target="_blank" class="btn btn-web">🌐 Voluntariado</a>
+            <a href="https://www.google.com/maps/search/Canal+River+Trust+Cambrian+Wharf+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ICONOS -->
+<section class="section" id="iconos" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Iconos de Birmingham</span></div>
+    <h2 class="section-title">Lo que no puedes<br><em>saltarte</em></h2>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Victorian · Colmore Row · Architecture</div>
+        <div class="card-body">
+          <div class="card-title">Colmore Row & St Philip's Cathedral</div>
+          <p class="card-desc">La arteria victoriana de Birmingham — edificios de Portland Stone, bancos históricos y la catedral de St Philip, la más pequeña de Inglaterra, construida entre 1709 y 1715 con cuatro vidrieras de Edward Burne-Jones, el prerrafaelita birminghamense. Una mañana caminando por Colmore Row con café en mano es el mejor resumen de la Birmingham que no grita.</p>
+          <div class="card-links">
+            <a href="https://www.birminghamcathedral.com" target="_blank" class="btn btn-web">🌐 Catedral</a>
+            <a href="https://www.google.com/maps/search/Colmore+Row+Birmingham+St+Philip+Cathedral" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 National Trust · Back to Backs · Hurst Street</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Back to Backs</div>
+          <p class="card-desc">El último patio superviviente de casas back-to-back en Birmingham — restaurado por el National Trust con cuatro viviendas en diferentes épocas entre 1840 y 1977. Es el museo de vida urbana trabajadora más íntimo del país. Visita guiada obligatoria, reserva previa recomendada. En Hurst Street, el corazón histórico del Balti Triangle.</p>
+          <div class="card-links">
+            <a href="https://www.nationaltrust.org.uk/visit/west-midlands/birmingham-back-to-backs" target="_blank" class="btn btn-web">🌐 Entradas</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Back+to+Backs+Hurst+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏟 Premier League · Aston · Villa Park</div>
+        <div class="card-body">
+          <div class="card-title">Villa Park — Estadio de Aston Villa</div>
+          <p class="card-desc">42.700 asientos en el corazón de Aston — el mismo barrio donde nació Ozzy Osbourne y donde Black Sabbath tocó su último concierto. Tours del estadio disponibles la mayoría de días sin partido. La grada del Holte End, con vistas al skyline industrial de la ciudad y al canal a lo lejos, es el plano que resume Birmingham en una imagen.</p>
+          <div class="card-links">
+            <a href="https://www.avfc.co.uk" target="_blank" class="btn btn-web">🌐 Aston Villa</a>
+            <a href="https://www.google.com/maps/search/Villa+Park+Birmingham+Aston" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Architecture · Selfridges · Bullring</div>
+        <div class="card-body">
+          <div class="card-title">Selfridges — El edificio de los discos</div>
+          <p class="card-desc">15.000 discos de aluminio en una fachada de forma orgánica — Jan Kaplický, 2003. El edificio que anunció que Birmingham había decidido apostar por sí misma. A cien metros, el mercado de St Martin's lleva aquí desde 1166. Los dos extremos de la ciudad en cincuenta metros cuadrados.</p>
+          <div class="card-links">
+            <a href="https://www.selfridges.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Selfridges+Bullring+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🌿 Jardines · Edgbaston · Victorian</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham Botanical Gardens — Edgbaston</div>
+          <p class="card-desc">Los jardines botánicos victorianos de Edgbaston — inaugurados en 1832, con cuatro invernaderos, colecciones de plantas tropicales y un jardín de rosas que en verano es uno de los rincones más tranquilos de la ciudad. A quince minutos en autobús del centro. El antídoto perfecto a los dos primeros días de asfalto y metal.</p>
+          <div class="card-links">
+            <a href="https://www.birminghambotanicalgardens.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Birmingham+Botanical+Gardens+Edgbaston" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALES 2026 -->
+<section class="section" id="festivales" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Agenda 2026</span></div>
+    <h2 class="section-title">Birmingham en<br><em>2026</em></h2>
+    <p class="section-lead">La ciudad que inventó el heavy metal tiene un calendario que va del rock experimental en abril al jazz al aire libre en julio, y termina con Duran Duran de vuelta a casa en otoño.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎸 25-26 Abril 2026 · The Crossing, Digbeth</div>
+        <div class="card-body">
+          <div class="card-title">Supersonic Festival 2026</div>
+          <p class="card-desc">El festival independiente más longevo de Birmingham — música adventurera, charlas y talleres en un ambiente comunitario desde principios de los 2000. La edición 2026 se concentra en dos días en The Crossing, un almacén de Digbeth, con dos escenarios y una programación que prioriza el descubrimiento sobre la escala. Para quien busca lo que todavía no tiene nombre.</p>
+          <div class="card-links">
+            <a href="https://supersonicfestival.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Crossing+Milk+Street+Digbeth+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎷 10-12 Julio 2026 · Moseley Park</div>
+        <div class="card-body">
+          <div class="card-title">Mostly Jazz, Funk & Soul Festival 2026</div>
+          <p class="card-desc">Tres días en Moseley Park — once acres de bosque y un lago a dos millas del centro, pero a un mundo de distancia de la vida urbana. La edición 2026 confirma a Fabio & Grooverider con The Outlook Orchestra y a la voz soul Jalen Ngonda como cabezas de cartel. El anfiteatro natural frente al lago es uno de los escenarios más bonitos de cualquier festival británico.</p>
+          <div class="card-links">
+            <a href="https://mostlyjazz.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Moseley+Park+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎸 20 Octubre 2026 · Utilita Arena</div>
+        <div class="card-body">
+          <div class="card-title">Duran Duran — Regreso a Casa</div>
+          <p class="card-desc">La banda que Birmingham vio nacer en el Rum Runner Club en 1978 regresa al Utilita Arena el 20 de octubre de 2026. Después de cuatro décadas de éxito global, Simon Le Bon, Nick Rhodes, John y Roger Taylor vuelven a la ciudad que los formó. Una noche para los que nunca se fueron y para los que siempre quisieron volver.</p>
+          <div class="card-links">
+            <a href="https://www.utilitaarenabham.co.uk" target="_blank" class="btn btn-web">🎟 Entradas</a>
+            <a href="https://www.google.com/maps/search/Utilita+Arena+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎤 21 Noviembre 2026 · Utilita Arena</div>
+        <div class="card-body">
+          <div class="card-title">Courteeners — Utilita Arena Birmingham</div>
+          <p class="card-desc">Los Courteeners de Manchester en el Utilita Arena el 21 de noviembre de 2026 — uno de los últimos grandes conciertos de indie-rock del año en la ciudad. Después del éxito de su último álbum, la gira otoñal los trae de vuelta al Midlands con la energía de siempre.</p>
+          <div class="card-links">
+            <a href="https://www.utilitaarenabham.co.uk" target="_blank" class="btn btn-web">🎟 Entradas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎶 Junio–Septiembre 2026 · Toda la Ciudad</div>
+        <div class="card-body">
+          <div class="card-title">Summer in the City — Conciertos al Aire Libre</div>
+          <p class="card-desc">El programa de conciertos al aire libre de Visit Birmingham incluye actuaciones en Victoria Square, Centenary Square y los jardines del Mailbox durante el verano. Programación gratuita o con entradas desde £10. La agenda 2026 se publica en marzo.</p>
+          <div class="card-links">
+            <a href="https://visitbirmingham.com/whats-on/" target="_blank" class="btn btn-web">🌐 Agenda</a>
+            <a href="https://www.google.com/maps/search/Victoria+Square+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEPORTES -->
+<section class="section" id="football" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Deportes</span></div>
+    <h2 class="section-title">Fútbol en<br><em>Birmingham</em></h2>
+    <p class="section-lead">La segunda ciudad de Inglaterra tiene dos clubs históricos, una rivalidad legendaria y un estadio que vio el último concierto de Black Sabbath. El fútbol en Birmingham es también patrimonio.</p>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(147,0,30,0.12);color:#c00020;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Premier League · Aston · Villa Park</div>
+        <div class="card-body">
+          <div class="card-title">Aston Villa FC — Villa Park</div>
+          <p class="card-desc">Fundado en 1874, siete veces campeón de liga, campeón de Europa en 1982. Villa Park en Aston tiene capacidad para 42.700 personas — el mismo estadio donde Black Sabbath tocó su último concierto en julio de 2025. Bajo Unai Emery, el club compite en la Europa League 2025-26. Entradas en la web oficial — los partidos en casa contra los grandes se agotan en horas.</p>
+          <div class="card-links">
+            <a href="https://www.avfc.co.uk/tickets" target="_blank" class="btn btn-web">⚽ Entradas</a>
+            <a href="https://www.google.com/maps/search/Villa+Park+Aston+Birmingham" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(0,40,120,0.12);color:#2040c0;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ EFL Championship · St Andrew's</div>
+        <div class="card-body">
+          <div class="card-title">Birmingham City FC — St Andrew's</div>
+          <p class="card-desc">Fundado en 1875 como Small Heath Alliance, el Blues subió de vuelta a la Championship en 2025 tras ganar la League One. St Andrew's en Bordesley — a dos kilómetros del centro — es uno de los estadios con más ambiente de la división. La rivalidad con Aston Villa, el Second City Derby, es una de las más intensas del fútbol inglés.</p>
+          <div class="card-links">
+            <a href="https://www.bcfc.com/tickets" target="_blank" class="btn btn-web">⚽ Entradas</a>
+            <a href="https://www.google.com/maps/search/St+Andrews+Stadium+Birmingham+City+FC" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(0,100,50,0.12);color:#008040;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Premier League · Entradas Oficiales</div>
+        <div class="card-body">
+          <div class="card-title">Premier League — Calendario Oficial</div>
+          <p class="card-desc">La web oficial de la Premier League para consultar el calendario completo, fechas de partidos de Aston Villa y acceder a las plataformas de venta de cada club. La temporada 2025-26 corre de agosto a mayo. Los partidos de entre semana en el Midlands suelen tener entradas disponibles con más antelación que los de fin de semana.</p>
+          <div class="card-links">
+            <a href="https://www.premierleague.com/fixtures" target="_blank" class="btn btn-web">⚽ Calendario</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box" style="margin-top:2rem">
+      <p><strong>Truco práctico:</strong> Para un partido de Aston Villa en casa, toma el tren Cross-City desde New Street hasta Witton o Aston — cinco minutos, £2.50, y llegas al estadio caminando en diez minutos entre miles de aficionados. Es la forma más auténtica de vivir el partido. Evita el coche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA CULTURAL -->
+<section class="section" id="agenda" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Agenda Cultural</span></div>
+    <h2 class="section-title">Qué pasa en<br><em>Birmingham</em></h2>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🗺 Guía Cultural · Visit Birmingham · Actualizada</div>
+        <div class="card-body">
+          <div class="card-title">Visit Birmingham — Agenda Completa</div>
+          <p class="card-desc">La guía oficial de Visit Birmingham actualiza semanalmente conciertos, exposiciones, mercados, festivales y eventos en toda la ciudad. La mejor fuente para planificar lo que pasa la semana que estás. Incluye filtros por barrio, tipo de evento y presupuesto.</p>
+          <div class="card-links">
+            <a href="https://visitbirmingham.com/whats-on/" target="_blank" class="btn btn-web">🌐 Agenda</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Conciertos · Songkick · Birmingham</div>
+        <div class="card-body">
+          <div class="card-title">Songkick — Conciertos en Birmingham</div>
+          <p class="card-desc">La plataforma más completa para conciertos en vivo en Birmingham — desde el Utilita Arena hasta el O2 Institute y el Hare & Hounds. Configura alertas por artista para saber antes que nadie cuándo toca tu banda favorita en la ciudad. Más de 200 eventos confirmados para 2026.</p>
+          <div class="card-links">
+            <a href="https://www.songkick.com/metro-areas/24542-uk-birmingham" target="_blank" class="btn btn-web">🎵 Conciertos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎟 Entradas · Ticketmaster · Eventos</div>
+        <div class="card-body">
+          <div class="card-title">Ticketmaster UK — Birmingham</div>
+          <p class="card-desc">La plataforma oficial de venta de entradas para el Utilita Arena, bp pulse LIVE, Symphony Hall y la mayoría de venues de Birmingham. Configura una cuenta con alertas por artista — los conciertos de mayor demanda se agotan en minutos. La app permite guardar entradas en Apple Wallet o Google Pay.</p>
+          <div class="card-links">
+            <a href="https://www.ticketmaster.co.uk/birmingham-tickets" target="_blank" class="btn btn-web">🎟 Entradas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type tour">🚌 Excursión Opcional · Día Completo</div>
+        <div class="card-body">
+          <div class="card-title">Stonehenge & Bath — Excursión desde Birmingham</div>
+          <p class="card-desc">Si dispones de un día extra, Stonehenge y Bath están a menos de dos horas de Birmingham por carretera. Los tours de día completo en autocar visitan el círculo de piedras neolítico y la ciudad romana de Bath con sus baños termales y la arquitectura georgiana de Jane Austen — dos de los sitios Patrimonio Mundial de la UNESCO más visitados de Inglaterra, en la misma jornada.</p>
+          <div class="card-links">
+            <a href="https://www.getyourguide.com/birmingham-l2525/from-birmingham-stonehenge-bath-day-tour-t509278/" target="_blank" class="btn btn-web">🌐 GetYourGuide</a>
+            <a href="https://www.viator.com/en-CA/tours/Birmingham/From-Birmingham-Stonehenge-and-Bath-Day-Tour/d22776-438980P1" target="_blank" class="btn btn-web">🌐 Viator</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FINAL -->
+<section style="background:var(--base-1);padding:5rem 2rem">
+  <div class="section-inner" style="max-width:700px;margin:0 auto;text-align:center">
+    <div class="quote-block" style="border-left:none;border-top:1px solid var(--accent);border-bottom:1px solid var(--accent);padding:3rem 2rem;text-align:center;background:transparent">
+      <p class="quote-text" style="font-size:1.4rem">"No salimos de Birmingham. Birmingham salió de nosotros."</p>
+      <div class="quote-source">— Geezer Butler · Black Sabbath · Aston, Birmingham</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section style="background:var(--base-2);padding:5rem 2rem" id="closing">
+  <div class="section-inner" style="text-align:center;max-width:760px;margin:0 auto">
+    <div class="section-rule" style="justify-content:center"><span class="section-tag">Fin de la Temporada 1</span></div>
+    <h2 style="font-family:var(--f-display);font-size:clamp(2rem,5vw,3rem);color:var(--bone);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:1.5rem;line-height:1.1">
+      Birmingham<br>
+      <em style="color:var(--accent);font-style:italic;font-family:var(--f-head);text-transform:none;font-weight:400">para siempre</em>
+    </h2>
+    <p style="font-family:var(--f-body);font-size:1.05rem;line-height:1.95;color:rgba(224,213,204,0.7);margin-bottom:1.5rem">
+      Esta ciudad no pide permiso para gustar. No tiene el glamour de Londres, ni la belleza fotogénica de Edimburgo, ni la nostalgia de Liverpool. Lo que tiene es más difícil de encontrar: la verdad de un lugar que inventó algo desde cero, sin red, sin mapa. El heavy metal nació aquí porque aquí no había otra salida. Los canales que hoy son set de Peaky Blinders, el chocolate, el balti — todo lo que Birmingham dio al mundo lo dio de la misma manera: sin saber que era importante, sin pensarlo demasiado, con las manos sucias.
+    </p>
+    <p style="font-family:var(--f-head);font-size:1.1rem;line-height:1.95;color:var(--accent);font-style:italic;margin-bottom:3rem">
+      Recuerda que cada ciudad tiene su banda sonora, y cada ritmo tiene su hogar.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://visitbirmingham.com" target="_blank" class="btn-primary">Planifica tu visita →</a>
+      <a href="https://open.spotify.com/artist/5M52tdBnJaKSvOpJGz8mfZ" target="_blank" class="btn-ghost">🎧 Escuchar Black Sabbath</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--base-1);border-top:1px solid var(--rule);padding:3rem 2rem;text-align:center">
+  <div class="footer-logo" style="font-family:var(--f-display);font-size:1.1rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:0.5rem">El Pasaporte Sinfónico</div>
+  <div class="footer-tag" style="font-family:var(--f-label);font-size:0.6rem;letter-spacing:0.3em;color:var(--smoke);text-transform:uppercase;margin-bottom:1.5rem">El podcast donde la música viaja</div>
+  <p class="footer-note" style="font-family:var(--f-label);font-size:0.58rem;letter-spacing:0.12em;color:rgba(138,122,136,0.5);line-height:2;text-transform:uppercase;max-width:600px;margin:0 auto">
+    Episodio 4 · Temporada 1 · Heavy Metal · Birmingham · Black Sabbath · Judas Priest · Ozzy Osbourne · Duran Duran<br>
+    Circuito de 5 días · 45+ lugares verificados · Guía actualizada 2026<br>
+    Todos los enlaces son orientativos. Verifica horarios y disponibilidad antes de tu visita.
+    Los lugares cambian; la música, no.<br><br>
+    © 2026 El Pasaporte Sinfónico. Todos los derechos reservados.
+  </p>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

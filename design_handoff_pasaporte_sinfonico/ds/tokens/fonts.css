@@ -1,0 +1,11 @@
+/* ============================================================
+   El Pasaporte Sinfónico — Webfonts
+   The exact stack used by the production episode guides.
+     - Cinzel             → engraved Roman caps (hero & section titles)
+     - Playfair Display   → high-contrast serif (card titles, quotes, em)
+     - Libre Baskerville  → serif body copy
+     - Oswald             → condensed caps labels, tags, buttons, metadata
+   Loaded from Google Fonts (the guides load them the same way).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap');

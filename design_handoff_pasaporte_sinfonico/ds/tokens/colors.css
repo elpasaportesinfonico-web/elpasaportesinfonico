@@ -1,0 +1,96 @@
+/* ============================================================
+   El Pasaporte Sinfónico — Color tokens
+   A DARK, CINEMATIC palette taken verbatim from the production
+   episode guides. Near-black bases, an aged-gold accent and a
+   crimson secondary, with bone/parchment text.
+
+   PER-EPISODE THEMING
+   -------------------
+   Every episode re-tints the same token names. :root holds the
+   house theme (gold + crimson on near-black — the Birmingham /
+   metal guide). Add `data-theme="…"` on a wrapper (or <html>) to
+   switch the accent + secondary + base tint. New episodes = a new
+   single-selector scope that overrides the themed tokens below.
+   ============================================================ */
+
+:root {
+  /* ---- Themed tokens (house theme: gold + crimson) ---------- */
+  /* Backgrounds — near-black, faintly purpled */
+  --base-1: #05050a;   /* page */
+  --base-2: #0a080f;   /* deep panels */
+  --base-3: #110d18;   /* cards */
+  --base-4: #1a1020;   /* raised / hover */
+
+  /* Accent — aged gold (the through-line of the brand) */
+  --accent:        #d4aa3a;
+  --accent-bright: #f0c84a;
+  --accent-deep:   #8a6820;
+
+  /* Secondary — crimson */
+  --secondary:       #7a1515;
+  --secondary-glow:  #b02020;
+  --secondary-light: rgba(122, 21, 21, 0.15);
+
+  /* Text + lines */
+  --bone:  #f0ece8;    /* headings / strong */
+  --parch: #e0d5cc;    /* body */
+  --smoke: #8a7a88;    /* muted / labels */
+  --rule:  #2a1520;    /* hairline borders (themed) */
+
+  /* ---- Shared neutrals (theme-independent) ------------------ */
+  --ink-black: #05050a;
+  --white:     #ffffff;
+
+  /* ---- Semantic aliases ------------------------------------- */
+  --surface-page:   var(--base-1);
+  --surface-deep:   var(--base-2);
+  --surface-card:   var(--base-3);
+  --surface-raised: var(--base-4);
+  --surface-nav:    rgba(5, 5, 10, 0.85);
+  --surface-tint:   rgba(212, 170, 58, 0.05);   /* faint accent wash (quote/tip bg) */
+
+  --text-strong:  var(--bone);
+  --text-body:    var(--parch);
+  --text-soft:    rgba(224, 213, 204, 0.68);    /* leads & descriptions */
+  --text-muted:   var(--smoke);
+  --text-accent:  var(--accent);
+  --text-link:    var(--accent);
+  --on-accent:    #05050a;                       /* text on a gold fill */
+
+  --border:       var(--rule);
+  --border-accent:rgba(212, 170, 58, 0.4);       /* gold hairline (ghost btn, nav) */
+  --border-faint: rgba(212, 170, 58, 0.12);
+
+  --focus-ring:   rgba(212, 170, 58, 0.6);
+
+  /* Feedback (kept muted to match the cinematic palette) */
+  --positive: #70b050;
+  --warning:  #d4aa3a;
+  --danger:   #b02020;
+}
+
+/* ---- Episode themes ----------------------------------------- */
+
+/* Delta del Blues — amber gold + river blue on warm black */
+[data-theme="blues"] {
+  --base-1: #0a0806; --base-2: #14110d; --base-3: #1f1a14; --base-4: #2d2418;
+  --accent: #c8954a; --accent-bright: #e0b070; --accent-deep: #8a651a;
+  --secondary: #2a3d5c; --secondary-glow: #4f74a8; --secondary-light: rgba(79, 116, 168, 0.15);
+  --bone: #f5ecd9; --parch: #e8dcc0; --smoke: #948572; --rule: #3a2e22;
+}
+
+/* London — psychedelia: gold + crimson + electric violet */
+[data-theme="psych"] {
+  --base-1: #06060a; --base-2: #0c0b12; --base-3: #14121e; --base-4: #1e1a2a;
+  --accent: #c9a84c; --accent-bright: #e8c96a; --accent-deep: #8a6e28;
+  --secondary: #6b2fa0; --secondary-glow: #9b4fd0; --secondary-light: rgba(155, 79, 208, 0.15);
+  --bone: #f0ece8; --parch: #e0d5cc; --smoke: #8a8298; --rule: #241e30;
+}
+
+/* Liverpool — merseybeat: gold + Liverpool red + a touch of green */
+[data-theme="merseybeat"] {
+  --base-1: #060608; --base-2: #0e0e14; --base-3: #181820; --base-4: #242430;
+  --accent: #d4a93a; --accent-bright: #f0c860; --accent-deep: #9a7418;
+  --secondary: #8b1a2a; --secondary-glow: #c42438; --secondary-light: rgba(196, 36, 56, 0.15);
+  --bone: #f0ece8; --parch: #e0d8cc; --smoke: #8a8490; --rule: #221a1e;
+}

@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<!--
+  EL PASAPORTE SINFÓNICO — DELTA DEL MISSISSIPPI / EL BLUES
+  Basado en el Episodio 1 — El Blues. Circuito: Clarksdale · Memphis · Nashville.
+  Artista invitado del episodio: Canuto's Blues Band.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta del Mississippi · El Blues — El Pasaporte Sinfónico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --base-1:  #0a0806;
+  --base-2:  #14110d;
+  --base-3:  #1f1a14;
+  --base-4:  #2d2418;
+
+  --accent:        #c8954a;   /* brass */
+  --accent-bright: #e0b070;
+  --accent-deep:   #8a651a;
+
+  --secondary:      #2a3d5c;  /* azul medianoche — el blues */
+  --secondary-glow: #4f74a8;
+
+  --bone:    #f5ecd9;
+  --parch:   #e8dcc0;
+  --smoke:   #948572;
+
+  --rule:    #3a2e22;
+
+  --f-display: 'Cinzel', serif;
+  --f-head:    'Playfair Display', serif;
+  --f-body:    'Libre Baskerville', serif;
+  --f-label:   'Oswald', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--base-1);
+  color: var(--parch);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  background: rgba(10,8,6,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(200,149,74,0.2);
+  height: 62px; display:flex; align-items:center;
+  padding: 0 2rem; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--f-display); font-size:0.9rem; letter-spacing:0.18em;
+  color: var(--accent); text-decoration:none; text-transform:uppercase;
+}
+.nav-logo em {
+  color: rgba(232,220,192,0.4); font-style:normal; font-size:0.7em;
+  display:block; letter-spacing:0.3em; font-family:var(--f-label); font-weight:300;
+}
+.nav-links { display:flex; gap:0.1rem; list-style:none; }
+.nav-links a {
+  display:block; padding:0.3rem 0.7rem; font-family:var(--f-label);
+  font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase;
+  color: var(--smoke); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; text-align:center; position:relative; overflow:hidden;
+  padding: 8rem 2rem 5rem;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(42,61,92,0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 20% 70%, rgba(20,17,13,0.95) 0%, transparent 80%),
+    linear-gradient(180deg, #0c0a07 0%, var(--base-1) 100%);
+}
+.hero-watermark {
+  position:absolute; font-family:var(--f-display); font-size:30vw;
+  color: rgba(200,149,74,0.04); top:50%; left:50%;
+  transform: translate(-50%,-50%); pointer-events:none; user-select:none;
+  font-weight:900; line-height:1;
+}
+.episode-badge {
+  position:relative; display:inline-block; font-family:var(--f-label);
+  font-size:0.68rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase;
+  color: var(--accent); border:1px solid rgba(200,149,74,0.4);
+  padding:0.4rem 1.2rem; margin-bottom:2rem;
+}
+.episode-badge::before, .episode-badge::after { content:'✦'; margin:0 0.6em; opacity:0.5; }
+.hero-title {
+  position:relative; font-family:var(--f-display);
+  font-size: clamp(2.8rem, 9vw, 8rem); line-height:0.9; letter-spacing:0.04em;
+  text-transform:uppercase; margin-bottom:0.4rem;
+}
+.hero-title .city {
+  color: var(--accent); display:block; font-size:1.25em; line-height:0.85;
+  text-shadow: 0 0 60px rgba(200,149,74,0.4);
+}
+.hero-title .under {
+  color: rgba(232,220,192,0.25); font-size:0.34em; letter-spacing:0.25em;
+  display:block; margin-bottom:0.8rem; font-family:var(--f-label); font-weight:300;
+}
+.hero-subtitle {
+  position:relative; font-family:var(--f-label); font-size:clamp(0.9rem,2vw,1.2rem);
+  font-weight:300; letter-spacing:0.2em; color:var(--smoke); text-transform:uppercase;
+  margin: 1.5rem 0 3rem; font-style:italic;
+}
+.hero-ctas { position:relative; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+.btn-primary {
+  display:inline-block; padding:0.85rem 2.2rem; font-family:var(--f-label);
+  font-size:0.78rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+  color: var(--base-1); background: var(--accent); text-decoration:none;
+  transition: all 0.25s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  border:none; cursor:pointer;
+}
+.btn-primary:hover { background: var(--accent-bright); transform: translateY(-2px); }
+.btn-ghost {
+  display:inline-block; padding:0.85rem 2.2rem; font-family:var(--f-label);
+  font-size:0.78rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+  color: var(--accent); background:transparent; border:1px solid rgba(200,149,74,0.4);
+  text-decoration:none; transition: all 0.25s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.btn-ghost:hover { border-color: var(--accent); background: rgba(200,149,74,0.08); }
+
+/* SECTIONS */
+.section { padding:5rem 0; position:relative; }
+.section-inner { max-width:1200px; margin:0 auto; padding:0 2rem; }
+.section-rule { display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem; }
+.section-rule::before { content:''; flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(200,149,74,0.3)); }
+.section-rule::after { content:''; flex:2; height:1px; background:linear-gradient(to right, rgba(200,149,74,0.3), transparent); }
+.section-tag {
+  font-family:var(--f-label); font-size:0.65rem; font-weight:700; letter-spacing:0.3em;
+  text-transform:uppercase; color:var(--accent); white-space:nowrap;
+}
+.section-title {
+  font-family:var(--f-display); font-size:clamp(2rem,6vw,4.5rem); line-height:0.92;
+  letter-spacing:0.04em; text-transform:uppercase; margin-bottom:1.5rem;
+}
+.section-title em { color:var(--accent); font-style:italic; font-weight:400; }
+.section-lead {
+  font-size:1.05rem; line-height:1.9; color:rgba(232,220,192,0.7);
+  max-width:700px; margin-bottom:3rem; font-weight:400;
+}
+.section-lead em { color:var(--accent); font-style:italic; }
+
+/* TRIBUTE */
+.tribute-box {
+  background: linear-gradient(135deg, rgba(42,61,92,0.16), rgba(31,26,20,0.95));
+  border: 1px solid rgba(79,116,168,0.35); padding:2.5rem; text-align:center;
+  margin:3rem auto; max-width:900px; position:relative; overflow:hidden;
+}
+.tribute-box::before {
+  content:'♪'; position:absolute; font-size:13rem; opacity:0.04; top:50%; left:50%;
+  transform: translate(-50%,-50%); color: var(--secondary-glow); pointer-events:none;
+}
+.tribute-box h2 {
+  font-family:var(--f-display); font-size:clamp(1.5rem,4vw,3rem); letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;
+}
+.tribute-box p {
+  font-size:0.96rem; color:rgba(232,220,192,0.7); line-height:1.9; max-width:640px;
+  margin:0.8rem auto 0; font-style:italic;
+}
+
+/* TRANSPORT */
+.transport-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:1.5rem; margin-top:2rem; }
+.transport-card { background:var(--base-3); border:1px solid var(--rule); padding:1.8rem; transition:border-color 0.2s; }
+.transport-card:hover { border-color: rgba(200,149,74,0.3); }
+.transport-card h3 {
+  font-family:var(--f-label); font-size:0.7rem; font-weight:700; letter-spacing:0.25em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:1rem; padding-bottom:0.8rem;
+  border-bottom:1px solid var(--rule);
+}
+.transport-row { display:flex; align-items:center; justify-content:space-between; padding:0.55rem 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.transport-row:last-of-type { border-bottom:none; }
+.transport-name { font-size:0.88rem; color:var(--parch); }
+
+/* CARDS */
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.4rem; margin-top:2rem; }
+.card { background:var(--base-3); border:1px solid var(--rule); overflow:hidden; transition:transform 0.2s, border-color 0.2s; }
+.card:hover { transform:translateY(-3px); border-color:rgba(200,149,74,0.25); }
+.card-type { font-family:var(--f-label); font-size:0.62rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; padding:0.65rem 1.3rem; border-bottom:1px solid var(--rule); }
+.card-type.hotel    { background: rgba(200,149,74,0.10); color: var(--accent); }
+.card-type.food     { background: rgba(192,90,40,0.12); color: #e0925a; }
+.card-type.cafe     { background: rgba(120,80,20,0.15); color: #c8943a; }
+.card-type.culture  { background: rgba(79,116,168,0.12); color: #7fa0d0; }
+.card-type.festival { background: rgba(80,150,120,0.12); color: #6fc0a0; }
+.card-type.music    { background: rgba(160,80,150,0.12); color: #c878c0; }
+.card-type.sustain  { background: rgba(50,130,90,0.12); color: #70c098; }
+.card-body { padding:1.3rem; }
+.card-title { font-family:var(--f-head); font-size:1.15rem; font-weight:700; letter-spacing:0.03em; margin-bottom:0.6rem; color:var(--bone); }
+.card-desc { font-size:0.875rem; color:rgba(232,220,192,0.65); line-height:1.7; margin-bottom:1.2rem; font-style:italic; }
+.card-links { display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+/* MINI BUTTONS */
+.btn {
+  display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.9rem;
+  font-family:var(--f-label); font-size:0.7rem; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; text-decoration:none; transition:all 0.2s; cursor:pointer;
+  border:1px solid var(--rule); background:transparent; color:var(--smoke);
+}
+.btn:hover { color:var(--accent); border-color:rgba(200,149,74,0.4); }
+.btn-map { background: rgba(42,61,92,0.20); color:#6f8fc0; border-color:rgba(79,116,168,0.35); }
+.btn-map:hover { color:var(--accent-bright); background:rgba(42,61,92,0.30); border-color:var(--secondary-glow); }
+.btn-web { background: rgba(200,149,74,0.10); color:var(--accent); border-color:rgba(200,149,74,0.30); }
+.btn-web:hover { background: rgba(200,149,74,0.20); border-color:rgba(200,149,74,0.60); }
+
+/* TIP BOX */
+.tip-box { background: rgba(200,149,74,0.06); border:1px solid rgba(200,149,74,0.2); border-left:3px solid var(--accent); padding:1.2rem 1.5rem; border-radius:0 4px 4px 0; margin-top:2rem; }
+.tip-box p { font-size:0.9rem; color:rgba(232,220,192,0.8); font-style:italic; line-height:1.7; }
+
+/* TIMELINE */
+.timeline { position:relative; padding-left:3rem; }
+.timeline::before { content:''; position:absolute; left:0.85rem; top:0.6rem; bottom:0; width:1px; background:linear-gradient(to bottom, var(--secondary-glow), transparent); opacity:0.5; }
+.tl-item { position:relative; margin-bottom:2.5rem; }
+.tl-item::before { content:''; position:absolute; left:-3rem; top:0.5rem; width:10px; height:10px; background:var(--secondary-glow); clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.tl-time { font-family:var(--f-label); font-size:0.62rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--secondary-glow); margin-bottom:0.3rem; }
+.tl-place { font-family:var(--f-head); font-size:1.1rem; font-weight:700; color:var(--bone); margin-bottom:0.4rem; }
+.tl-desc { font-size:0.86rem; color:rgba(232,220,192,0.6); line-height:1.75; margin-bottom:0.7rem; font-style:italic; }
+.tl-links { display:flex; gap:0.4rem; flex-wrap:wrap; }
+
+/* TABS */
+.tabs-nav { background:var(--base-3); border-bottom:1px solid var(--rule); position:sticky; top:62px; z-index:50; }
+.tabs-nav-inner { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; gap:0; overflow-x:auto; scrollbar-width:none; }
+.tabs-nav-inner::-webkit-scrollbar { display:none; }
+.tab-btn { padding:1rem 1.5rem; font-family:var(--f-label); font-size:0.78rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--smoke); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; transition:all 0.2s; }
+.tab-btn:hover { color:var(--bone); }
+.tab-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* QUOTE */
+.quote-block { background:var(--base-3); border-left:3px solid var(--accent); padding:2rem 2.5rem; margin:3rem 0; position:relative; }
+.quote-text { font-family:var(--f-head); font-size:1.15rem; font-style:italic; line-height:1.8; color:rgba(232,220,192,0.85); }
+.quote-source { margin-top:1rem; font-family:var(--f-label); font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); opacity:0.7; }
+
+/* FOOTER */
+footer { background:var(--base-2); border-top:1px solid rgba(200,149,74,0.15); padding:4rem 2rem; text-align:center; }
+.footer-logo { font-family:var(--f-display); font-size:2rem; color:var(--accent); letter-spacing:0.1em; margin-bottom:0.5rem; }
+.footer-tag { font-family:var(--f-label); font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--smoke); margin-bottom:2rem; }
+.footer-note { font-size:0.8rem; color:rgba(232,220,192,0.32); max-width:520px; margin:0 auto; line-height:1.7; font-style:italic; }
+
+/* ANIMATIONS */
+.fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width:768px) { .nav-links { display:none; } .hero-title { line-height:0.92; } }
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="#top" class="nav-logo">
+    <em>El Pasaporte Sinfónico</em>
+    Delta del Mississippi
+  </a>
+  <ul class="nav-links">
+    <li><a href="#llegada">Cómo Llegar</a></li>
+    <li><a href="#hoteles">Hoteles</a></li>
+    <li><a href="#itinerario">Itinerario</a></li>
+    <li><a href="#cultura">Cultura</a></li>
+    <li><a href="#festivales">Festivales</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-watermark">♪</div>
+
+  <div class="episode-badge" style="position:relative">El Blues · Episodio 1</div>
+
+  <h1 class="hero-title" style="position:relative">
+    <span class="under">El Pasaporte Sinfónico presenta</span>
+    <span class="city">El Delta<br>del Blues</span>
+    <span style="color:rgba(232,220,192,0.5);font-size:0.22em;font-family:var(--f-label);font-weight:300;letter-spacing:0.4em;display:block;margin-top:1.5rem">Clarksdale · Memphis · Nashville</span>
+  </h1>
+
+  <p class="hero-subtitle" style="position:relative">
+    El Blues · La Encrucijada · Highway 61 · Mississippi
+  </p>
+
+  <div class="hero-ctas" style="position:relative">
+    <a href="#itinerario" class="btn-primary">Ver el Itinerario →</a>
+    <a href="https://open.spotify.com/episode/5S1JYCN5I3bn73tlLgsae6" target="_blank" class="btn-ghost">♪ Escuchar el Episodio</a>
+  </div>
+</section>
+
+<!-- TRIBUTE / OPENING ANECDOTE: THE CROSSROADS -->
+<section style="background:var(--base-2);border-top:1px solid rgba(79,116,168,0.4);padding:4rem 2rem">
+  <div class="tribute-box">
+    <h2>La Encrucijada</h2>
+    <p>
+      Cuentan que una noche, en el cruce de las carreteras 61 y 49, un joven llamado Robert Johnson esperó a la medianoche con su guitarra. Que apareció un hombre alto, le afinó las cuerdas y se las devolvió. Que a cambio se llevó algo que no se ve. Nadie lo puede probar. Pero cuando escuchas lo que Johnson grabó después, entiendes por qué la gente prefirió creerlo. El Delta es así: un lugar donde la geografía y el mito comparten la misma dirección postal. Aquí no vienes a verificar la leyenda. Vienes a pararte en el cruce y dejar que te roce.
+    </p>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="section" id="llegada" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Antes de salir</span></div>
+    <h2 class="section-title">Cómo llegar<br>al <em>Delta</em></h2>
+    <p class="section-lead">No hay aeropuerto en Clarksdale, y eso es parte del trato. Vuelas a <em>Memphis</em>, alquilas un auto, y bajas hora y veinte por la Highway 61 — la carretera que el propio blues recorrió hacia el norte. El circuito termina arriba, en Nashville. Vuela abierto: entra por Memphis, sal por Nashville, y nunca repetirás camino.</p>
+
+    <div class="transport-grid">
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Norteamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos o con una escala a Memphis (MEM) y Nashville (BNA).</p>
+        <div class="transport-row"><span class="transport-name">Air Canada</span><a href="https://www.aircanada.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">Delta Air Lines</span><a href="https://www.delta.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">American Airlines</span><a href="https://www.aa.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">United</span><a href="https://www.united.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Sudamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Conexión por Miami, Panamá o Atlanta hacia Memphis o Nashville.</p>
+        <div class="transport-row"><span class="transport-name">LATAM</span><a href="https://www.latam.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">Avianca</span><a href="https://www.avianca.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">Copa Airlines</span><a href="https://www.copaair.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">American (vía Miami)</span><a href="https://www.aa.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Europa</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Escala por Atlanta, Dallas o Charlotte. No hay directos al Delta.</p>
+        <div class="transport-row"><span class="transport-name">Lufthansa</span><a href="https://www.lufthansa.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">KLM</span><a href="https://www.klm.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">British Airways</span><a href="https://www.britishairways.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+        <div class="transport-row"><span class="transport-name">Air France</span><a href="https://www.airfrance.com" target="_blank" class="btn btn-web">Reservar →</a></div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚗 Highway 61 — La Blues Highway</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">El auto no es opcional aquí. La carretera es el instrumento.</p>
+        <div class="transport-row"><span class="transport-name">Memphis → Clarksdale (US-61 S, ~1h20)</span></div>
+        <div class="transport-row"><span class="transport-name">Memphis → Nashville (I-40 E, ~3h)</span></div>
+        <div class="transport-row"><span class="transport-name">Alquiler en MEM</span><a href="https://www.google.com/maps/search/car+rental+Memphis+Airport" target="_blank" class="btn btn-map">📍 Maps</a></div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <p>💡 <strong>Consejo:</strong> reserva el vuelo en formato "open-jaw" — llegas a Memphis y regresas desde Nashville. Pagas casi lo mismo, te ahorras seis horas de retorno y conduces el Delta en la dirección en que el blues viajó: de sur a norte, siguiendo el río.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section class="section" id="hoteles">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Dónde alojarte</span></div>
+    <h2 class="section-title">Alojamiento con<br><em>carácter</em></h2>
+    <p class="section-lead">Tres ciudades, tres formas de dormir dentro de la historia: una choza de aparceros en una vieja plantación, un palacio con patos en el lobby, y un hotel de músicos donde el conserje también toca. Elige según la noche que quieras recordar.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Icónico · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">The Shack Up Inn</div>
+          <p class="card-desc">Media docena de chozas de aparceros sobre la antigua plantación Hopson, restauradas con plomería y aire acondicionado pero ni un gramo de más. Lo llaman "Bed &amp; Beer". Duermes donde dormía quien recogía algodón, con porche, tocadiscos y una decoración que parece salida de un sueño febril del Delta. No es cómodo en el sentido de un hotel. Es honesto en un sentido que ningún hotel alcanza.</p>
+          <div class="card-links">
+            <a href="https://www.shackupinn.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Shack+Up+Inn+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Travelers Hotel</div>
+          <p class="card-desc">En el antiguo edificio del telégrafo de 1897, en pleno centro histórico. Habitaciones con muebles hechos a mano por artesanos locales y una colección rotativa de quilts y arte de Mississippi. El bar del lobby tiene cervezas regionales y conversación. A dos minutos a pie de Ground Zero y Red's. La opción para quien quiere el Delta sin renunciar al diseño.</p>
+          <div class="card-links">
+            <a href="https://www.stayattravelers.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Travelers+Hotel+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Histórico · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">The Peabody Memphis</div>
+          <p class="card-desc">El escritor David Cohn dijo que "el Delta del Mississippi empieza en el lobby del Peabody". Llegó a tener razón: durante un siglo, los hacendados, los músicos y los soñadores cruzaron este vestíbulo de mármol. Cada día, a las 11, los patos del hotel bajan del ático en ascensor y marchan por una alfombra roja hasta la fuente. Suena absurdo. Lo ves y entiendes que Memphis nunca hace nada a medias.</p>
+          <div class="card-links">
+            <a href="https://www.peabodymemphis.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Peabody+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Diseño · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Central Station Hotel</div>
+          <p class="card-desc">Una estación de tren de 1914 convertida en hotel de diseño, en el barrio de South Main. Tiene una sala de escucha con tornamesa y vinilos curados, y suena música por todo el edificio como si el lugar respirara. Caminas a la calle Beale y al Civil Rights Museum. Para quien quiere su Memphis con buen café por la mañana y soul por la noche.</p>
+          <div class="card-links">
+            <a href="https://www.centralstationmemphis.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Central+Station+Hotel+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Música en Vivo · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">Hutton Hotel</div>
+          <p class="card-desc">Un boutique pensado para gente de música. Dentro está Analog, una sala de conciertos íntima donde tocan compositores de verdad, y el hotel organiza sesiones de songwriters que no aparecen en ninguna guía. Si vienes a Nashville por las canciones y no por las fiestas de Broadway, este es tu sitio. Te despiertas y ya hay música cerca.</p>
+          <div class="card-links">
+            <a href="https://www.huttonhotel.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hutton+Hotel+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY (TABS) -->
+<section class="section" id="itinerario" style="background:var(--base-2);padding-bottom:0">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">El recorrido</span></div>
+    <h2 class="section-title">Tres ciudades,<br><em>un mismo río</em></h2>
+    <p class="section-lead">El blues nació en los campos del Delta, tomó un tren en Clarksdale, se grabó en Memphis y terminó dándole hijos a toda la música que vino después. Este itinerario sigue ese viaje hacia el norte: del cruce donde empezó todo, a los estudios donde se hizo eterno, a los escenarios donde su sangre todavía corre con otro nombre.</p>
+  </div>
+
+  <div class="tabs-nav">
+    <div class="tabs-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('clarksdale', this)">Clarksdale · El Origen</button>
+      <button class="tab-btn" onclick="switchTab('memphis', this)">Memphis · La Grabación</button>
+      <button class="tab-btn" onclick="switchTab('nashville', this)">Nashville · El Legado</button>
+    </div>
+  </div>
+
+  <div class="section-inner" style="padding-top:3rem;padding-bottom:4rem">
+
+    <!-- CLARKSDALE -->
+    <div id="clarksdale" class="tab-content active">
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">The Crossroads — Highways 61 &amp; 49</div>
+          <div class="tl-desc">Empieza donde empieza la leyenda. Dos guitarras azules cruzadas marcan el cruce donde, dicen, Robert Johnson hizo su pacto. No hay mucho que ver: un poste, unos coches pasando. Y sin embargo te quedas un rato más de lo que pensabas.</div>
+          <div class="tl-links"><a href="https://www.google.com/maps/search/Crossroads+Highway+61+49+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a></div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☕ Media mañana</div>
+          <div class="tl-place">Delta Blues Museum</div>
+          <div class="tl-desc">En el viejo depósito de carga del ferrocarril, donde el algodón salía y la música se quedaba. Aquí está reconstruida la cabaña donde vivió Muddy Waters, y la guitarra hecha con una de sus vigas. Es pequeño y por eso golpea: cabe en una hora y no te suelta en semanas.</div>
+          <div class="tl-links">
+            <a href="https://www.deltabluesmuseum.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Delta+Blues+Museum+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍴 Almuerzo</div>
+          <div class="tl-place">Abe's Bar-B-Q</div>
+          <div class="tl-desc">Justo en el cruce, sirviendo desde 1924. Pide los tamales calientes — sí, tamales en Mississippi, una historia entera de migración en un bocado — y el cerdo deshebrado. Comes de pie, con servilletas de papel, mirando pasar la Highway 61. No hay mejor mesa en el Delta.</div>
+          <div class="tl-links">
+            <a href="https://abesbbq.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Abe's+Bar-B-Q+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">Cat Head Delta Blues &amp; Folk Art</div>
+          <div class="tl-desc">Más que una tienda de discos: el cuartel general no oficial del blues vivo de Clarksdale. Roger Stolle sabe quién toca esta noche y dónde, qué juke joint abre y cuál cerró. Sales con un vinilo, una pieza de arte popular y un plan para la noche que ninguna app te habría dado.</div>
+          <div class="tl-links">
+            <a href="https://www.cathead.biz" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Cat+Head+Delta+Blues+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍺 Anochecer</div>
+          <div class="tl-place">Ground Zero Blues Club</div>
+          <div class="tl-desc">El club de Morgan Freeman, junto al museo. Por fuera parece un galpón abandonado, con las paredes firmadas por miles de manos. Por dentro hay mesa de billar, cerdo a la barbacoa y música siete noches a la semana — casi siempre músicos del propio Delta, no estrellas de paso. Ahí está la diferencia.</div>
+          <div class="tl-links">
+            <a href="https://www.groundzerobluesclub.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ground+Zero+Blues+Club+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche cerrada</div>
+          <div class="tl-place">Red's Lounge</div>
+          <div class="tl-desc">El último juke joint de verdad. Techo bajo, luces de Navidad todo el año, un dueño que cocina mientras alguien toca a un metro de tu cara. No hay escenario ni separación entre quien suena y quien escucha. Aquí el blues no se conserva: simplemente nunca dejó de pasar.</div>
+          <div class="tl-links"><a href="https://www.google.com/maps/search/Red's+Lounge+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MEMPHIS -->
+    <div id="memphis" class="tab-content">
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mañana</div>
+          <div class="tl-place">Sun Studio</div>
+          <div class="tl-desc">El cuarto donde el mundo cambió de tamaño. Aquí Sam Phillips grabó a Howlin' Wolf y a B.B. King antes de que un camionero llamado Elvis entrara a grabarle una canción a su madre. La sala sigue siendo la misma, chica, con baldosas y micrófonos viejos. Te paras en la X marcada en el piso y se te eriza la piel.</div>
+          <div class="tl-links">
+            <a href="https://www.sunstudio.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Sun+Studio+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Media mañana</div>
+          <div class="tl-place">Stax Museum of American Soul Music</div>
+          <div class="tl-desc">En Soulsville, sobre el sitio original del sello Stax. De aquí salieron Otis Redding, Isaac Hayes, Booker T. Si el blues fue la raíz, el soul fue la flor — y este museo te cuenta cómo el dolor del Delta se volvió groove. No te pierdas el Cadillac dorado de Isaac Hayes. Dale dos horas, mínimo.</div>
+          <div class="tl-links">
+            <a href="https://staxmuseum.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Stax+Museum+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍴 Almuerzo</div>
+          <div class="tl-place">Charlie Vergos' Rendezvous</div>
+          <div class="tl-desc">Bajas a un callejón, abres una puerta sin letrero y te recibe un sótano lleno de humo de carbón desde 1948. Las costillas van con condimento seco, a la manera de Memphis, sin salsa que tape nada. Es ruidoso, es viejo, es perfecto. La clase de sitio que una ciudad solo construye una vez.</div>
+          <div class="tl-links">
+            <a href="https://hogsfly.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Charlie+Vergos+Rendezvous+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🕊 Tarde</div>
+          <div class="tl-place">National Civil Rights Museum — Lorraine Motel</div>
+          <div class="tl-desc">En el balcón del Lorraine mataron a Martin Luther King en 1968. El museo, construido alrededor de ese motel, no es un anexo turístico: es el contexto que da sentido a todo lo demás. El blues nació de esta historia. Entra con tiempo y sal en silencio.</div>
+          <div class="tl-links">
+            <a href="https://www.civilrightsmuseum.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/National+Civil+Rights+Museum+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Atardecer</div>
+          <div class="tl-place">Beale Street</div>
+          <div class="tl-desc">Tres cuadras de neón que se hacen llamar, con razón, la "Casa del Blues". Aquí tocó B.B. King cuando todavía buscaba nombre. Hoy la calle es ruidosa y turística, sí — pero entra a B.B. King's Blues Club, pide algo, y deja que una banda te recuerde por qué este pedazo de asfalto importa.</div>
+          <div class="tl-links">
+            <a href="https://bbkings.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Beale+Street+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">👑 Día completo aparte</div>
+          <div class="tl-place">Graceland</div>
+          <div class="tl-desc">La casa del chico pobre de Tupelo que se volvió el Rey. Excesiva, kitsch, conmovedora — la Sala de la Selva, los discos de oro, la tumba en el jardín. Te puede caer mal Elvis y aun así salir tocado: Graceland no va de un hombre, va de lo que el Delta es capaz de producir cuando se le da un micrófono.</div>
+          <div class="tl-links">
+            <a href="https://www.graceland.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Graceland+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NASHVILLE -->
+    <div id="nashville" class="tab-content">
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Johnny Cash Museum</div>
+          <div class="tl-desc">El Hombre de Negro cabe en estas salas como cabía en el escenario: enorme. Cash venía del algodón de Arkansas, del góspel y del blues, y los metió de contrabando en el country. Es la mayor colección de objetos suyos del mundo, y a una cuadra de los neones de Broadway. Lo eligió el propio episodio para cerrar el viaje, y se entiende por qué.</div>
+          <div class="tl-links">
+            <a href="https://www.johnnycashmuseum.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Johnny+Cash+Museum+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🏛 Media mañana</div>
+          <div class="tl-place">Country Music Hall of Fame &amp; Museum</div>
+          <div class="tl-desc">El gran archivo de Music City. Aquí también gestionan el RCA Studio B — donde grabó Elvis sus baladas — y Hatch Show Print, la imprenta de carteles que lleva siglo y medio haciendo los afiches del Opry a mano. Vienes por el country y entiendes cuánto le debe al blues que dejaste río abajo.</div>
+          <div class="tl-links">
+            <a href="https://countrymusichalloffame.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Country+Music+Hall+of+Fame+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">⛪ Mediodía</div>
+          <div class="tl-place">Ryman Auditorium</div>
+          <div class="tl-desc">La "Iglesia Madre" del country, antigua casa del Grand Ole Opry. Fue un templo evangélico antes que una sala, y la acústica todavía lo recuerda: la madera, los bancos, el modo en que una voz sube hasta el techo. Haz el tour de día y, si puedes, vuelve de noche a un concierto. Pocos escenarios del mundo se sienten así.</div>
+          <div class="tl-links">
+            <a href="https://www.ryman.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ryman+Auditorium+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍗 Almuerzo</div>
+          <div class="tl-place">Hattie B's Hot Chicken</div>
+          <div class="tl-desc">El pollo picante de Nashville no es una moda: es una receta nacida de la comunidad negra de la ciudad, devuelta con orgullo. Elige tu nivel de picante con prudencia — "Shut the Cluck Up" no es una broma — y acompáñalo con macarrones y pimientos. Habrá cola. Vale la espera.</div>
+          <div class="tl-links">
+            <a href="https://hattieb.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hattie+B's+Hot+Chicken+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎶 Tarde</div>
+          <div class="tl-place">Broadway — Robert's Western World &amp; Tootsie's</div>
+          <div class="tl-desc">La "Honky Tonk Highway": cuadras de bares con música en vivo gratis desde el mediodía. Robert's hace el honky-tonk clásico mejor que nadie (con combo de fritanga incluido); Tootsie's, de morado imposible, lleva décadas siendo el patio trasero del Ryman. Entra, sal, entra a otro. Ese es el juego.</div>
+          <div class="tl-links"><a href="https://www.google.com/maps/search/Robert's+Western+World+Nashville" target="_blank" class="btn btn-map">📍 Maps</a></div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍸 Noche</div>
+          <div class="tl-place">Bourbon Street Blues &amp; Boogie Bar — Printer's Alley</div>
+          <div class="tl-desc">Para cerrar el círculo en clave de blues, baja al callejón de Printer's Alley. Aquí, lejos del country de Broadway, las bandas tocan blues y soul de Nueva Orleans hasta tarde. Es el modo correcto de terminar este viaje: volviendo al sonido del que todo salió, mil kilómetros y tres ciudades después.</div>
+          <div class="tl-links">
+            <a href="https://www.bourbonstreetblues.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Bourbon+Street+Blues+Boogie+Bar+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="quote-block fade-up">
+        <p class="quote-text">"El Delta del Mississippi empieza en el lobby del Peabody, en Memphis, y termina en Catfish Row, en Vicksburg."</p>
+        <div class="quote-source">— David L. Cohn, escritor del Delta</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="section" id="cultura">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Cultura &amp; Arte</span></div>
+    <h2 class="section-title">Los templos<br>del <em>sonido</em></h2>
+    <p class="section-lead">El Delta guarda su historia en edificios que no parecen museos: un depósito de tren, un motel, una estación de soul. Estos son los lugares donde el blues y todo lo que engendró se vuelven tangibles. Si solo tuvieras tiempo para entender de dónde viene la música moderna, empezarías aquí.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Museo · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Delta Blues Museum</div>
+          <p class="card-desc">El museo de blues más antiguo del mundo, dedicado a los hijos del Delta: Muddy Waters, Son House, John Lee Hooker. Su programa educativo enseña a tocar a los niños de la zona, de modo que el acervo no se exhibe: se transmite.</p>
+          <div class="card-links">
+            <a href="https://www.deltabluesmuseum.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Delta+Blues+Museum+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Estudio · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Sun Studio</div>
+          <p class="card-desc">El estudio donde Sam Phillips grabó "Rocket 88" — para muchos, el primer disco de rock — y descubrió a Elvis, Cash, Perkins y Lewis. Sigue funcionando como estudio de noche. De día, el tour más íntimo de Memphis.</p>
+          <div class="card-links">
+            <a href="https://www.sunstudio.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Sun+Studio+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Museo · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Stax Museum of American Soul Music</div>
+          <p class="card-desc">Una réplica fiel del estudio Stax en su sitio original, con más de 2.000 objetos. Cuenta cómo un sello de Memphis convirtió el dolor del sur en el groove que conquistó el planeta, y cómo la música y los derechos civiles caminaron juntos.</p>
+          <div class="card-links">
+            <a href="https://staxmuseum.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Stax+Museum+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Memoria · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">National Civil Rights Museum</div>
+          <p class="card-desc">Construido alrededor del Lorraine Motel, donde asesinaron a Martin Luther King. Más de 260 objetos y cinco siglos de historia recorren la lucha por los derechos civiles. No es una parada musical, pero sin ella la música no se entiende.</p>
+          <div class="card-links">
+            <a href="https://www.civilrightsmuseum.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/National+Civil+Rights+Museum+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Museo · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">Country Music Hall of Fame</div>
+          <p class="card-desc">El gran relato del country, con el histórico RCA Studio B y la imprenta Hatch Show Print incluidos. Ideal para ver cómo el blues del Delta, subiendo por el río, se transformó en otra de las grandes músicas de Estados Unidos.</p>
+          <div class="card-links">
+            <a href="https://countrymusichalloffame.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Country+Music+Hall+of+Fame+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🖼️ Museo · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">Johnny Cash Museum</div>
+          <p class="card-desc">La mayor colección dedicada al Hombre de Negro, votado el mejor museo musical del mundo por más de una revista. Cash atravesó country, rock, blues y góspel — el puente perfecto entre el Delta donde empezamos y el Nashville donde cerramos.</p>
+          <div class="card-links">
+            <a href="https://www.johnnycashmuseum.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Johnny+Cash+Museum+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALS & VENUES -->
+<section class="section" id="festivales" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Agenda musical</span></div>
+    <h2 class="section-title">Festivales &amp;<br><em>vida nocturna</em></h2>
+    <p class="section-lead">El Delta no programa la música: la respira. Hay blues en vivo casi cada noche en Clarksdale, y un puñado de festivales que vale la pena cruzar el mundo para vivir. Verifica siempre las fechas del año en curso en cada sitio oficial — se mueven con el calendario.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎪 Festival · Abril</div>
+        <div class="card-body">
+          <div class="card-title">Juke Joint Festival — Clarksdale</div>
+          <p class="card-desc">Cada abril, Clarksdale se convierte en la capital mundial del blues: más de 100 actuaciones, juke joints reales, talleres y "mitad festival, mitad feria de pueblo". Un evento sin fines de lucro que atrae visitantes de medio centenar de países. Reserva alojamiento con meses de antelación.</p>
+          <div class="card-links">
+            <a href="https://www.jukejointfestival.com" target="_blank" class="btn btn-web">🎟️ Entradas</a>
+            <a href="https://www.google.com/maps/search/Downtown+Clarksdale+Mississippi" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎪 Festival · Mayo</div>
+        <div class="card-body">
+          <div class="card-title">RiverBeat Music Festival — Memphis</div>
+          <p class="card-desc">El gran festival del río Memphis, heredero del histórico Beale Street Music Festival, en Tom Lee Park a orillas del Mississippi. Tres días, varios escenarios y carteles que mezclan blues, soul, hip-hop y rock. Las habitaciones frente al río vuelan: reserva temprano.</p>
+          <div class="card-links">
+            <a href="https://riverbeatmemphis.com" target="_blank" class="btn btn-web">🎟️ Entradas</a>
+            <a href="https://www.google.com/maps/search/Tom+Lee+Park+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎪 Festival · Octubre</div>
+        <div class="card-body">
+          <div class="card-title">King Biscuit Blues Festival — Helena</div>
+          <p class="card-desc">Cruzando el río, en Helena (Arkansas), late uno de los festivales de blues más antiguos del país, ligado al legendario programa de radio "King Biscuit Time". Tres días de blues del Delta puro, a menos de una hora de Clarksdale. Para quien quiere el lado menos turístico.</p>
+          <div class="card-links">
+            <a href="https://www.kingbiscuitfestival.com" target="_blank" class="btn btn-web">🎟️ Entradas</a>
+            <a href="https://www.google.com/maps/search/Helena+Arkansas+downtown" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Ground Zero Blues Club</div>
+          <p class="card-desc">El club de Morgan Freeman, junto al Delta Blues Museum. Música del Delta siete noches por semana y un jam los jueves donde, si te animas, puedes subir al escenario. El "punto cero" del blues, literal.</p>
+          <div class="card-links">
+            <a href="https://www.groundzerobluesclub.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ground+Zero+Blues+Club+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">B.B. King's Blues Club — Beale St.</div>
+          <p class="card-desc">En el corazón de Beale, con el nombre del rey del blues. Banda de casa potente y un ambiente de fiesta que hace fácil olvidar la hora. Turístico, sí; pero la música es de verdad y la calle, historia.</p>
+          <div class="card-links">
+            <a href="https://bbkings.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/B.B.+King's+Blues+Club+Beale+Street+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">The Bluebird Cafe</div>
+          <p class="card-desc">Una sala diminuta en Green Hills donde los compositores tocan sus propias canciones "in the round", en silencio absoluto. Aquí se descubrió a más de un grande. Llega temprano o reserva: caben pocos, y por eso es mágico.</p>
+          <div class="card-links">
+            <a href="https://bluebirdcafe.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Bluebird+Cafe+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">Grand Ole Opry</div>
+          <p class="card-desc">El programa de radio en vivo más antiguo del mundo y la institución que hizo de Nashville "Music City". Una noche en el Opry es un desfile de leyendas y promesas en un mismo escenario. Imprescindible para entender la ciudad.</p>
+          <div class="card-links">
+            <a href="https://www.opry.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Grand+Ole+Opry+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GASTRONOMY -->
+<section class="section" id="gastronomia">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Sabores</span></div>
+    <h2 class="section-title">El sabor<br>del <em>Delta</em></h2>
+    <p class="section-lead">La comida del sur cuenta la misma historia que la música: mezcla, necesidad, ingenio y orgullo. Tamales calientes en Mississippi, costillas de carbón en Memphis, pollo picante en Nashville. Comes barato, comes de pie, y comes algo que llevaba un siglo perfeccionándose antes de que llegaras.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type food">🍴 BBQ &amp; Tamales · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Abe's Bar-B-Q</div>
+          <p class="card-desc">En el cruce desde 1924. Tamales calientes del Delta y cerdo deshebrado, sin pretensiones. La parada obligada antes o después de pararte en la encrucijada.</p>
+          <div class="card-links">
+            <a href="https://abesbbq.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Abe's+Bar-B-Q+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Bistró · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Yazoo Pass</div>
+          <p class="card-desc">Café, panadería y bistró de estilo francés en pleno centro. El lugar para empezar el día con un buen espresso y algo recién horneado antes de salir a buscar blues. Luz, calma y wifi.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Yazoo+Pass+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍴 Costillas · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Charlie Vergos' Rendezvous</div>
+          <p class="card-desc">Un sótano lleno de humo en un callejón sin letrero, sirviendo costillas con condimento seco desde 1948. Ruidoso, viejo y exactamente como debe ser. La definición memphiana de barbacoa.</p>
+          <div class="card-links">
+            <a href="https://hogsfly.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Charlie+Vergos+Rendezvous+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍴 Pollo frito · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Gus's World Famous Fried Chicken</div>
+          <p class="card-desc">Pollo frito picante, crujiente y adictivo, en un local sin lujos que se volvió leyenda. Sencillo, perfecto, siempre con cola. La prueba de que lo mejor del sur no necesita mantel.</p>
+          <div class="card-links">
+            <a href="https://www.gusfriedchicken.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Gus's+Fried+Chicken+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Clásico · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">The Arcade Restaurant</div>
+          <p class="card-desc">El restaurante más antiguo de Memphis (1919), en South Main, con sus reservados de cuero rojo y su cartel de neón. Dicen que Elvis tenía su mesa. Desayuna aquí panqueques y deja que el tiempo se detenga un rato.</p>
+          <div class="card-links">
+            <a href="https://www.arcaderestaurant.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Arcade+Restaurant+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍴 Hot Chicken · Nashville</div>
+        <div class="card-body">
+          <div class="card-title">Hattie B's Hot Chicken</div>
+          <p class="card-desc">El pollo picante de Nashville hecho con respeto por su origen. Eliges el nivel de fuego bajo tu propio riesgo. Acompáñalo con pimientos y macarrones, y bebe algo frío a mano. Una institución moderna de Music City.</p>
+          <div class="card-links">
+            <a href="https://hattieb.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hattie+B's+Hot+Chicken+Nashville" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REGENERATIVE -->
+<section class="section" id="regenerativo" style="background:linear-gradient(135deg, var(--base-1) 0%, var(--base-2) 50%, var(--base-1) 100%);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Turismo con propósito</span></div>
+    <h2 class="section-title">Turismo<br><em>regenerativo</em></h2>
+    <p class="section-lead">El blues le dio al mundo casi todo lo que hoy suena en la radio, y muchos de sus creadores murieron pobres. Viajar al Delta también puede ser devolver algo: a los músicos que siguen tocando, a los niños que aprenderán a hacerlo, al lugar que parió la música moderna. Estas organizaciones reciben tu ayuda con las manos abiertas.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Músicos · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">The Blues Foundation — HART Fund</div>
+          <p class="card-desc">El HART Fund da apoyo médico directo a músicos de blues sin recursos y costea funerales dignos. Puedes donar, o hacerte guía voluntario en el Blues Hall of Fame Museum. Cuidar a quien sostiene la música es la forma más concreta de gratitud.</p>
+          <div class="card-links">
+            <a href="https://blues.org/hart-fund/" target="_blank" class="btn btn-web">🌐 Participar</a>
+            <a href="https://www.google.com/maps/search/Blues+Hall+of+Fame+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Jóvenes · Nacional</div>
+        <div class="card-body">
+          <div class="card-title">Generation Blues</div>
+          <p class="card-desc">Programa de la Blues Foundation que envía a jóvenes músicos con talento a campamentos y talleres de blues cada verano. Una beca tuya puede ser el primer amplificador en la vida de quien mantendrá viva esta música otra generación más.</p>
+          <div class="card-links">
+            <a href="https://blues.org" target="_blank" class="btn btn-web">🌐 Participar</a>
+            <a href="https://www.google.com/maps/search/The+Blues+Foundation+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Educación · Memphis</div>
+        <div class="card-body">
+          <div class="card-title">Soulsville Foundation — Stax Music Academy</div>
+          <p class="card-desc">En el sitio original de Stax, la Soulsville Foundation forma a jóvenes de Memphis con educación musical extraescolar y becas. Visitar el museo ya aporta; donar, más. Aquí el legado de Otis Redding alimenta los sueños de la próxima generación.</p>
+          <div class="card-links">
+            <a href="https://soulsvillefoundation.org" target="_blank" class="btn btn-web">🌐 Participar</a>
+            <a href="https://www.google.com/maps/search/Stax+Music+Academy+Memphis" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Comunidad · Clarksdale</div>
+        <div class="card-body">
+          <div class="card-title">Delta Blues Museum — Arts &amp; Education</div>
+          <p class="card-desc">El programa educativo del museo enseña a tocar a los niños del propio Delta, asegurando que el blues no se quede en una vitrina. Tu entrada y tu donación financian instrumentos y clases en la tierra que lo inventó todo.</p>
+          <div class="card-links">
+            <a href="https://www.deltabluesmuseum.org" target="_blank" class="btn btn-web">🌐 Participar</a>
+            <a href="https://www.google.com/maps/search/Delta+Blues+Museum+Clarksdale" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING MANIFESTO -->
+<section class="section" style="background:var(--base-2);border-top:1px solid rgba(200,149,74,0.15)">
+  <div class="section-inner" style="text-align:center;max-width:800px">
+    <div class="section-rule" style="justify-content:center"><span class="section-tag">El último acorde</span></div>
+    <h2 class="section-title" style="margin-bottom:1.5rem">El río sigue<br><em>cantando</em></h2>
+
+    <p style="font-size:1.1rem;line-height:1.8;color:rgba(232,220,192,0.75);margin-bottom:2.5rem;font-style:italic">
+      El blues nació donde menos lo esperabas: en la pobreza, el calor y el barro de un delta olvidado. Y desde ahí, sin pedir permiso, se convirtió en la raíz de casi todo lo que escuchamos. Recorrer Clarksdale, Memphis y Nashville no es una ruta turística: es una peregrinación al origen. El río se lleva la canción hacia el norte, y a quien la escucha de verdad, también lo cambia. Ve. Párate en el cruce. Deja que el Delta te afine.
+    </p>
+
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://visitmississippi.org" target="_blank" class="btn-primary">Visita el Delta →</a>
+      <a href="https://open.spotify.com/episode/5S1JYCN5I3bn73tlLgsae6" target="_blank" class="btn-ghost">♪ Escuchar el Episodio</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">El Pasaporte Sinfónico</div>
+  <div class="footer-tag">El podcast donde la música viaja</div>
+  <p class="footer-note">
+    Guía basada en el Episodio 1 — El Blues · Delta del Mississippi (Clarksdale · Memphis · Nashville).
+    Artista invitado del episodio: Canuto's Blues Band.
+    Los enlaces, fechas y horarios son orientativos — verifica siempre directamente con cada establecimiento y festival antes de tu visita.
+    © 2026 El Pasaporte Sinfónico.
+  </p>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const items = document.querySelectorAll('#' + id + ' .fade-up');
+  items.forEach((el, i) => {
+    el.classList.remove('visible');
+    setTimeout(() => el.classList.add('visible'), 80 * i);
+  });
+}
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 5) * 70}ms`;
+  obs.observe(el);
+});
+
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionIds = ['llegada', 'hoteles', 'itinerario', 'cultura', 'festivales'];
+const secObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.25 });
+
+sectionIds.forEach(id => { const el = document.getElementById(id); if (el) secObs.observe(el); });
+
+setTimeout(() => {
+  document.querySelectorAll('.tab-content.active .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 200 + i * 70);
+  });
+}, 100);
+</script>
+
+</body>
+</html>

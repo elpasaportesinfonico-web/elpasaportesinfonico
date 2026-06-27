@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Londres · Rock Psicodélico — El Pasaporte Sinfónico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ COLOR TOKENS — PSYCHEDELIC ROCK · "London" variant ═══
+   Purple deep / indigo night + gold accent + scarlet electric
+*/
+:root {
+  --base-1:  #06060a;
+  --base-2:  #0c0b12;
+  --base-3:  #14121e;
+  --base-4:  #1e1a2a;
+
+  --accent:       #c9a84c;
+  --accent-bright:#e8c96a;
+  --accent-deep:  #8a6e28;
+
+  --secondary:    #6b2fa0;
+  --secondary-glow:#9b4fd0;
+  --secondary-light: rgba(107,47,160,0.15);
+
+  --electric:     #c0392b;
+  --electric-glow:#e74c3c;
+
+  --bone:    #f0ece8;
+  --parch:   #e0d5cc;
+  --smoke:   #8a8298;
+
+  --rule:    #251f35;
+
+  --f-display: 'Cinzel', serif;
+  --f-head:    'Playfair Display', serif;
+  --f-body:    'Libre Baskerville', serif;
+  --f-label:   'Oswald', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--base-1);
+  color: var(--parch);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.55;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(6,6,10,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(107,47,160,0.25);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--f-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-logo em {
+  color: rgba(224,213,204,0.4);
+  font-style: normal;
+  font-size: 0.7em;
+  display: block;
+  letter-spacing: 0.3em;
+  font-family: var(--f-label);
+  font-weight: 300;
+}
+
+.nav-links { display: flex; gap: 0.1rem; list-style: none; }
+
+.nav-links a {
+  display: block;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--f-label);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 2rem 5rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(107,47,160,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 80% 80%, rgba(192,57,43,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 60%, rgba(12,11,18,0.95) 0%, transparent 80%),
+    linear-gradient(180deg, #09080f 0%, var(--base-1) 100%);
+}
+
+.hero-watermark {
+  position: absolute;
+  font-family: var(--f-display);
+  font-size: 30vw;
+  color: rgba(107,47,160,0.04);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  user-select: none;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.episode-badge {
+  position: relative;
+  display: inline-block;
+  font-family: var(--f-label);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  border: 1px solid rgba(107,47,160,0.45);
+  padding: 0.4rem 1.2rem;
+  margin-bottom: 2rem;
+  background: rgba(107,47,160,0.08);
+}
+
+.episode-badge::before, .episode-badge::after {
+  content: '✦';
+  margin: 0 0.6em;
+  opacity: 0.5;
+}
+
+.hero-title {
+  position: relative;
+  font-family: var(--f-display);
+  font-size: clamp(2.8rem, 9vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.hero-title .city {
+  color: var(--accent);
+  display: block;
+  font-size: 1.4em;
+  line-height: 0.85;
+  text-shadow: 0 0 80px rgba(107,47,160,0.5), 0 0 30px rgba(201,168,76,0.3);
+}
+
+.hero-title .under {
+  color: rgba(224,213,204,0.25);
+  font-size: 0.38em;
+  letter-spacing: 0.25em;
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--f-label);
+  font-weight: 300;
+}
+
+.hero-subtitle {
+  position: relative;
+  font-family: var(--f-label);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--smoke);
+  text-transform: uppercase;
+  margin: 1.5rem 0 3rem;
+  font-style: italic;
+}
+
+.hero-ctas {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--base-1);
+  background: var(--accent);
+  text-decoration: none;
+  transition: all 0.25s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover { background: var(--accent-bright); transform: translateY(-2px); }
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  background: transparent;
+  border: 1px solid rgba(107,47,160,0.45);
+  text-decoration: none;
+  transition: all 0.25s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-ghost:hover { border-color: var(--secondary-glow); background: rgba(107,47,160,0.12); }
+
+/* SECTIONS */
+.section { padding: 5rem 0; position: relative; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-rule::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(107,47,160,0.35));
+}
+
+.section-rule::after {
+  content: '';
+  flex: 2;
+  height: 1px;
+  background: linear-gradient(to right, rgba(107,47,160,0.35), transparent);
+}
+
+.section-tag {
+  font-family: var(--f-label);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  white-space: nowrap;
+}
+
+.section-title {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.section-lead {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(224,213,204,0.7);
+  max-width: 700px;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.section-lead em { color: var(--accent); font-style: italic; }
+
+/* TRIBUTE BOX */
+.tribute-box {
+  background: linear-gradient(135deg, rgba(107,47,160,0.12), rgba(20,18,30,0.95));
+  border: 1px solid rgba(107,47,160,0.3);
+  padding: 2.5rem;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 920px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tribute-box::before {
+  content: '◈';
+  position: absolute;
+  font-size: 18rem;
+  opacity: 0.025;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: var(--secondary);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.tribute-box h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem,4vw,3rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.tribute-box p {
+  font-size: 0.96rem;
+  color: rgba(224,213,204,0.65);
+  line-height: 1.9;
+  max-width: 640px;
+  margin: 0 auto 1rem;
+  font-style: italic;
+}
+
+/* STATS */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  border: 1px solid var(--rule);
+}
+
+.stat-cell {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--rule);
+}
+
+.stat-cell:last-child { border-right: none; }
+
+.stat-cell .num {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--secondary-glow);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.stat-cell .num em { font-style: italic; font-weight: 400; font-size: 0.6em; color: var(--accent); }
+
+.stat-cell .lbl {
+  font-family: var(--f-label);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 0.6rem;
+}
+
+.stat-cell .desc {
+  font-size: 0.85rem;
+  color: rgba(224,213,204,0.5);
+  font-style: italic;
+}
+
+/* TRANSPORT */
+.transport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.transport-card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  padding: 1.8rem;
+  transition: border-color 0.2s;
+}
+
+.transport-card:hover { border-color: rgba(107,47,160,0.35); }
+
+.transport-card h3 {
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.transport-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.transport-row:last-of-type { border-bottom: none; }
+.transport-name { font-size: 0.88rem; color: var(--parch); }
+
+/* TIP BOX */
+.tip-box {
+  background: rgba(107,47,160,0.07);
+  border: 1px solid rgba(107,47,160,0.2);
+  border-left: 3px solid var(--secondary-glow);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 4px 4px 0;
+  margin-top: 2rem;
+}
+
+.tip-box p {
+  font-size: 0.9rem;
+  color: rgba(224,213,204,0.8);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107,47,160,0.3);
+}
+
+.card-type {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card-type.hotel   { background: rgba(201,168,76,0.10); color: var(--accent); }
+.card-type.food    { background: rgba(192,56,10,0.10);  color: #e07840; }
+.card-type.cafe    { background: rgba(120,80,20,0.12);  color: #c8943a; }
+.card-type.culture { background: rgba(107,47,160,0.12); color: var(--secondary-glow); }
+.card-type.music   { background: rgba(155,79,208,0.12); color: #b070e0; }
+.card-type.festival{ background: rgba(80,160,30,0.10);  color: #70b050; }
+.card-type.sustain { background: rgba(50,130,90,0.12);  color: #70c098; }
+.card-type.tour    { background: rgba(192,57,43,0.10);  color: #e74c3c; }
+
+.card-body { padding: 1.3rem; }
+
+.card-title {
+  font-family: var(--f-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+  color: var(--bone);
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: rgba(224,213,204,0.65);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.card-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--smoke);
+}
+
+.btn:hover { color: var(--accent); border-color: rgba(201,168,76,0.4); }
+
+.btn-map {
+  background: rgba(107,47,160,0.12);
+  color: var(--secondary-glow);
+  border-color: rgba(107,47,160,0.3);
+}
+
+.btn-map:hover {
+  color: var(--accent-bright);
+  background: rgba(107,47,160,0.22);
+  border-color: var(--secondary);
+}
+
+.btn-web {
+  background: rgba(201,168,76,0.10);
+  color: var(--accent);
+  border-color: rgba(201,168,76,0.30);
+}
+
+.btn-web:hover {
+  background: rgba(201,168,76,0.20);
+  border-color: rgba(201,168,76,0.60);
+}
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 3rem; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  top: 0.6rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--secondary), transparent);
+  opacity: 0.5;
+}
+
+.tl-item { position: relative; margin-bottom: 2.5rem; }
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -3rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  background: var(--secondary-glow);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.tl-time {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  margin-bottom: 0.3rem;
+}
+
+.tl-place {
+  font-family: var(--f-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bone);
+  margin-bottom: 0.4rem;
+}
+
+.tl-desc {
+  font-size: 0.86rem;
+  color: rgba(224,213,204,0.6);
+  line-height: 1.75;
+  margin-bottom: 0.7rem;
+  font-style: italic;
+}
+
+.tl-links { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+/* TABS */
+.tabs-nav {
+  background: var(--base-3);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 62px;
+  z-index: 50;
+}
+
+.tabs-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs-nav-inner::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  padding: 1rem 1.5rem;
+  font-family: var(--f-label);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover { color: var(--bone); }
+.tab-btn.active { color: var(--secondary-glow); border-bottom-color: var(--secondary-glow); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* QUOTE */
+.quote-block {
+  background: var(--base-3);
+  border-left: 3px solid var(--secondary-glow);
+  padding: 2rem 2.5rem;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.quote-text {
+  font-family: var(--f-head);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(224,213,204,0.85);
+}
+
+.quote-source {
+  margin-top: 1rem;
+  font-family: var(--f-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  opacity: 0.75;
+}
+
+/* FESTIVAL CARD */
+.festival-card {
+  background: var(--base-3);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.festival-card:hover { border-color: rgba(107,47,160,0.35); }
+
+.festival-header {
+  background: linear-gradient(135deg, rgba(107,47,160,0.14), transparent);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.4rem 1.5rem;
+}
+
+.festival-dates {
+  font-family: var(--f-label);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  margin-bottom: 0.4rem;
+}
+
+.festival-name {
+  font-family: var(--f-head);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--bone);
+}
+
+.festival-body { padding: 1.2rem 1.5rem; }
+
+.festival-desc {
+  font-size: 0.875rem;
+  color: rgba(224,213,204,0.65);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* MAP */
+.map-embed {
+  width: 100%;
+  height: 380px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin-top: 2rem;
+  filter: sepia(20%) contrast(1.05) brightness(0.8) hue-rotate(240deg);
+  transition: filter 0.3s;
+}
+
+.map-embed:hover { filter: sepia(10%) contrast(1.05) brightness(0.9) hue-rotate(180deg); }
+.map-embed iframe { width: 100%; height: 100%; border: none; }
+
+/* BAND SPOTLIGHT */
+.band-spotlight {
+  background: linear-gradient(135deg, rgba(107,47,160,0.10), rgba(20,18,30,0.98));
+  border: 1px solid rgba(107,47,160,0.25);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.band-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--secondary-glow), transparent);
+}
+
+.band-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+
+.band-years {
+  font-family: var(--f-label);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--secondary-glow);
+  margin-bottom: 1.2rem;
+}
+
+.band-desc {
+  font-size: 0.92rem;
+  color: rgba(224,213,204,0.7);
+  line-height: 1.85;
+  font-style: italic;
+  max-width: 700px;
+}
+
+/* SCROLL */
+.scroll-hint {
+  position: relative;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-hint span {
+  font-family: var(--f-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(130,130,150,0.4);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(107,47,160,0.5), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* FADE */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+footer {
+  background: var(--base-2);
+  border-top: 1px solid rgba(107,47,160,0.18);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tag {
+  font-family: var(--f-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 2rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: rgba(224,213,204,0.3);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .transport-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">
+    <em>El Pasaporte Sinfónico</em>
+    Londres
+  </a>
+  <ul class="nav-links">
+    <li><a href="#llegada">Cómo Llegar</a></li>
+    <li><a href="#local">En la Ciudad</a></li>
+    <li><a href="#hoteles">Hoteles</a></li>
+    <li><a href="#bandas">Las Bandas</a></li>
+    <li><a href="#itinerario">Itinerario</a></li>
+    <li><a href="#iconos">Iconos</a></li>
+    <li><a href="#gastronomia">Gastronomía</a></li>
+    <li><a href="#regenerativo">Regenerativo</a></li>
+    <li><a href="#glastonbury">Festivales</a></li>
+    <li><a href="#football">Fútbol</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-watermark">Ψ</div>
+
+  <div class="episode-badge" style="position:relative">Pink Floyd · Jimi Hendrix · Rolling Stones · Episodio 6 · Temporada 1</div>
+
+  <h1 class="hero-title" style="position:relative">
+    <span class="under">El Pasaporte Sinfónico presenta</span>
+    <span class="city">Londres</span>
+    <span style="color:rgba(224,213,204,0.45);font-size:0.25em;font-family:var(--f-label);font-weight:300;letter-spacing:0.4em;display:block;margin-top:1.5rem">England · Swinging London · 1966–1970</span>
+  </h1>
+
+  <p class="hero-subtitle" style="position:relative">
+    Rock Psicodélico · Pink Floyd · Jimi Hendrix · Rolling Stones · The Who · Cream
+  </p>
+
+  <div class="hero-ctas" style="position:relative">
+    <a href="#itinerario" class="btn-primary">Ver el Itinerario →</a>
+    <a href="#bandas" class="btn-ghost">Las Bandas</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Desciende</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- TRIBUTE -->
+<section style="background:var(--base-2);border-top:1px solid rgba(107,47,160,0.35);padding:4rem 2rem">
+  <div class="tribute-box fade-up">
+    <h2>La ciudad que inventó el psicodelismo europeo</h2>
+    <p>Había una ciudad imperial, gris, todavía reconstruyéndose de la guerra. Una ciudad con pubs que cerraban a las once, con una moral victoriana que nadie había cuestionado en público. Y entonces, en algún momento entre 1965 y 1967, algo se rompió. Las guitarras empezaron a sonar diferente. Los colores empezaron a verse diferente. Los jóvenes de Chelsea, Notting Hill y Camden tomaron la música negra americana — el blues, el R&B, el soul — la pasaron por ácido lisérgico y amplificadores Marshall, y crearon algo que nunca había existido antes.</p>
+    <p>Pink Floyd en el Roundhouse. Jimi Hendrix en el Marquee. Los Rolling Stones en el Crawdaddy. The Who en el Marquee. Cream en cualquier sótano que les abriera la puerta. No era un movimiento. Era una explosión. Y ocurrió aquí, en esta ciudad que hoy sigue siendo la más densa en historia musical de Europa.</p>
+    <p style="margin-top:1rem;font-size:0.8rem;letter-spacing:0.2em;font-family:var(--f-label);color:var(--secondary-glow);font-style:normal">1966 · 1970 · Swinging London · La contracultura toma la ciudad</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background:var(--base-1);padding:0">
+  <div class="section-inner" style="padding-top:0;padding-bottom:0">
+    <div class="stats-row">
+      <div class="stat-cell fade-up">
+        <div class="lbl">Primer concierto Pink Floyd</div>
+        <div class="num">1966<em></em></div>
+        <div class="desc">Roundhouse, Chalk Farm, octubre de 1966</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Noches de Hendrix en Londres</div>
+        <div class="num">3<em>años</em></div>
+        <div class="desc">1966–1969, su único hogar permanente</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Denmark Street — estudios</div>
+        <div class="num">150<em>+</em></div>
+        <div class="desc">años de historia musical en 200 metros</div>
+      </div>
+      <div class="stat-cell fade-up">
+        <div class="lbl">Venues activos hoy</div>
+        <div class="num">200<em>+</em></div>
+        <div class="desc">la ciudad viva más musical de Europa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="section" id="llegada" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Antes de salir</span></div>
+    <h2 class="section-title">Cómo llegar<br>a <em>Londres</em></h2>
+    <p class="section-lead">Londres tiene cinco aeropuertos. El más cercano al West End y a los barrios psicodélicos del circuito — Notting Hill, Soho, Camden — es Heathrow, con el Tube directo en 45 minutos. Desde Latinoamérica, los vuelos directos llegan a Heathrow. Desde el norte de Europa, Gatwick y Stansted son las puertas más baratas.</p>
+
+    <div class="transport-grid">
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Norteamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos a Heathrow (LHR) desde Montreal, Toronto, Nueva York, Miami, Los Ángeles. El Piccadilly Line desde LHR al West End cuesta £6 y llega en 45 min.</p>
+        <div class="transport-row">
+          <span class="transport-name">Air Canada</span>
+          <a href="https://www.aircanada.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">American Airlines</span>
+          <a href="https://www.aa.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">British Airways</span>
+          <a href="https://www.britishairways.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Virgin Atlantic</span>
+          <a href="https://www.virginatlantic.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Desde Latinoamérica</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Vuelos directos desde Buenos Aires, Bogotá y São Paulo. Vía Madrid con Iberia o vía Amsterdam con KLM desde el resto de la región.</p>
+        <div class="transport-row">
+          <span class="transport-name">LATAM (vía GRU o EZE)</span>
+          <a href="https://www.latam.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Iberia (vía Madrid)</span>
+          <a href="https://www.iberia.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">KLM (vía Amsterdam)</span>
+          <a href="https://www.klm.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Avianca (vía BOG)</span>
+          <a href="https://www.avianca.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>🚆 Eurostar desde Europa</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La opción más elegante desde París (2h15), Bruselas o Amsterdam. Llega directo a St. Pancras International, corazón del North London musical.</p>
+        <div class="transport-row">
+          <span class="transport-name">Eurostar — París a Londres</span>
+          <a href="https://www.eurostar.com" target="_blank" class="btn btn-web">🚆 Billetes</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Trainline (buscador europeo)</span>
+          <a href="https://www.thetrainline.com" target="_blank" class="btn btn-web">🔍 Buscar</a>
+        </div>
+      </div>
+
+      <div class="transport-card fade-up">
+        <h3>✈ Aeropuertos secundarios</h3>
+        <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Gatwick (vuelos económicos, 30min en tren al centro), Stansted (Ryanair/EasyJet desde Europa), City Airport (City de Londres, para negocios).</p>
+        <div class="transport-row">
+          <span class="transport-name">Ryanair — Stansted</span>
+          <a href="https://www.ryanair.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">EasyJet — Gatwick</span>
+          <a href="https://www.easyjet.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+        <div class="transport-row">
+          <span class="transport-name">Vueling — Gatwick</span>
+          <a href="https://www.vueling.com" target="_blank" class="btn btn-web">✈ Reservar</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <p><strong>Truco práctico:</strong> Compra una Oyster Card o activa el pago contactless con tu tarjeta de crédito nada más llegar — funciona en todo el Underground, los autobuses y el Overground. Para el circuito psicodélico, el Tube Central Line (Notting Hill, Soho, Shepherd's Bush) y el Northern Line (Camden, King's Cross) son tus dos líneas principales. Evita taxis negros para desplazamientos largos — el Tube es siempre más rápido y un tercio del precio.</p>
+    </div>
+
+    <div class="map-embed" style="margin-top:2.5rem">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.182118!2d-0.24168!3d51.52855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondres%2C+Reino+Unido!5e0!3m2!1ses!2ses!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="text-align:center;margin-top:1rem">
+      <a href="https://www.google.com/maps/search/London+England" target="_blank" class="btn btn-map">📍 Abrir Londres en Google Maps</a>
+    </div>
+
+    <!-- TRANSPORTE LOCAL -->
+    <div style="margin-top:3.5rem">
+      <div class="section-rule"><span class="section-tag">Moverse por la ciudad</span></div>
+      <h3 style="font-family:var(--f-display);font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:0.06em;text-transform:uppercase;color:var(--bone);margin:1rem 0 0.6rem" id="local">Transporte <em style="color:var(--accent);font-style:italic;font-weight:400">local</em></h3>
+      <p style="font-size:0.92rem;color:rgba(224,213,204,0.6);font-style:italic;margin-bottom:1.8rem;max-width:620px">El circuito psicodélico de Londres está distribuido entre Notting Hill, Soho, Mayfair, Camden y Battersea. El Underground es la red más eficiente del mundo para conectarlos todos en menos de 20 minutos.</p>
+      <div class="transport-grid">
+
+        <div class="transport-card fade-up">
+          <h3>🚇 London Underground</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">La red más completa. Para el circuito: Piccadilly Line (Heathrow–Soho–Notting Hill), Northern Line (Camden–King's Cross), Victoria Line (Brixton–Oxford Circus).</p>
+          <div class="transport-row">
+            <span class="transport-name">TfL — Journey Planner</span>
+            <a href="https://tfl.gov.uk" target="_blank" class="btn btn-web">🗺 Web</a>
+          </div>
+          <div class="transport-row">
+            <span class="transport-name">Oyster Card</span>
+            <a href="https://tfl.gov.uk/fares/how-to-pay-and-where-to-buy-tickets-and-oyster/pay-as-you-go/oyster-pay-as-you-go" target="_blank" class="btn btn-web">🎟 Activar</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🚌 London Bus</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Los autobuses rojos de dos pisos son el transporte más atmosférico — y el más lento en hora punta. Para el circuito nocturno entre Camden y Soho, el Night Bus (N prefix) funciona hasta las 5am.</p>
+          <div class="transport-row">
+            <span class="transport-name">TfL — Mapa de buses</span>
+            <a href="https://tfl.gov.uk/maps/bus" target="_blank" class="btn btn-web">🚌 Mapa</a>
+          </div>
+          <div class="transport-row">
+            <span class="transport-name">Citymapper — Mejor app</span>
+            <a href="https://citymapper.com/london" target="_blank" class="btn btn-web">📱 App</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🚲 Santander Cycles</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Las "Boris Bikes" — más de 700 estaciones, perfectas para el recorrido Soho → Mayfair → Hyde Park. Ideal para el día 1 si el tiempo acompaña. Las primeras 30 minutos de cada trayecto son gratuitas.</p>
+          <div class="transport-row">
+            <span class="transport-name">Santander Cycles</span>
+            <a href="https://tfl.gov.uk/modes/cycling/santander-cycles" target="_blank" class="btn btn-web">🚲 Web</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🛥 Thames Clipper</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">El ferry del Támesis — desde Battersea Power Station hasta Greenwich, pasando por el South Bank. La mejor forma de ver Londres desde el agua, con Oyster Card como transporte oficial de TfL.</p>
+          <div class="transport-row">
+            <span class="transport-name">Thames Clippers — Horarios & Rutas</span>
+            <a href="https://www.thamesclippers.com" target="_blank" class="btn btn-web">🛥 Web</a>
+          </div>
+        </div>
+
+        <div class="transport-card fade-up">
+          <h3>🚕 Uber & Taxis</h3>
+          <p style="font-size:0.82rem;color:var(--smoke);margin-bottom:1rem;font-style:italic">Uber es la opción más práctica para desplazamientos nocturnos entre Camden, Soho y Brixton. Los taxis negros (Black Cabs) se pagan con tarjeta y son seguros, pero más caros.</p>
+          <div class="transport-row">
+            <span class="transport-name">Uber London</span>
+            <a href="https://www.uber.com/gb/en/" target="_blank" class="btn btn-web">🚕 App</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tip-box" style="margin-top:1.5rem">
+        <div style="display:flex;align-items:flex-start;gap:0.9rem;margin-bottom:0.8rem">
+          <div style="font-size:1.5rem;line-height:1.2">🌐</div>
+          <div>
+            <div style="font-family:var(--f-head);font-style:italic;font-weight:700;font-size:1.1rem;color:var(--bone);margin-bottom:0.3rem;line-height:1.3">Traductor de viaje — que el idioma no sea una barrera</div>
+            <div style="font-family:var(--f-label);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent)">Modo conversación · 130+ idiomas · Funciona sin conexión</div>
+          </div>
+        </div>
+        <p>Habla en español y que tu interlocutor escuche en su idioma — y al revés. Google Translate, en modo Conversación, traduce voz en tiempo real, fotos de menús y carteles, y permite descargar paquetes de idioma para usar sin internet. Para grupos con varios idiomas a la vez, Microsoft Translator conecta hasta 100 personas en la misma conversación, cada una en su propio teléfono.</p>
+        <div class="card-links">
+          <a href="https://translate.google.com/intl/es/about/" target="_blank" class="btn btn-web">📱 Descargar Google Translate</a>
+          <a href="https://www.microsoft.com/en-us/translator/apps/" target="_blank" class="btn btn-map">👥 Microsoft Translator (grupos)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section class="section" id="hoteles" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Dónde alojarnos</span></div>
+    <h2 class="section-title">Hoteles con<br><em>alma</em></h2>
+    <p class="section-lead">Dormir bien en Londres durante el circuito psicodélico significa elegir barrio antes que estrellas. Notting Hill, Soho y Mayfair son los tres vértices del mapa. El Chateau Denmark existe desde que Denmark Street es Denmark Street — literalmente construido sobre los cimientos de donde todo ocurrió.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Música · Denmark Street · Soho</div>
+        <div class="card-body">
+          <div class="card-title">Chateau Denmark</div>
+          <p class="card-desc">El hotel más singular de Londres para el viajero musical — 55 habitaciones y apartamentos repartidos en 16 edificios históricos de Denmark Street, la calle donde los Rolling Stones grabaron su primer disco, donde los Kinks escribieron sus himnos y donde Bowie construyó a Ziggy Stardust. Cada habitación es diferente. Algunas tienen estudios de grabación privados. Las paredes están firmadas por artistas que se alojaron aquí. No es un hotel con temática musical — es un edificio que es música.</p>
+          <div class="card-links">
+            <a href="https://www.chateaudenmark.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Chateau+Denmark+Denmark+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Heritage · Notting Hill</div>
+        <div class="card-body">
+          <div class="card-title">The Portobello Hotel</div>
+          <p class="card-desc">Una institución de Notting Hill desde 1971 — el mismo año en que el barrio era todavía el epicentro de la escena bohemia de Londres. Casas victorianas convertidas en 21 habitaciones de diseño ecléctico, sin dos iguales, con esa mezcla de antigüedad y rareza que solo consiguen los hoteles que han sobrevivido décadas siendo ellos mismos. Johnny Depp, Kate Moss, Tim Burton — todos se alojaron aquí. A dos minutos del mercado de Portobello Road.</p>
+          <div class="card-links">
+            <a href="https://www.portobellohotel.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Portobello+Hotel+Notting+Hill+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Design · Shoreditch · Industrial</div>
+        <div class="card-body">
+          <div class="card-title">The Hoxton Shoreditch</div>
+          <p class="card-desc">El pionero del concepto hotel-como-barrio-propio. En Shoreditch, el district que en los años 2000 hizo por el East End lo que Notting Hill hizo por el West en los 60 — convertirlo en destino cultural. Lobbies que son restaurantes, restaurantes que son clubs, habitaciones desde compactas hasta suites de dos plantas. El punto de partida perfecto para quien quiere entender el Londres actual mientras rinde tributo al pasado.</p>
+          <div class="card-links">
+            <a href="https://thehoxton.com/london/shoreditch/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Hoxton+Shoreditch+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Lujo · Mayfair · Contemporáneo</div>
+        <div class="card-body">
+          <div class="card-title">The London EDITION</div>
+          <p class="card-desc">En Fitzrovia, en el edificio que fue sede del YMCA londinense — donde pasaron muchas historias que nadie contó. Hoy es un cinco estrellas de Ian Schrager con suelos de roble, paneles de madera y ese tipo de atmósfera nocturna que no está en ningún manual de diseño hotelero. A diez minutos a pie de Soho y de Mayfair. El bar Punch Room tiene los mejores cocktails de punch de la ciudad.</p>
+          <div class="card-links">
+            <a href="https://www.editionhotels.com/london/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+London+Edition+Hotel+Fitzrovia" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type hotel">🏨 Boutique · Camden · Rock</div>
+        <div class="card-body">
+          <div class="card-title">The Wesley Camden Town</div>
+          <p class="card-desc">En un edificio histórico en el corazón de Camden, a tres minutos del mercado y a doscientos metros de varios de los clubs que definieron la escena punk y post-punk de los 70. Cuatro estrellas, habitaciones bien equipadas, precio razonable para Londres. La mejor base para quien quiere el Roundhouse, el Electric Ballroom y el Camden Lock en la misma mañana de paseo.</p>
+          <div class="card-links">
+            <a href="https://www.thewesley.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Wesley+Camden+Town+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BANDS SPOTLIGHT -->
+<section class="section" id="bandas" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Las Bandas</span></div>
+    <h2 class="section-title">El rock<br>que <em>expandió</em> la mente</h2>
+    <p class="section-lead">El rock psicodélico londinense no fue un accidente. Fue la colisión entre el blues americano que llegaba en los discos que los marineros traían de Liverpool y Nueva York, y la energía de una generación que había crecido en la posguerra y no quería vivir como sus padres. Estos son los protagonistas del Episodio 6.</p>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Pink Floyd</div>
+      <div class="band-years">1965 · Londres · Roger Waters · Syd Barrett · David Gilmour · Nick Mason · Richard Wright</div>
+      <p class="band-desc">Se conocieron en la Regent Street Polytechnic estudiando arquitectura. Syd Barrett llegó después, desde Cambridge, con su guitarra y su mente ya a medio disolver entre el LSD y el genio. Su primer concierto fue en el Roundhouse en octubre de 1966 — presentación de la revista underground International Times, con 2.000 personas y luces psicodélicas que nadie había visto antes. El cerebro de Barrett produjo "Arnold Layne", "See Emily Play" y el primer álbum Piper at the Gates of Dawn antes de romperse definitivamente en 1968. Waters, Mason, Wright y el nuevo Gilmour construyeron el resto del edificio — Dark Side of the Moon, Wish You Were Here, The Wall — sobre esos cimientos imposibles. Todo empezó aquí, en estas calles.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">Jimi Hendrix</div>
+      <div class="band-years">1966 · Londres · Seattle → Mayfair → Brook Street · El más grande</div>
+      <p class="band-desc">Llegó a Londres en septiembre de 1966 prácticamente desconocido. En su primera noche, tocó en un club del Soho con un amplificador prestado. Al día siguiente, Eric Clapton, Peter Townshend, John Lennon y Mick Jagger habían corrido la voz. En menos de un año grabó Are You Experienced y se convirtió en el guitarrista más influyente de la historia de la música popular. Londres fue su ciudad — no por nacimiento sino por elección. "Es el único hogar que he tenido nunca", dijo sobre su apartamento en el 23 de Brook Street, Mayfair, donde vivió en 1968 y 1969. Murió en Londres, en el Samarkand Hotel de Notting Hill, en septiembre de 1970. Tenía 27 años.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/776Uo845nYHJpNaStv1Ds4" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">The Rolling Stones</div>
+      <div class="band-years">1962 · Londres · Dartford → Richmond → Soho · La banda que más dura</div>
+      <p class="band-desc">Se formaron en Londres pero encontraron su sonido en los suburbios — el Crawdaddy Club de Richmond, en el Station Hotel de Kew Road, fue donde tocaron por primera vez como banda residente en febrero de 1963. Cuatro personas en el público la primera noche. Al cabo de tres semanas, había cola en la calle. En Denmark Street del Soho grabaron su primer disco en los IBC Studios. El éxito los llevó al mundo, pero Londres siempre fue su base — las fiestas en Chelsea, los apartamentos en Cheyne Walk, los estudios en Bermondsey. La banda que convirtió el blues americano en energía inglesa.</p>
+      <div style="margin-top:1.2rem">
+        <a href="https://open.spotify.com/artist/22bE4uQ6baNwSHPVcDxLCe" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Escuchar en Spotify</a>
+      </div>
+    </div>
+
+    <div class="band-spotlight fade-up">
+      <div class="band-name">The Who · Cream</div>
+      <div class="band-years">1964 · Londres · Shepherd's Bush · Townshend · Moon · Entwistle · Daltrey / Clapton · Baker · Bruce</div>
+      <p class="band-desc">The Who venían del Shepherd's Bush de West London — el barrio obrero que les dio esa furia de clase trabajadora que los diferenciaba de los Stones o de Pink Floyd. Sus conciertos en el Marquee Club del Soho definieron el concepto de actuación destructiva — guitarras rotas, baterías destrozadas, retroalimentación controlada. Cream, el supertrio de Clapton, Baker y Bruce, inventaron el power trio y el rock progresivo en simultáneo, en los mismos años, en los mismos clubs. Londres, 1966–1969: cuatro años que cambiaron el sonido de todo lo que vendría después.</p>
+      <div style="margin-top:1.2rem;display:flex;gap:0.6rem;flex-wrap:wrap">
+        <a href="https://open.spotify.com/artist/67ea9eGLXYMsO2eYQRui3w" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 The Who</a>
+        <a href="https://open.spotify.com/artist/74oJ4qxwOZvX6oSsu1DGnw" target="_blank" class="btn btn-web" style="font-size:0.72rem">🎵 Cream</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="section" id="itinerario" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">El circuito</span></div>
+    <h2 class="section-title">Cinco días en<br>el <em>Londres psicodélico</em></h2>
+    <p class="section-lead">Cinco días es el mínimo para entender Londres de verdad — no como turista, sino como alguien que empieza a leer la ciudad. El Día 1 arranca en el Soho, donde todo empezó. El Día 2 sigue el rastro de Pink Floyd y Hendrix. El Día 3 pertenece a los Rolling Stones y al Sur del río. El Día 4 sale de la burbuja del circuito hacia el Londres que vive fuera del mapa turístico. El Día 5 cierra el círculo con los grandes iconos que nadie puede saltarse.</p>
+  </div>
+</section>
+
+<div class="tabs-nav">
+  <div class="tabs-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('dia1',this)">Día 1 — Los Orígenes del Sonido</button>
+    <button class="tab-btn" onclick="switchTab('dia2',this)">Día 2 — Pink Floyd & Hendrix</button>
+    <button class="tab-btn" onclick="switchTab('dia3',this)">Día 3 — Los Rolling Stones & El Sur</button>
+    <button class="tab-btn" onclick="switchTab('dia4',this)">Día 4 — Londres como un Local</button>
+    <button class="tab-btn" onclick="switchTab('dia5',this)">Día 5 — Los Grandes Iconos</button>
+  </div>
+</div>
+
+<section style="background:var(--base-1);padding:3rem 0 5rem">
+  <div class="section-inner">
+
+    <!-- DIA 1 -->
+    <div id="dia1" class="tab-content active">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Denmark Street, Marquee Club, Crawdaddy, Roundhouse — los escenarios donde el rock psicodélico encontró su voz.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Denmark Street — El Tin Pan Alley de Londres</div>
+          <div class="tl-desc">Una calle de doscientos metros en el Soho que concentra más historia musical por metro cuadrado que cualquier otra calle de Europa. Aquí grabaron los Rolling Stones su primer disco (IBC Studios, número 35), David Bowie compuso los primeros temas de Ziggy Stardust, los Kinks escribieron sus himnos, y los Sex Pistols ensayaron en el sótano del número 6. Hoy sigue siendo una calle de tiendas de guitarras, estudios y el Chateau Denmark. La placa de Pink Floyd en la Universidad de Westminster está a tres minutos a pie.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Denmark+Street+London+Soho" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Placa Pink Floyd — University of Westminster, Regent Street</div>
+          <div class="tl-desc">En la fachada del edificio de la University of Westminster en Regent Street — la antigua Regent Street Polytechnic — hay una placa negra que Nick Mason y Roger Waters inauguraron en mayo de 2015, para el 50 aniversario de la banda. Aquí estudiaban arquitectura cuando se conocieron y formaron Pink Floyd. La placa es pequeña, discreta, fácil de pasar por alto si no sabes dónde mirar. Justo entre el cine y la entrada principal. Visita gratuita y accesible las 24 horas.</div>
+          <div class="tl-links">
+            <a href="https://www.atlasobscura.com/places/pink-floyd-plaque" target="_blank" class="btn btn-web">🌐 Atlas Obscura</a>
+            <a href="https://www.google.com/maps/search/University+of+Westminster+Regent+Street+Pink+Floyd+Plaque+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Carnaby Street & Soho — Swinging London</div>
+          <div class="tl-desc">En 1967, Carnaby Street era el centro de la moda psicodélica — las boutiques de ropa que vestían a los músicos antes y después de los conciertos. John Stephen, Lord John, Granny Takes A Trip. Hoy es más turística que aquella, pero el tejido urbano del Soho alrededor sigue siendo denso en historia: bares donde Hendrix tomó su primera pinta londinense, restaurantes donde los Stones planeaban sus giras, el Marquee Club original en la calle Wardour.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Carnaby+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Cuando llegué a Londres no era nadie. Tres meses después, todo el mundo quería saber quién era. Esta ciudad me dio todo."</p>
+          <div class="quote-source">— Jimi Hendrix · 1967</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">The Roundhouse, Chalk Farm Road — Camden</div>
+          <div class="tl-desc">Una antigua infraestructura ferroviaria victoriana convertida en el primer templo del rock psicodélico londinense. El 15 de octubre de 1966, Pink Floyd dieron aquí su primer concierto — la noche de presentación de la revista underground International Times. El cartel costaba diez chelines, incluía entrada y un bote de aceite de bebé. Hoy es uno de los mejores venues de Londres, con programa cruzado de música en vivo, teatro y performance. Imprescindible visitar aunque no haya actuación.</div>
+          <div class="tl-links">
+            <a href="https://www.roundhouse.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Roundhouse+Chalk+Farm+Road+Camden+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🍺 Tarde</div>
+          <div class="tl-place">Camden Market & Electric Ballroom</div>
+          <div class="tl-desc">Camden es el barrio que más ha sobrevivido a sus propias contradicciones — fue punk, fue grunge, fue Amy Winehouse, fue emo, y sigue siendo el barrio más musical de Londres. El Electric Ballroom en Camden High Street ha programado desde Siouxsie and the Banshees hasta The Cure pasando por artistas que aún no tienen nombre. El mercado de Camden Lock, con sus 700 puestos de ropa vintage, comida del mundo y artesanía, cierra el día perfecto antes de la cena.</div>
+          <div class="tl-links">
+            <a href="https://www.electricballroom.co.uk" target="_blank" class="btn btn-web">🌐 Electric Ballroom</a>
+            <a href="https://www.google.com/maps/search/Camden+Market+Lock+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">Ronnie Scott's Jazz Club, Frith Street — Soho</div>
+          <div class="tl-desc">El club de jazz más legendario del mundo abrió en el Soho en 1959 y nunca ha cerrado. Jimi Hendrix tocó aquí su última actuación pública en Londres — en 1970, dos semanas antes de morir. La sala tiene capacidad para 200 personas, lo que significa que cualquier noche que entres estás escuchando música en directo a la distancia a la que Hendrix tocaba. Reserva con antelación — las mesas para la segunda sesión (hacia las 23h) son las más asequibles y las que más duran.</div>
+          <div class="tl-links">
+            <a href="https://www.ronniescotts.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ronnie+Scott's+Jazz+Club+Frith+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 2 -->
+    <div id="dia2" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Brook Street, Battersea, Britannia Row Studios, Abbey Road — los lugares donde Pink Floyd y Hendrix dejaron algo imborrable.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Handel Hendrix House — 23 Brook Street, Mayfair</div>
+          <div class="tl-desc">El único hogar permanente que Jimi Hendrix tuvo en su vida — un piso en el número 23 de Brook Street, Mayfair, donde vivió con su novia Kathy Etchingham en 1968 y 1969. El edificio ha sido restaurado con fidelidad al aspecto de 1968: la cama, el televisor en blanco y negro, los discos apilados, las telas indias en las paredes. La coincidencia histórica es perfecta: el compositor Georg Friedrich Händel vivió en el número 25 del mismo edificio dos siglos antes. Dos de los músicos más influyentes de sus épocas, pared con pared, separados por doscientos años.</div>
+          <div class="tl-links">
+            <a href="https://handelhendrix.org" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Handel+Hendrix+House+Brook+Street+Mayfair+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Notting Hill — Portobello Road</div>
+          <div class="tl-desc">El barrio donde Hendrix murió — el Samarkand Hotel estaba en Lansdowne Crescent — y donde la contracultura londinense encontró su geografía. Portobello Road Market los sábados es uno de los mercados más densos en historia musical de Europa: discos de vinilo en cada esquina, tiendas de ropa vintage, cafés donde músicos han desayunado durante décadas. La Tabernacle, en Powis Square, fue donde Pink Floyd y los Rolling Stones ensayaron en los 90. Está a tres minutos a pie del mercado.</div>
+          <div class="tl-links">
+            <a href="https://www.portobelloroad.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Portobello+Road+Market+Notting+Hill+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Battersea Power Station</div>
+          <div class="tl-desc">La central eléctrica de ladrillo rojo con cuatro chimeneas blancas al sur del Támesis es uno de los iconos arquitectónicos más reconocibles de Londres — y uno de los más reconocibles del rock, desde que Pink Floyd la usaron en la portada de Animals en 1977, con el cerdo inflable flotando entre las chimeneas. Hoy es un centro comercial y cultural de primer nivel, con restaurantes, tiendas y exposiciones. El edificio en sí vale el viaje. La galería de fotografías de la portada del disco está en la planta baja.</div>
+          <div class="tl-links">
+            <a href="https://batterseapowerstation.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Battersea+Power+Station+London+Pink+Floyd" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"No hacemos música para la radio. Hacemos música para los que necesitan escuchar algo que todavía no existe."</p>
+          <div class="quote-source">— Roger Waters · Pink Floyd</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">Britannia Row Studios — Islington</div>
+          <div class="tl-desc">Pink Floyd mandaron construir estos estudios en 1975, tras el éxito de Wish You Were Here, para tener un espacio propio donde trabajar sin los límites de los estudios comerciales. En Britannia Row grabaron Animals y The Wall — dos de los álbumes más ambiciosos de la historia del rock. El edificio sigue en pie en Upper Street, Islington. No es visitable, pero la fachada y el barrio alrededor forman parte del circuito para quien quiere completar el mapa de Pink Floyd en Londres.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Britannia+Row+Studios+Islington+London+Pink+Floyd" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Abbey Road Studios & Paso de Cebra</div>
+          <div class="tl-desc">Los Beatles lo hicieron famoso, pero Pink Floyd grabaron aquí The Dark Side of the Moon — uno de los cinco álbumes más vendidos de la historia de la música. El paso de cebra en la esquina de Abbey Road con Grove End Road es el más fotografiado de Europa. Los estudios siguen en funcionamiento y no son visitables por dentro, pero el exterior y el muro cubierto de firmas y mensajes de fans son parte obligatoria del circuito. La tienda oficial Abbey Road Store está al lado.</div>
+          <div class="tl-links">
+            <a href="https://www.abbeyroad.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Abbey+Road+Studios+London+NW8" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">Ronnie Scott's Jazz Club — Segunda sesión</div>
+          <div class="tl-desc">El mejor cierre para el Día 2 — la segunda sesión de Ronnie Scott's empieza hacia las 23h y es la más asequible y más larga de las dos. El club donde Hendrix tocó su última actuación pública en Londres. La sala tiene capacidad para 200 personas, lo que significa que cualquier noche estás escuchando a la distancia a la que él tocaba. La música sigue siendo la razón de estar aquí.</div>
+          <div class="tl-links">
+            <a href="https://www.ronniescotts.co.uk" target="_blank" class="btn btn-web">🌐 Reservar</a>
+            <a href="https://www.google.com/maps/search/Ronnie+Scotts+Jazz+Club+Frith+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 3 -->
+    <div id="dia3" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Richmond, Chelsea, Brixton — el día que pertenece a los Stones y al sur del río, la otra cara de Londres.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Crawdaddy Club — Richmond Athletic Ground</div>
+          <div class="tl-desc">En febrero de 1963, los Rolling Stones comenzaron su primera residencia aquí, en el Station Hotel de Richmond — cuatro personas en el público la primera noche, cola en la calle tres semanas después. El Crawdaddy original fue fundado por Giorgio Gomelsky en el back room del pub; los Stones convirtieron aquel cuarto en el sitio más importante del R&B británico antes de que nadie supiera sus nombres. El club se trasladó luego al Richmond Athletic Ground, donde hoy sigue activo como espacio de música en vivo mensual — una de las pocas instituciones del rock británico que sobrevivió a sus propios protagonistas.</div>
+          <div class="tl-links">
+            <a href="http://www.crawdaddyclubrichmond.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Richmond+Athletic+Ground+Twickenham+Road+Richmond+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Mañana</div>
+          <div class="tl-place">Cheyne Walk — Chelsea</div>
+          <div class="tl-desc">La calle más musically cargada de Chelsea — Mick Jagger vivió en el número 48, Keith Richards en el 3. En los 60 y 70, Cheyne Walk era la dirección de los Stones, y la dirección del Swinging London en su versión más adulta. Hoy es una de las calles más caras y residenciales de Londres, con casas georgianas frente al Támesis. El río, los árboles de Albert Bridge, el silencio de mañana temprano. Difícil imaginar las fiestas. Imposible no intentarlo.</div>
+          <div class="tl-links">
+            <a href="https://www.google.com/maps/search/Cheyne+Walk+Chelsea+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"No soy muy seguro de quién soy. Es una de las razones por las que me gusta actuar — para poder averiguarlo."</p>
+          <div class="quote-source">— Mick Jagger · Rolling Stones · atribuido</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Tate Modern & South Bank</div>
+          <div class="tl-desc">El Tate Modern ocupa la antigua central eléctrica Bankside en la orilla sur del Támesis — el museo de arte moderno y contemporáneo más visitado del mundo, con entrada gratuita a las colecciones permanentes. La terraza del piso 10 tiene la mejor vista de la City de Londres y la catedral de St. Paul. El South Bank entre el Tate y el Waterloo Bridge — con el Shakespeare's Globe, el BFI Southbank y el Hayward Gallery — es el kilómetro cultural más denso de Europa. El almuerzo en Borough Market está a diez minutos a pie cruzando el Millennium Bridge.</div>
+          <div class="tl-links">
+            <a href="https://www.tate.org.uk/visit/tate-modern" target="_blank" class="btn btn-web">🌐 Tate Modern</a>
+            <a href="https://www.google.com/maps/search/Tate+Modern+Bankside+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Brixton — Electric Avenue & Brixton Village</div>
+          <div class="tl-desc">Brixton es el barrio que David Bowie eligió para nacer y que el reggae jamaicano eligió para crecer en el Reino Unido. Electric Avenue — la primera calle de Londres iluminada con electricidad — da nombre a uno de los himnos del reggae británico. Brixton Village, el mercado cubierto de colores en Coldharbour Lane, es hoy el centro gastronómico más auténtico del sur de Londres — cocina caribeña, japonesa, vietnamita, francesa, todo bajo un mismo techo victoriano. El mural de David Bowie en Station Road es el punto de partida obligatorio del barrio.</div>
+          <div class="tl-links">
+            <a href="https://www.brixtonmarket.net" target="_blank" class="btn btn-web">🌐 Brixton Market</a>
+            <a href="https://www.google.com/maps/search/Brixton+Village+Market+Coldharbour+Lane+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">O2 Academy Brixton</div>
+          <div class="tl-desc">La sala de conciertos más respetada de Londres — 4.921 personas de capacidad, acústica perfecta, suelo inclinado que garantiza visibilidad desde cualquier punto. La O2 Academy Brixton ha programado desde Radiohead hasta Arctic Monkeys, desde Nick Cave hasta los últimos grandes del rock indie. Si hay concierto la noche que estás en Brixton, no hay excusa para no ir. La programación mensual cubre todos los géneros con una consistencia que pocas salas del mundo pueden igualar. Revisa la agenda con un mes de antelación.</div>
+          <div class="tl-links">
+            <a href="https://academymusicgroup.com/o2academybrixton/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/O2+Academy+Brixton+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 4 -->
+    <div id="dia4" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Hackney Wick, Peckham, Columbia Road — el día sin circuito, el día que te convierte en local.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Columbia Road Flower Market — Bethnal Green</div>
+          <div class="tl-desc">Los domingos de 8am a 3pm, Columbia Road se convierte en el mercado de flores más fotogénico de Londres — una calle estrecha victoriana desbordada de color, vendedores gritando precios en rima cockney, cafés que solo abren ese día. No es un mercado turístico. Es donde los londinenses compran sus plantas. A diez minutos a pie están Brick Lane y el Sunday Up Market de Truman Brewery. El mejor desayuno de domingo en la ciudad se improvisa aquí, entre flores y bollería de los cafés adyacentes.</div>
+          <div class="tl-links">
+            <a href="https://www.columbiaroad.info" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Columbia+Road+Flower+Market+Bethnal+Green+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎨 Mañana</div>
+          <div class="tl-place">Hackney Wick — Street Art & Estudios de Artistas</div>
+          <div class="tl-desc">El barrio más creativo de Londres — o lo que queda de él antes de que la gentrificación termine lo que el olimpismo empezó en 2012. Hackney Wick tiene la mayor concentración de estudios de artistas y creadores independientes del país, en naves industriales junto al canal de Lea. El canal ofrece un paseo de dos kilómetros con murales en cada pared. Los sábados, varios estudios abren al público. El 40FT Brewery, frente al canal, abre desde el mediodía con cerveza artesanal y mesas en el exterior.</div>
+          <div class="tl-links">
+            <a href="https://www.hackney.gov.uk" target="_blank" class="btn btn-web">🌐 Hackney Wick</a>
+            <a href="https://www.google.com/maps/search/Hackney+Wick+Street+Art+Canal+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">Peckham — Rye Lane & Frank's Café</div>
+          <div class="tl-desc">Peckham es el barrio donde se deciden las tendencias gastronómicas londinenses antes de que lleguen al centro. Rye Lane tiene mercados de tela, peluquerías afrocaribeñas, tiendas de especias, tres supermercados nigerianos y una densidad cultural que no tiene equivalente en ningún otro barrio de Europa occidental. Frank's Café — en el techo del parking de varios pisos en Rye Lane — tiene la mejor terraza de verano de la ciudad, con vistas a los tejados del sur de Londres y un menú de temporada que cambia semanalmente. Solo abre mayo-septiembre.</div>
+          <div class="tl-links">
+            <a href="https://www.artangel.org.uk" target="_blank" class="btn btn-web">🌐 Frank's / Artangel</a>
+            <a href="https://www.google.com/maps/search/Peckham+Rye+Lane+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Londres no es una ciudad. Es un conjunto de aldeas que nunca se pusieron de acuerdo."</p>
+          <div class="quote-source">— Anónimo · dicho popular londinense</div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Tarde</div>
+          <div class="tl-place">Dalston — Ridley Road Market & Café Oto</div>
+          <div class="tl-desc">Ridley Road Market en Dalston es el mercado más auténtico del East London — telas africanas, frutas tropicales, carne halal, especias del mundo, todo bajo toldos de plástico y con una vitalidad que ningún mercado "diseñado" puede replicar. A tres minutos a pie está el Café Oto — la sala de música experimental y jazz más importante de Europa del Este de Londres: conciertos casi cada noche, entrada entre £8 y £15, y una programación que prioriza lo que todavía no tiene nombre sobre lo que ya todos conocen.</div>
+          <div class="tl-links">
+            <a href="https://www.cafeoto.co.uk" target="_blank" class="btn btn-web">🌐 Café Oto</a>
+            <a href="https://www.google.com/maps/search/Cafe+Oto+Dalston+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche</div>
+          <div class="tl-place">Fabric — Farringdon</div>
+          <div class="tl-desc">El club de música electrónica más importante de la historia del Reino Unido — abierto en 1999, cerrado por las autoridades en 2016, reabierto tras una batalla legal que convirtió su supervivencia en un movimiento cultural. Tres salas con acústica diseñada por las mejores empresas de sonido del mundo. Drum & bass, techno, house, desde las 22h hasta las 6am. Si la noche lo permite, Fabric es la experiencia más intensa de la noche londinense — y la prueba de que esta ciudad nunca duerme de verdad.</div>
+          <div class="tl-links">
+            <a href="https://www.fabriclondon.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Fabric+London+Farringdon+Charterhouse+Street" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIA 5 -->
+    <div id="dia5" class="tab-content">
+      <div style="padding:1.5rem 0 2.5rem">
+        <p style="font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:rgba(224,213,204,0.6);max-width:600px">Tower of London, Greenwich, Jazz en Ronnie Scott's — el último día, el día que cierra el círculo.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌅 Mañana</div>
+          <div class="tl-place">Tower of London & Tower Bridge</div>
+          <div class="tl-desc">La Torre de Londres lleva novecientos años en pie junto al Támesis — empezada por Guillermo el Conquistador en 1066, prisión real, tesoro de la corona, residencia de cuervos y hoy el monumento más visitado del país. Las Joyas de la Corona están aquí, incluyendo el diamante más grande del mundo tallado. Tower Bridge, a cincuenta metros, tiene el interior visitable con vistas al río desde la pasarela de cristal. Empieza el día temprano para evitar las colas — las primeras entradas son las 9am.</div>
+          <div class="tl-links">
+            <a href="https://www.hrp.org.uk/tower-of-london/" target="_blank" class="btn btn-web">🌐 Entradas</a>
+            <a href="https://www.google.com/maps/search/Tower+of+London+Tower+Bridge+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎵 Mañana</div>
+          <div class="tl-place">Thames Clipper hasta Greenwich</div>
+          <div class="tl-place" style="font-size:0.85rem;color:rgba(224,213,204,0.5);margin-top:-0.3rem;margin-bottom:0.4rem">Desde el embarcadero de Tower Bridge</div>
+          <div class="tl-desc">El ferry del Támesis desde Tower Bridge hasta Greenwich es uno de los trayectos más espectaculares de Europa — 25 minutos por el río, viendo pasar los puentes, el Canary Wharf, el O2. Greenwich es el pueblo dentro de la ciudad: el Cutty Sark (el último gran barco clipper del siglo XIX), el Observatorio Real desde donde se define el meridiano cero del planeta, y el mercado de Greenwich con sus puestos de artesanía y antigüedades. El parque sobre la colina tiene la mejor vista de Londres.</div>
+          <div class="tl-links">
+            <a href="https://www.thamesclippers.com" target="_blank" class="btn btn-web">🛥 Thames Clippers</a>
+            <a href="https://www.google.com/maps/search/Greenwich+Market+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">☀ Mediodía</div>
+          <div class="tl-place">National Portrait Gallery — Trafalgar Square</div>
+          <div class="tl-desc">Reabierta en 2023 tras una renovación de cuatro años, la National Portrait Gallery tiene la colección de retratos más importante del mundo — y una sección entera dedicada a músicos británicos: los Beatles, David Bowie, los Rolling Stones, Amy Winehouse, fotografiados en sus momentos más icónicos por los grandes fotógrafos del siglo XX. Entrada gratuita a las colecciones permanentes. A dos minutos a pie de Trafalgar Square y la National Gallery. El café del tercer piso tiene vistas directas a la cúpula de St. Martin-in-the-Fields.</div>
+          <div class="tl-links">
+            <a href="https://www.npg.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/National+Portrait+Gallery+Trafalgar+Square+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🎸 Tarde</div>
+          <div class="tl-place">Brick Lane — Shoreditch & East London</div>
+          <div class="tl-desc">Brick Lane es donde conviven el curry bangladesí, el bagel de los hornos que llevan abiertos 24h desde 1855, el arte callejero de Banksy y sus herederos, y las tiendas vintage que venden la ropa que los músicos de los años 60 tiraron. El Truman Brewery — la antigua fábrica de cerveza negra reconvertida en mercado cultural el fin de semana — tiene el Sunday UpMarket con puestos de diseñadores independientes, comida internacional y música en vivo. El mejor cierre de tarde del viaje antes de la noche de clausura.</div>
+          <div class="tl-links">
+            <a href="https://www.bricklane.org" target="_blank" class="btn btn-web">🌐 Brick Lane</a>
+            <a href="https://www.google.com/maps/search/Brick+Lane+Shoreditch+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-time">🌙 Noche de Clausura</div>
+          <div class="tl-place">Ronnie Scott's — La sesión de despedida</div>
+          <div class="tl-desc">El quinto día, la última noche, merece volver a donde Jimi Hendrix tocó por última vez. Ronnie Scott's tiene dos sesiones: la primera a las 20h30, la segunda a las 23h. La segunda es la que dura. La que sigue sonando cuando ya no hay razones para quedarse excepto que la música no ha parado. Cinco días en Londres terminan bien si terminan aquí — con una copa, con jazz en directo, con la certeza de que esta ciudad nunca acaba. Solo cambia de forma mientras la miras.</div>
+          <div class="tl-links">
+            <a href="https://www.ronniescotts.co.uk" target="_blank" class="btn btn-web">🌐 Reservar</a>
+            <a href="https://www.google.com/maps/search/Ronnie+Scott's+Jazz+Club+Frith+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURA -->
+<section class="section" id="cultura" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Patrimonio & Cultura</span></div>
+    <h2 class="section-title">Londres<br>más allá del <em>circuito</em></h2>
+    <p class="section-lead">Londres tiene más museos gratuitos de clase mundial que cualquier otra ciudad del planeta. Alrededor del circuito psicodélico hay instituciones que contextualizan el movimiento — el Victoria & Albert, el British Museum, la Tate Modern — y venues históricos que siguen activos en 2026.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Museo · Diseño · South Kensington</div>
+        <div class="card-body">
+          <div class="card-title">Victoria & Albert Museum</div>
+          <p class="card-desc">La colección de artes decorativas y diseño más importante del mundo tiene una sección permanente dedicada al rock and roll y al pop británico — incluyendo la chaqueta que Jimi Hendrix usó en el Isle of Wight Festival y trajes originales de los Rolling Stones. La entrada permanente es gratuita. Para el viajero del circuito psicodélico, la sección de moda de los años 60 y 70 pone en contexto visual todo lo que los músicos llevaban puesto cuando tocaban.</p>
+          <div class="card-links">
+            <a href="https://www.vam.ac.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Victoria+and+Albert+Museum+South+Kensington+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎨 Galería · Arte Moderno · South Bank</div>
+        <div class="card-body">
+          <div class="card-title">Tate Modern</div>
+          <p class="card-desc">En la antigua Bankside Power Station al sur del Támesis, la Tate Modern alberga la colección de arte del siglo XX más visitada del mundo. El arte psicodélico — Warhol, Hockney, Basquiat, el pop art británico — convive aquí con todo lo que vino antes y después. La terraza del piso 10 tiene las mejores vistas gratuitas de Londres. A diez minutos caminando por el South Bank desde la estación de Blackfriars.</p>
+          <div class="card-links">
+            <a href="https://www.tate.org.uk/visit/tate-modern" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Tate+Modern+Bankside+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Museo · Música · Carnaby</div>
+        <div class="card-body">
+          <div class="card-title">The British Music Experience — Londres</div>
+          <p class="card-desc">Instalado en el O2 de Greenwich, cubre la historia de la música popular británica desde 1945 hasta hoy con artefactos originales — las chaquetas de los Beatles, las guitarras de Hendrix, los sintetizadores de Floyd. Para quien ya hizo el circuito de Liverpool, ver la continuación londinense del mismo relato es uno de los momentos más completos del viaje. Interactivo, bien curado y con una sección psicodélica que hace justicia al periodo.</p>
+          <div class="card-links">
+            <a href="https://www.britishmusicexperience.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/British+Music+Experience+O2+Greenwich+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Histórico · North London</div>
+        <div class="card-body">
+          <div class="card-title">The Roundhouse</div>
+          <p class="card-desc">La locomotora giratoria victoriana de Chalk Farm que se convirtió en el primer templo del psicodelismo londinense sigue siendo uno de los mejores venues de música en vivo de Europa. Programa cruzado de música contemporánea, circo, teatro y performance. Si coincide una actuación durante tu estancia, no la pierdas — la acústica circular de la nave industrial hace sonar cualquier cosa de forma diferente a cualquier otra sala.</p>
+          <div class="card-links">
+            <a href="https://www.roundhouse.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Roundhouse+Camden+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🏛 Galería · Arte Contemporáneo · East London</div>
+        <div class="card-body">
+          <div class="card-title">The Barbican Centre</div>
+          <p class="card-desc">El complejo de artes más grande de Europa dentro de un edificio brutalista que es en sí mismo una declaración estética. Galería de arte, salas de conciertos, cine, teatro, biblioteca — todo en el mismo espacio. El Barbican programa desde música experimental hasta orquesta sinfónica, con una programación que conecta el legado del rock psicodélico con la música contemporánea de formas que ningún otro venue de la ciudad hace igual.</p>
+          <div class="card-links">
+            <a href="https://www.barbican.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Barbican+Centre+London+City" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type tour">🎸 Tour · Psicodélico · Guiado</div>
+        <div class="card-body">
+          <div class="card-title">London Rock Tour — Soho Walking Tour</div>
+          <p class="card-desc">El tour de música rock más veterano de Londres — guiado por Adam de London Walks, músico e historiador musical que lleva décadas conduciendo este recorrido por el Soho. Denmark Street, el Marquee Club original, las locaciones de Hendrix, Bowie, los Stones y los Beatles en el West End, todo en dos horas a pie. Salidas los viernes seleccionados — tours privados disponibles cualquier día. El único tour con licencia PRS para reproducir los discos en directo durante el recorrido.</p>
+          <div class="card-links">
+            <a href="https://www.walks.com/london-rock-tours/" target="_blank" class="btn btn-web">🌐 London Walks</a>
+            <a href="https://www.viator.com/London/d737-ttd" target="_blank" class="btn btn-web">🎟 Tours en Londres</a>
+            <a href="https://www.google.com/maps/search/Denmark+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALES -->
+<section class="section" id="festivales" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Música en Vivo</span></div>
+    <h2 class="section-title">Festivales<br>& <em>Venues</em></h2>
+    <p class="section-lead">Londres tiene más música en vivo por metro cuadrado que cualquier otra ciudad de Europa. Cualquier noche del año, en cualquier barrio, hay algo que vale la pena escuchar. Aquí están los eventos del año y los venues que siguen definiendo la escena.</p>
+
+    <div class="cards-grid">
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 Junio · Anual · Hyde Park</div>
+          <div class="festival-name">British Summer Time — Hyde Park</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">El festival de verano más importante del centro de Londres — conciertos de grandes nombres durante tres semanas en Hyde Park, con el parque como escenario natural. Ha alojado a los Rolling Stones, The Who, Pink Floyd tributes y prácticamente todos los artistas que definen el legado del rock británico. Las entradas para los headliners se agotan meses antes.</p>
+          <div class="card-links">
+            <a href="https://www.bst-hydepark.com" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Hyde+Park+London+BST+Festival" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 Agosto · Anual · Notting Hill</div>
+          <div class="festival-name">Notting Hill Carnival</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">El festival callejero más grande de Europa — dos millones de personas, 50 sound systems, trajes de carnaval y música que va del reggae al soca al R&B. El Notting Hill Carnival tiene raíces en la comunidad caribeña del barrio, el mismo barrio donde Hendrix eligió vivir y morir. Cada agosto bank holiday, las calles de Notting Hill vuelven a sonar como deberían sonar siempre.</p>
+          <div class="card-links">
+            <a href="https://nhcarnival.org" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Notting+Hill+Carnival+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="festival-card fade-up">
+        <div class="festival-header">
+          <div class="festival-dates">📅 Todo el año · Soho</div>
+          <div class="festival-name">Ronnie Scott's Jazz Club</div>
+        </div>
+        <div class="festival-body">
+          <p class="festival-desc">No es un festival — es mejor que un festival. Siete noches a la semana, dos sesiones por noche, desde 1959 sin interrupción. El club donde Hendrix tocó su última actuación pública en Londres sigue programando los mejores músicos de jazz del mundo en una sala de 200 personas. La primera sesión empieza a las 20h. La segunda a las 23h. Reserva online siempre.</p>
+          <div class="card-links">
+            <a href="https://www.ronniescotts.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Ronnie+Scotts+Jazz+Club+Frith+Street+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Prog Rock · Alexandra Palace</div>
+        <div class="card-body">
+          <div class="card-title">Alexandra Palace</div>
+          <p class="card-desc">Ally Pally — el palacio victoriano en la cima de una colina en North London con vistas panorámicas de la ciudad. Pink Floyd tocaron aquí en múltiples ocasiones entre 1967 y 1969. Hoy es uno de los grandes recintos de conciertos de la ciudad — capacidad para 10.000 personas, con una acústica enorme y un contexto arquitectónico que sigue siendo único en Europa.</p>
+          <div class="card-links">
+            <a href="https://www.alexandrapalace.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Alexandra+Palace+London+concerts" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Underground · East London</div>
+        <div class="card-body">
+          <div class="card-title">Moth Club — Hackney</div>
+          <p class="card-desc">El heredero espiritual del Roundhouse para la escena alternativa actual. Instalado en un antiguo club de trabajadores en Hackney, con la decoración original de los años 60 intacta — papel tapiz floral, lámparas de araña, una barra de madera que sobrevivió décadas de conciertos. Programa bandas emergentes y artistas experimentales que en diez años serán los que ocupan los carteles de los grandes festivales.</p>
+          <div class="card-links">
+            <a href="https://www.mothclub.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Moth+Club+Hackney+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type music">🎸 Venue · Indie · Brixton</div>
+        <div class="card-body">
+          <div class="card-title">O2 Academy Brixton</div>
+          <p class="card-desc">La sala más mítica del sur de Londres — donde David Bowie (Brixton es su barrio natal), los Clash, los Prodigy y prácticamente todos los artistas que importan han tocado en algún momento. Capacidad para 5.000 personas, con pista inclinada que garantiza visibilidad desde cualquier punto. El ambiente en Brixton antes y después de un concierto es parte del espectáculo.</p>
+          <div class="card-links">
+            <a href="https://www.academymusicgroup.com/o2academybrixton/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/O2+Academy+Brixton+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GASTRONOMIA -->
+<section class="section" id="gastronomia" style="background:var(--base-2)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Gastronomía</span></div>
+    <h2 class="section-title">Comer en<br><em>Londres</em></h2>
+    <p class="section-lead">Londres es la ciudad multicultural por excelencia de Europa — su cocina refleja siglos de imperio, inmigración y mezcla. Los mejores restaurantes no tienen ningún tipo de cocina definida; tienen influencias de todas partes. Comer bien en Londres no exige gastar mucho: los mercados, los pubs históricos y los barrios del sur y del este guardan la gastronomía más honesta de la ciudad.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type food">🍽 Mercado · Borough · South Bank</div>
+        <div class="card-body">
+          <div class="card-title">Borough Market</div>
+          <p class="card-desc">El mercado de comida más antiguo de Londres — hay referencias documentadas desde 1014. En la actualidad es el mejor mercado gastronómico de Europa: más de 100 puestos de productores directos, ingredientes de temporada, street food de todo el mundo. Abre de jueves a sábado. El sábado por la mañana temprano es el momento ideal — antes de que la marea turística lo llene a mediodía. A dos minutos de la Tate Modern.</p>
+          <div class="card-links">
+            <a href="https://boroughmarket.org.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Borough+Market+London+Bridge" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍽 Restaurante · Soho · Italiana</div>
+        <div class="card-body">
+          <div class="card-title">Bocca di Lupo — Soho</div>
+          <p class="card-desc">La mejor cocina regional italiana de Londres en una calle lateral del Soho — exactamente donde deberías estar después de la visita a Denmark Street. Menú de pequeños platos que cambia con la temporada y la región, con vinos naturales y una barra de cocina abierta donde cenar viendo trabajar a los cocineros es tan bueno como la comida misma. Reserva siempre — no hay excepción.</p>
+          <div class="card-links">
+            <a href="https://www.boccadilupo.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Bocca+di+Lupo+Soho+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Café · Notting Hill · Icónico</div>
+        <div class="card-body">
+          <div class="card-title">The River Café — Hammersmith</div>
+          <p class="card-desc">El restaurante con estrella Michelin que cambió la cocina italiana en el Reino Unido — fundado en 1987 por Ruth Rogers en un antiguo almacén de aceite junto al Támesis en Hammersmith. Jamie Oliver, Hugh Fearnley-Whittingstall y Theo Randall se formaron aquí. Menú de temporada que cambia a diario, con pasta fresca, pescado y carnes en una sala con ventanales al río. Para el almuerzo o la cena del día 2 después de Notting Hill — a diez minutos en Tube desde el circuito. Reserva con al menos una semana de anticipación.</p>
+          <div class="card-links">
+            <a href="https://www.rivercafe.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+River+Cafe+Rainville+Road+Hammersmith+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍺 Pub · Camden · Histórico</div>
+        <div class="card-body">
+          <div class="card-title">The Hawley Arms — Camden</div>
+          <p class="card-desc">El pub favorito de Amy Winehouse, Pete Doherty y la escena indie de Camden de los años 2000. Una barra larga, luz baja, una selección de ales del norte de Inglaterra y esa atmósfera de pub donde siempre parece que algo está a punto de suceder. Las noches de música en el piso de abajo siguen siendo espontáneas — si alguien coge una guitarra, nadie lo impide.</p>
+          <div class="card-links">
+            <a href="https://thehawleyarms.co.uk" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/The+Hawley+Arms+Camden+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🍜 Street Food · Shoreditch · Internacional</div>
+        <div class="card-body">
+          <div class="card-title">Boxpark Shoreditch</div>
+          <p class="card-desc">El primer mall de pop-up en contenedores del mundo — inaugurado en 2011 en Shoreditch, con más de 60 puestos de street food internacional que rotan cada temporada. Abierto siete días a la semana hasta las 23h, con música en vivo los fines de semana. La mejor opción para cenar rápido y variado después de un día intenso de circuito musical — y el punto de partida para la vida nocturna del East London.</p>
+          <div class="card-links">
+            <a href="https://www.boxpark.co.uk/shoreditch/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Boxpark+Shoreditch+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Café · Mayfair · Clásico</div>
+        <div class="card-body">
+          <div class="card-title">Sketch — Mayfair</div>
+          <p class="card-desc">El café más fotografiado de Londres — los interiores diseñados por India Mahdavi en rosa pálido son el polo opuesto visual del psicodelismo oscuro, pero hay algo en la atmósfera artística de Sketch que conecta con la misma energía creativa que habitó Mayfair en los años 60. El Afternoon Tea del salón The Gallery es caro pero único. Ideal para el descanso de mediodía entre el Handel Hendrix House y el Portobello Road.</p>
+          <div class="card-links">
+            <a href="https://www.sketch.london" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Sketch+Restaurant+Mayfair+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type food">🌶 Caribeño · Brixton · Auténtico</div>
+        <div class="card-body">
+          <div class="card-title">Fish, Wings & Tings — Brixton Village</div>
+          <p class="card-desc">El restaurante caribeño más querido del sur de Londres — un rincón de Brixton Village que huele a especias de Trinidad desde la mañana. Brian Danclair, el dueño, lleva décadas cocinando los mismos platos con los mismos ingredientes: el jerk chicken, el festival (el pan frito dulce), el curry de cabra. La mesa de la esquina, la que da a la calle, es la mejor de la ciudad para entender por qué Brixton fue el barrio que fue. Sin reservas. Llega temprano.</p>
+          <div class="card-links">
+            <a href="https://www.timeout.com/london/restaurants/fish-wings-and-tings" target="_blank" class="btn btn-web">🌐 Time Out</a>
+            <a href="https://www.google.com/maps/search/Fish+Wings+Tings+Brixton+Village+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type cafe">☕ Café · Peckham · Rooftop</div>
+        <div class="card-body">
+          <div class="card-title">Rooftop Film Club & Bar — Peckham</div>
+          <p class="card-desc">El techo de parking de Peckham es uno de los lugares más sorprendentes de Londres en verano: entre mayo y septiembre, el Rooftop Film Club proyecta películas con auriculares inalámbricos mientras el sol cae sobre los tejados del sur de Londres. Pero el bar abre antes y después — con cervezas artesanales, bocadillos y vistas que no existen en ningún otro punto de la ciudad a ese precio. El Día 4 del circuito termina aquí, frente a la ciudad que ya conoces.</p>
+          <div class="card-links">
+            <a href="https://rooftopfilmclub.com/london/peckham/" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Rooftop+Film+Club+Peckham+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REGENERATIVO -->
+<section class="section" id="regenerativo" style="background:var(--base-1)">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Turismo Regenerativo</span></div>
+    <h2 class="section-title">Dar algo<br><em>a Londres</em></h2>
+    <p class="section-lead">Londres es una ciudad que recibe 20 millones de turistas al año. La diferencia entre pasar por ella y vivirla está en lo que dejas. Estas iniciativas conectan el legado musical con las comunidades que lo hicieron posible.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🎓 Educación · Música · Jóvenes</div>
+        <div class="card-body">
+          <div class="card-title">Roundhouse Three Sixty Festival</div>
+          <p class="card-desc">El festival anual del Roundhouse — rebautizado en 2026 como Roundhouse Three Sixty para celebrar los 20 años desde que el venue reabrió como espacio de artes y juventud. Programación que incluye artistas emergentes formados en los programas del Roundhouse, world exclusives y colaboraciones entre artistas de distintas generaciones. Cada año en abril. Más de 1.000 entradas a £5 o menos, con 600 reservadas para menores de 30 años.</p>
+          <div class="card-links">
+            <a href="https://www.roundhouse.org.uk" target="_blank" class="btn btn-web">🌐 Roundhouse</a>
+            <a href="https://www.google.com/maps/search/Roundhouse+Camden+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🎵 Patrimonio · Conservación · Hendrix</div>
+        <div class="card-body">
+          <div class="card-title">Handel Hendrix House — Amigos</div>
+          <p class="card-desc">El programa Friends of Handel Hendrix House financia directamente el mantenimiento del apartamento de Jimi Hendrix en Brook Street y los programas de educación musical vinculados. Una membresía anual cuesta menos que dos entradas al Roundhouse y garantiza que el único hogar permanente que Hendrix tuvo en su vida siga abierto para las próximas generaciones.</p>
+          <div class="card-links">
+            <a href="https://handelhendrix.org/get-involved/" target="_blank" class="btn btn-web">🌐 Involucrarse</a>
+            <a href="https://www.google.com/maps/search/Handel+Hendrix+House+Brook+Street+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌱 Comunidad · Notting Hill · Social</div>
+        <div class="card-body">
+          <div class="card-title">Notting Hill Carnival Arts Trust</div>
+          <p class="card-desc">El Carnaval de Notting Hill no se sostiene solo — lo sostiene una comunidad de artistas, voluntarios y organizaciones que trabajan durante todo el año. El Carnival Arts Trust apoya a los creadores de trajes y bandas del carnaval, muchos de ellos de la misma comunidad afrocaribeña que hizo de Notting Hill el barrio que fue cuando Hendrix eligió vivir allí.</p>
+          <div class="card-links">
+            <a href="https://nhcarnival.org" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Notting+Hill+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">♻ Sostenibilidad · Música · Green</div>
+        <div class="card-body">
+          <div class="card-title">Julie's Bicycle — Industry Green</div>
+          <p class="card-desc">La organización líder en sostenibilidad para la industria creativa y musical del Reino Unido — trabaja con venues, festivales y artistas para reducir la huella de carbono de la música en vivo. Fundada en Londres, con sede en el West End, publica cada año el ranking de los venues y festivales más sostenibles de la ciudad. Su guía es el mejor filtro para elegir dónde gastar tu dinero musical.</p>
+          <div class="card-links">
+            <a href="https://juliesbicycle.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Julie's+Bicycle+London+West+End" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌳 Medio Ambiente · Toda la Ciudad · Árboles</div>
+        <div class="card-body">
+          <div class="card-title">Trees for Cities — Plantar en Londres</div>
+          <p class="card-desc">Los árboles de Londres eliminan 2,4 millones de toneladas de contaminación al año. Trees for Cities organiza jornadas de plantación urbana en barrios del sur y este de Londres — desde Brixton hasta Hackney — a las que cualquier visitante puede unirse. No se necesita experiencia ni inscripción previa en muchas de ellas. Una mañana plantando árboles en el barrio donde Bowie nació o donde los Stones ensayaron es la forma más literal de dejar algo en la ciudad que tanto te dio.</p>
+          <div class="card-links">
+            <a href="https://www.treesforcities.org/volunteer" target="_blank" class="btn btn-web">🌐 Voluntariado</a>
+            <a href="https://www.google.com/maps/search/Trees+for+Cities+London+volunteering" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type sustain">🌿 Conservación · Espacios Verdes · Toda la Ciudad</div>
+        <div class="card-body">
+          <div class="card-title">TCV — The Conservation Volunteers London</div>
+          <p class="card-desc">La red de voluntariado en espacios verdes más activa del país — más de 700 estaciones de voluntariado en Londres, con jornadas semanales de conservación de parques, limpieza de canales y mantenimiento de jardines comunitarios. Sus "Green Gyms" combinan voluntariado medioambiental con ejercicio al aire libre. Una jornada con TCV en el Lea Valley o en los humedales de Hackney Wick, el mismo día que caminas por los murales del canal, cierra el Día 4 de una forma que ningún restaurante ni bar puede igualar.</p>
+          <div class="card-links">
+            <a href="https://www.tcv.org.uk/london/" target="_blank" class="btn btn-web">🌐 Únete</a>
+            <a href="https://www.google.com/maps/search/TCV+Conservation+Volunteers+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ICONOS LONDINENSES -->
+<section class="section" style="background:var(--base-1)" id="iconos">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Iconos de Londres</span></div>
+    <h2 class="section-title">La ciudad<br>que lo tiene <em>todo</em></h2>
+    <p class="section-lead">El circuito psicodélico es la razón del viaje, pero Londres exige más días. El Royal Albert Hall, el Palacio de Buckingham, Hyde Park, Piccadilly Circus y Madame Tussauds son las coordenadas que completan el mapa de una de las ciudades más visitadas de Europa — y la capital cultural del mundo anglosajón.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎼 Música · Conciertos · Kensington</div>
+        <div class="card-body">
+          <div class="card-title">Royal Albert Hall</div>
+          <p class="card-desc">El auditorio más majestuoso del mundo — 5.272 asientos bajo una cúpula de hierro y cristal victoriana en Kensington, construido en 1871. Ha alojado a los Beatles, los Rolling Stones, Led Zeppelin, Eric Clapton, Jimi Hendrix y prácticamente todos los artistas que importan en la historia del rock. Los BBC Proms en verano, los conciertos de orquesta, los shows de ópera y los grandes artistas de pop y rock comparten el mismo escenario que tiene la mejor acústica de Europa. Consulta la programación y compra entradas directamente en su web oficial.</p>
+          <div class="card-links">
+            <a href="https://www.royalalberthall.com" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Royal+Albert+Hall+Kensington+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎭 Museo · Cera · Figuras · Marylebone</div>
+        <div class="card-body">
+          <div class="card-title">Madame Tussauds London</div>
+          <p class="card-desc">El museo de figuras de cera más famoso del mundo tiene una sección entera dedicada a músicos, cantantes y bandas — donde la conexión con el circuito psicodélico se hace física. Puedes estar al lado de Jimi Hendrix, The Beatles, los Rolling Stones, David Bowie, Freddie Mercury, Ed Sheeran, Beyoncé y decenas de artistas más en figuras de cera de tamaño real con un realismo sorprendente. La sección de música es una de las más extensas del museo. Reserva con anticipación — las colas son largas en temporada alta.</p>
+          <div class="card-links">
+            <a href="https://www.madametussauds.com/london/" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Madame+Tussauds+London+Marylebone+Road" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">👑 Patrimonio · Buckingham · Centro</div>
+        <div class="card-body">
+          <div class="card-title">Palacio de Buckingham</div>
+          <p class="card-desc">La residencia oficial de la Monarquía Británica en el corazón de Londres. El cambio de guardia — que ocurre a las 11am los días impares — es uno de los rituales más fotografiados del mundo. El interior del palacio abre al público en verano (julio-septiembre). Frente al palacio, el Victoria Memorial y St. James's Park crean uno de los espacios urbanos más elegantes de Europa. A diez minutos a pie de Hyde Park.</p>
+          <div class="card-links">
+            <a href="https://www.rct.uk/visit/the-state-rooms-buckingham-palace" target="_blank" class="btn btn-web">🌐 Entradas</a>
+            <a href="https://www.google.com/maps/search/Buckingham+Palace+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🌿 Parque · Conciertos · Hyde Park</div>
+        <div class="card-body">
+          <div class="card-title">Hyde Park</div>
+          <p class="card-desc">El pulmón verde de Londres — 350 acres en el centro de la ciudad, a diez minutos del Royal Albert Hall. Hyde Park es también un escenario histórico del rock: los Rolling Stones tocaron aquí gratis en julio de 1969 (con 500.000 personas), y Queen dio uno de sus conciertos más legendarios en 1976. El festival British Summer Time ocupa el parque en junio y julio, con algunos de los mejores carteles del verano londinense. El Serpentine y el Speaker's Corner completan la visita.</p>
+          <div class="card-links">
+            <a href="https://www.royalparks.org.uk/parks/hyde-park" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hyde+Park+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">🎡 Icónico · West End · Centro</div>
+        <div class="card-body">
+          <div class="card-title">Piccadilly Circus</div>
+          <p class="card-desc">La plaza más famosa de Londres — la estatua del Eros, las pantallas LED gigantes, el cruce de Regent Street con Shaftesbury Avenue. Piccadilly Circus es la puerta de entrada al West End y al Soho; a dos minutos a pie de Carnaby Street donde los músicos compraban su ropa en los años 60, y a cinco del Marquee Club original en Wardour Street. No hay experiencia más "Londres" que salir del Tube en Piccadilly Circus a medianoche con la ciudad encendida alrededor.</p>
+          <div class="card-links">
+            <a href="https://www.google.com/maps/search/Piccadilly+Circus+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FESTIVALES LONDON 2026 -->
+<section style="background:var(--base-2);border-top:1px solid rgba(107,47,160,0.2);padding:4rem 2rem" id="glastonbury">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Festivales & Conciertos</span></div>
+    <h2 class="section-title">Londres en<br><em>verano 2026</em></h2>
+    <p class="section-lead">Glastonbury descansa en 2026 — es su año de barbecho obligatorio. Pero Londres no se queda sin agenda: BST Hyde Park, All Points East, Field Day, Meltdown y Notting Hill Carnival convierten el verano londinense en el programa musical más denso de Europa. Más la posibilidad de escapar a Glastonbury 2027 con registro previo desde ahora.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type festival">🌿 Verano 2026 · Hyde Park · 27 Jun – 12 Jul</div>
+        <div class="card-body">
+          <div class="card-title">BST Hyde Park 2026 — British Summer Time</div>
+          <p class="card-desc">El festival que convierte Hyde Park en la mayor sala de conciertos al aire libre de Europa cada verano. En 2026: Mumford & Sons, Lewis Capaldi, Maroon 5, Pitbull y más por confirmar. Recordatorio histórico inevitable — los Rolling Stones tocaron en Hyde Park en julio de 1969 con medio millón de personas; aquí mismo, en este parque, en este césped. Entradas desde £65 hasta £250. Programación de 12 fechas entre junio y julio.</p>
+          <div class="card-links">
+            <a href="https://www.bst-hydepark.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Hyde+Park+London+Great+Lawn" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎸 Verano 2026 · Victoria Park · 22-30 Agosto</div>
+        <div class="card-body">
+          <div class="card-title">All Points East 2026 — East London</div>
+          <p class="card-desc">Cinco días de festival en Victoria Park, East London — el festival más ecléctico de la ciudad. En 2026 encabeza Lorde, seguida de Deftones, Tyler The Creator (dos noches) y Twenty One Pilots. Los días entre semana son gratuitos con actividades comunitarias. APE es el festival que mejor refleja el Londres actual — diverso, urbano, sin nostalgia. Entradas individuales por día desde £50.</p>
+          <div class="card-links">
+            <a href="https://www.allpointseastfestival.com" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Victoria+Park+Tower+Hamlets+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎤 Verano 2026 · Southbank Centre · Junio</div>
+        <div class="card-body">
+          <div class="card-title">Meltdown Festival 2026 — Southbank Centre</div>
+          <p class="card-desc">El festival más intelectualmente curioso de Londres — cada año un artista diferente elige la programación completa. En 2026, es el 75 aniversario del Southbank Centre: se espera una edición especialmente ambiciosa. Meltdown 2025 fue curado por Little Simz. Incluye conciertos, talks, películas, exposiciones en la orilla sur del Támesis — a cien metros del Tate Modern. Programación publicada en marzo. Entradas desde £10.</p>
+          <div class="card-links">
+            <a href="https://www.southbankcentre.co.uk/meltdown" target="_blank" class="btn btn-web">🌐 Web</a>
+            <a href="https://www.google.com/maps/search/Southbank+Centre+London+Meltdown" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎺 Agosto Bank Holiday · Notting Hill · 29-31 Agosto</div>
+        <div class="card-body">
+          <div class="card-title">Notting Hill Carnival 2026</div>
+          <p class="card-desc">El mayor festival callejero de Europa — 2 millones de personas durante el fin de semana del Bank Holiday de agosto. Carrozas, sound systems, trajes de carnaval, música soca y calipso en las mismas calles de Notting Hill donde vivió Jimi Hendrix. El domingo es el día de los niños; el lunes es el día de los adultos — y el día que convierte Portobello Road en la fiesta más genuina de Londres. Entrada gratuita. Solo necesitas estar ahí.</p>
+          <div class="card-links">
+            <a href="https://nhcarnival.org" target="_blank" class="btn btn-web">🌐 Web oficial</a>
+            <a href="https://www.google.com/maps/search/Notting+Hill+Carnival+London+Ladbroke+Grove" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🎪 Somerset · 2027 · Registro Ahora</div>
+        <div class="card-body">
+          <div class="card-title">Glastonbury 2027 — Empieza a prepararte</div>
+          <p class="card-desc">Glastonbury no tiene edición en 2026 — es el año de barbecho de la granja. La próxima edición es junio de 2027 en Worthy Farm, Somerset. Para tener acceso a la venta de entradas hay que registrarse primero en la web oficial (gratuito, requiere foto tipo pasaporte). El registro para 2027 abre en otoño de 2026. Los tickets se agotan en minutos — registrarse antes es la única forma de participar en el sorteo.</p>
+          <div class="card-links">
+            <a href="https://www.glastonburyfestivals.co.uk/information/tickets/" target="_blank" class="btn btn-web">🌐 Registro</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type festival">🚆 Glastonbury · Cómo llegar desde Londres</div>
+        <div class="card-body">
+          <div class="card-title">De Londres a Glastonbury — Ruta Completa</div>
+          <p class="card-desc">La opción más práctica: tren desde <strong>London Paddington</strong> hasta <strong>Castle Cary</strong> (2h15 aprox.) con Great Western Railway, seguido de un shuttle bus oficial directo al festival desde la estación. Los shuttles funcionan desde el miércoles hasta el lunes del festival. Alternativa en coach: National Express y Megabus salen directo desde Londres Victoria. No se recomienda el coche — el parking es costoso, el acceso lento y el estrés alto. La combinación tren + shuttle es la que usan los locales.</p>
+          <div class="card-links">
+            <a href="https://www.glastonburyfestivals.co.uk/information/travel/" target="_blank" class="btn btn-web">🌐 Travel Guide</a>
+            <a href="https://www.gwr.com" target="_blank" class="btn btn-web">🚆 GWR Trenes</a>
+            <a href="https://www.nationalexpress.com" target="_blank" class="btn btn-web">🚌 National Express</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:2rem">
+      <p><strong>Truco práctico:</strong> Para BST Hyde Park y All Points East, compra entradas con al menos dos meses de anticipación — los mejores headliners se agotan en días. Para el Notting Hill Carnival, llega al mediodía del lunes y ubícate en Ladbroke Grove para ver las mejores carrozas. Para Glastonbury 2027, regístrate en septiembre de 2026 — el link de registro está en glastonburyfestivals.co.uk.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- PREMIER LEAGUE LONDON -->
+<section style="background:var(--base-2);border-top:1px solid rgba(107,47,160,0.18);padding:4rem 2rem" id="football">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Para los Fanáticos del Fútbol</span></div>
+    <h2 class="section-title">Premier League<br>en <em>Londres</em></h2>
+    <p class="section-lead">Londres tiene más equipos de Premier League que cualquier otra ciudad del mundo — Arsenal, Chelsea, Tottenham, West Ham, Crystal Palace, Brentford y Fulham. Ver un partido en cualquiera de sus estadios es completar el retrato de la ciudad.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(200,16,46,0.12);color:#e8102e;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Premier League · Tickets Oficiales</div>
+        <div class="card-body">
+          <div class="card-title">Premier League — Entradas Oficiales</div>
+          <p class="card-desc">La web oficial de la Premier League para consultar el calendario completo, fechas, estadios y acceder a las plataformas de venta de cada club. El punto de partida para planificar tu jornada de fútbol en cualquier estadio de Londres.</p>
+          <div class="card-links">
+            <a href="https://www.premierleague.com/tickets" target="_blank" class="btn btn-web">⚽ PL Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(239,1,7,0.10);color:#ef0107;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Arsenal FC · Emirates Stadium</div>
+        <div class="card-body">
+          <div class="card-title">Arsenal FC — Entradas Oficiales</div>
+          <p class="card-desc">El Emirates Stadium en Holloway, North London — 60.000 espectadores, uno de los estadios más modernos de Europa. El tour del estadio y el museo están disponibles sin necesidad de partido.</p>
+          <div class="card-links">
+            <a href="https://www.arsenal.com/tickets" target="_blank" class="btn btn-web">⚽ Tickets</a>
+            <a href="https://www.google.com/maps/search/Emirates+Stadium+Arsenal+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(3,70,148,0.12);color:#0346a0;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Chelsea FC · Stamford Bridge</div>
+        <div class="card-body">
+          <div class="card-title">Chelsea FC — Entradas Oficiales</div>
+          <p class="card-desc">Stamford Bridge en Fulham — el estadio más cercano al circuito psicodélico, en el barrio de Chelsea donde los Rolling Stones vivían y las fiestas del Swinging London ocurrían. Tour del estadio y museo disponibles.</p>
+          <div class="card-links">
+            <a href="https://www.chelseafc.com/en/ticketing" target="_blank" class="btn btn-web">⚽ Tickets</a>
+            <a href="https://www.google.com/maps/search/Stamford+Bridge+Chelsea+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type" style="background:rgba(19,34,87,0.12);color:#132257;font-family:var(--f-label);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.3rem;border-bottom:1px solid var(--rule)">⚽ Tottenham Hotspur · Spurs Stadium</div>
+        <div class="card-body">
+          <div class="card-title">Tottenham Hotspur FC — Entradas</div>
+          <p class="card-desc">El Tottenham Hotspur Stadium en North London — el estadio más moderno del mundo, con capacidad para 62.000 personas. También alberga partidos de la NFL. Tour y museo disponibles durante la semana.</p>
+          <div class="card-links">
+            <a href="https://www.tottenhamhotspur.com/tickets/" target="_blank" class="btn btn-web">⚽ Tickets</a>
+            <a href="https://www.google.com/maps/search/Tottenham+Hotspur+Stadium+London" target="_blank" class="btn btn-map">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:2rem">
+      <p><strong>Consejo del viajero:</strong> Las entradas para Arsenal, Chelsea y Tottenham se agotan con semanas de anticipación. Para partidos de menor demanda (entre semana, equipos de media tabla), las entradas están más disponibles. West Ham en el London Stadium y Crystal Palace en Selhurst Park son alternativas con entradas más accesibles y ambiente auténtico de fútbol londinense.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- GUIA CULTURAL -->
+<section style="background:var(--base-1);padding:4rem 2rem" id="agenda">
+  <div class="section-inner">
+    <div class="section-rule"><span class="section-tag">Agenda Cultural</span></div>
+    <h2 class="section-title">Eventos &<br><em>Conciertos</em> en Londres</h2>
+    <p class="section-lead">Londres tiene agenda cultural los 365 días del año. Estas son las plataformas para encontrar conciertos, exposiciones, teatro y eventos en tiempo real antes y durante tu visita.</p>
+
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-type culture">📅 Agenda · Conciertos · Eventos</div>
+        <div class="card-body">
+          <div class="card-title">Time Out London — Guía Cultural</div>
+          <p class="card-desc">La guía cultural más completa de Londres — conciertos, exposiciones, teatro, restaurantes, eventos especiales y lo que está pasando esta semana. Actualizada a diario. La referencia para saber qué ver, dónde ir y qué no perderse durante tu estancia. Gratuita y disponible en app y web.</p>
+          <div class="card-links">
+            <a href="https://www.timeout.com/london/music" target="_blank" class="btn btn-web">🌐 Time Out</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">📅 Conciertos · Tickets · Todas las Salas</div>
+        <div class="card-body">
+          <div class="card-title">Songkick — Agenda de Conciertos</div>
+          <p class="card-desc">La plataforma de referencia para encontrar conciertos en todos los venues de Londres — desde el O2 Arena hasta las salas de 200 personas. Puedes seguir tus artistas favoritos y recibir alertas cuando toquen en la ciudad. Integra con Spotify para sugerirte conciertos basados en lo que escuchas.</p>
+          <div class="card-links">
+            <a href="https://www.songkick.com/metro-areas/24426-uk-london" target="_blank" class="btn btn-web">🌐 Songkick</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-type culture">📅 Entradas · Teatro · Música · Deportes</div>
+        <div class="card-body">
+          <div class="card-title">Ticketmaster UK — Entradas Oficiales</div>
+          <p class="card-desc">La plataforma oficial para comprar entradas a conciertos, teatro del West End, deportes y eventos especiales en Londres. Cubre todos los grandes venues — O2 Arena, Wembley, Royal Albert Hall, Alexandra Palace y cientos más. Compra siempre aquí para evitar revendedores.</p>
+          <div class="card-links">
+            <a href="https://www.ticketmaster.co.uk/london" target="_blank" class="btn btn-web">🌐 Ticketmaster</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- QUOTE FINAL -->
+<section style="background:var(--base-2);padding:4rem 2rem">
+  <div class="section-inner">
+    <div class="quote-block" style="max-width:820px;margin:0 auto">
+      <p class="quote-text">"El problema con Londres es que una vez que lo entiendes de verdad, ya no puedes vivir en ningún otro sitio."</p>
+      <div class="quote-source">— Peter Ackroyd · Londres: La Biografía · 2000</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section style="background:var(--base-1);border-top:1px solid rgba(107,47,160,0.18);padding:5rem 2rem">
+  <div class="section-inner" style="text-align:center;max-width:760px">
+    <div class="section-rule" style="justify-content:center"><span class="section-tag">Fin de la Temporada 1</span></div>
+    <h2 style="font-family:var(--f-display);font-size:clamp(1.8rem,5vw,3.5rem);letter-spacing:0.08em;text-transform:uppercase;color:var(--bone);margin-bottom:2rem;line-height:1.1">Londres<br><em style="color:var(--accent);font-style:italic;font-weight:400">para siempre</em></h2>
+    <p style="font-family:var(--f-body);font-size:1.05rem;line-height:1.95;color:rgba(224,213,204,0.7);font-style:italic;margin-bottom:1.5rem">
+      Esta ciudad tiene demasiada historia para una sola visita. Cinco días alcanzan para ver el circuito, para perderse por Peckham, para tomar una cerveza en el pub donde Hendrix bebía, para ver el Támesis desde el ferry. El rock psicodélico es solo una de sus capas — debajo hay jazz, blues, punk, post-punk, trip-hop, grime. Encima hay lo que está pasando ahora mismo en un club de Dalston o en una nave de Hackney Wick. Londres no termina nunca. Cambia de forma mientras la miras.</p>
+    <p style="font-family:var(--f-body);font-size:1.1rem;line-height:1.95;color:var(--accent);font-style:italic;margin-bottom:3rem;font-family:var(--f-head);letter-spacing:0.02em">
+      Recuerda que cada ciudad tiene su banda sonora, y cada ritmo tiene su hogar.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.visitlondon.com" target="_blank" class="btn-primary">Planifica tu visita →</a>
+      <a href="https://open.spotify.com/episode/3gcahQ7GIvvtrOZrKfFL58" target="_blank" class="btn-ghost">🎧 Escuchar Episodio 6</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">El Pasaporte Sinfónico</div>
+  <div class="footer-tag">El podcast donde la música viaja</div>
+  <p class="footer-note">Episodio 6 · Temporada 1 · Rock Psicodélico · Londres · Pink Floyd · Jimi Hendrix · Rolling Stones · The Who · Cream<br>Circuito de 5 días · 40+ lugares verificados · Guía actualizada 2026<br>Todos los enlaces son orientativos. Verifica horarios y disponibilidad antes de tu visita. Los lugares cambian; la música, no.<br><br>© 2026 El Pasaporte Sinfónico. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
