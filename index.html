@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El Pasaporte Sinfónico — El podcast donde la música viaja</title>
+  <meta name="description" content="Un podcast que conecta música y viaje: cada episodio recorre la ciudad que le dio forma a un género. Escucha el episodio, sigue la guía y planea tu propio circuito.">
+  <link rel="stylesheet" href="./ds/styles.css">
+  <style>
+    /* ── Layout helpers ── */
+    html { font-size: 17px; } /* baseline legible; escala todos los rem ~6% */
+    .section      { padding: 5rem 2rem; }
+    .section--alt { padding: 5rem 2rem; background: var(--surface-deep); }
+    .inner        { max-width: var(--container); margin: 0 auto; }
+    .grid-3       { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      height: var(--nav-height);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: var(--surface-nav); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-faint);
+    }
+    .nav__brand   { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+    .nav__brand img { height: 38px; }
+    .nav__brand span { font-family: var(--f-label); font-size: .86rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--bone); }
+    .nav__links   { display: flex; gap: 1.6rem; }
+    .nav__links a { font-family: var(--f-label); font-size: .80rem; letter-spacing: .18em; text-transform: uppercase; color: var(--smoke); text-decoration: none; }
+    .nav__links a:hover { color: var(--accent); }
+    @media (max-width: 760px) { .nav__links { display: none; } }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; min-height: 86vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem; overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(to bottom, rgba(10,8,6,.50) 0%, rgba(10,8,6,.92) 100%),
+        url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1920')
+        center / cover no-repeat !important;
+    }
+    .hero__inner {
+      position: relative; z-index: 1;
+      max-width: 760px; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__title {
+      font-family: var(--f-display); font-size: var(--fs-hero);
+      line-height: .9; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--bone); text-shadow: var(--glow-hero); margin: .6rem 0;
+    }
+    .hero__kicker { font-family: var(--f-label); font-size: .84rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--smoke); }
+    .hero__lead   { font-family: var(--f-body); font-size: 1.18rem; line-height: 1.9; color: var(--text-soft); max-width: 620px; margin: 1.4rem 0 2rem; }
+    .hero__cta    { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Manifiesto ── */
+    .manifesto { max-width: 760px; margin: 0 auto; }
+
+    /* ── Tira fotográfica (divisor cinematográfico entre secciones) ── */
+    .photo-strip { width: 100%; height: 320px; overflow: hidden; position: relative; }
+    .photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-strip__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,8,6,.85) 0%, rgba(10,8,6,.40) 55%, rgba(10,8,6,.60) 100%);
+      display: flex; align-items: center; padding: 0 clamp(2rem, 6vw, 5rem);
+    }
+    .photo-strip__text {
+      font-family: var(--f-head); font-style: italic;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--bone); max-width: 520px; line-height: 1.55;
+    }
+    .photo-strip__text em { color: var(--accent); font-family: var(--f-head); }
+
+    /* ── Imágenes en tarjetas ── */
+    .ep-card__img { width: 100%; height: 190px; overflow: hidden; margin-bottom: .9rem; background: var(--surface-deep); }
+    .ep-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s ease; }
+    .ep-card__img:hover img { transform: scale(1.05); }
+
+    /* ── Episodios ── */
+    .ep-card__platforms { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .8rem; }
+    .ep-card__guidelink { display: inline-block; margin-top: .9rem; font-family: var(--f-label); font-size: .76rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); }
+
+    .more-episodes { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); }
+    .more-episodes__label { font-family: var(--f-label); font-size: .80rem; letter-spacing: .22em; text-transform: uppercase; color: var(--smoke); margin: 0 0 1.5rem; }
+    .ep-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .ep-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      flex-wrap: wrap; padding: 1.2rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .ep-row__main { display: flex; flex-direction: column; gap: .3rem; min-width: 220px; }
+    .ep-row__category { font-family: var(--f-label); font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--secondary-glow); }
+    .ep-row__title { font-family: var(--f-head); font-size: 1.05rem; font-weight: 700; color: var(--bone); margin: 0; }
+    .ep-row__actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .ep-row__platforms { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .ep-row__guide-soon { font-family: var(--f-label); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--smoke); white-space: nowrap; }
+
+    /* ── Recursos / agregadores turísticos ── */
+    .resources { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); text-align: center; }
+    .resources__label { font-family: var(--f-label); font-size: .80rem; letter-spacing: .22em; text-transform: uppercase; color: var(--smoke); margin: 0 0 1.2rem; }
+    .resources__links { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Redes ── */
+    .social-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem; }
+
+    /* ── Formulario de contacto ── */
+    .form { display: flex; flex-direction: column; gap: 1.3rem; max-width: 680px; margin: 0 auto; }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+    @media (max-width: 600px) { .form__row { grid-template-columns: 1fr; } }
+    .form__field { display: flex; flex-direction: column; gap: .5rem; }
+    .form__label { font-family: var(--f-label); font-size: .80rem; letter-spacing: .18em; text-transform: uppercase; color: var(--smoke); }
+    .form__input {
+      width: 100%; background: var(--surface-card); border: 1px solid var(--rule); color: var(--bone);
+      font-family: var(--f-body); font-size: 1rem; padding: .85rem 1rem;
+      border-radius: var(--radius-none); transition: border-color var(--dur-fast) var(--ease-out);
+    }
+    .form__input:focus { outline: none; border-color: var(--border-accent); box-shadow: var(--ring); }
+    .form__textarea { resize: vertical; min-height: 140px; font-family: var(--f-body); }
+    select.form__input { appearance: none; cursor: pointer; }
+    .form__note { font-family: var(--f-label); font-size: .78rem; letter-spacing: .08em; color: var(--smoke); margin: -.6rem 0 0; }
+
+    .form-sent { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-sent__title { font-family: var(--f-head); font-size: 1.4rem; color: var(--bone); margin: 0; }
+    .form-sent__lead { font-family: var(--f-body); color: var(--text-soft); margin: 0; }
+    .form-sent__lead strong { color: var(--accent); font-style: normal; }
+    .form-sent__preview {
+      background: var(--surface-card); border: 1px solid var(--rule); color: var(--parch);
+      font-family: var(--f-body); font-size: .92rem; line-height: 1.7;
+      padding: 1.2rem; white-space: pre-wrap; word-break: break-word; margin: 0;
+    }
+    .form-sent__actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    /* ── Footer ── */
+    .footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--rule); background: var(--base-1); }
+    .footer img  { height: 80px; width: auto; margin: 0 auto 1rem; opacity: .9; }
+    .footer__tag  { font-family: var(--f-head); font-style: italic; font-size: 1.25rem; color: var(--accent); margin: 0 0 1.2rem; }
+    .footer__links { display: flex; gap: 1.4rem; flex-wrap: wrap; justify-content: center; margin: 0 0 1.4rem; }
+    .footer__links a { font-family: var(--f-label); font-size: .76rem; letter-spacing: .15em; text-transform: uppercase; color: var(--smoke); text-decoration: none; }
+    .footer__links a:hover { color: var(--accent); }
+    .footer__copy { font-family: var(--f-label); font-size: .74rem; letter-spacing: .15em; text-transform: uppercase; color: var(--smoke); margin: 0; }
+  </style>
+</head>
+
+<!-- Tema de la home: gold + crimson (casa). Las guías de cada episodio
+     pueden re-temarse con data-theme="blues" | "psych" | "merseybeat". -->
+<body data-theme="">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+          integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+          integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+          integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+          crossorigin="anonymous"></script>
+  <script src="./ds/_ds_bundle.js"></script>
+
+  <script type="text/babel">
+    const {
+      Button, Card, SectionHeader,
+      Timeline, TimelineItem,
+      StatGrid, Stat,
+      Quote, TipBox, Tag
+    } = window.PasaporteSinfNicoDesignSystem_fc650e;
+
+    const { useState } = React;
+
+    // ── Datos ──────────────────────────────────────────────────────────────
+    const NAV_LINKS = [
+      { label: 'Episodios', href: '#episodios' },
+      { label: 'Guías',     href: '#guias' },
+      { label: 'Redes',     href: '#redes' },
+      { label: 'Contacto',  href: '#contacto' },
+    ];
+
+    // Links de plataforma a nivel de "show" (dados por EPS). Se usan como
+    // respaldo cuando un episodio puntual no tiene un deep-link confirmado.
+    const SPOTIFY_SHOW = 'https://open.spotify.com/show/0gYgTB6oyizyaaaHxhQORe';
+    const IVOOX_SHOW    = 'https://www.ivoox.com/en/podcast-pasaporte-sinfonico_sq_f11594315_1.html';
+    const FOUNTAIN_SHOW = 'https://fountain.fm/show/rX9KQeKnKpXycUfotd0e';
+
+    // Los 5 episodios que ya tienen guía de viaje completa (carpeta guias/).
+    // Links de Spotify/iVoox verificados (deep-link real al episodio).
+    // Imágenes de destino — Pexels CDN (dominio público / licencia gratuita)
+    const FEATURED_EPISODES = [
+      {
+        id: 'birmingham',
+        img: 'https://images.pexels.com/photos/167491/pexels-photo-167491.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&dpr=1',
+        typeColor: '#b02020',
+        category: 'Heavy Metal',
+        title: 'Birmingham — La cuna del Heavy Metal',
+        kicker: 'Inglaterra · Heavy Metal · 1968',
+        description: 'La ciudad que forjó el acero — y el heavy metal. Recorremos los pubs, fábricas y venues donde Black Sabbath inventó el sonido más pesado del planeta.',
+        spotify: 'https://open.spotify.com/episode/7FY4utC6FpwdwNODb0Wsb5',
+        ivoox: 'https://www.ivoox.com/en/birmingham-circuito-3-dias-la-audios-mp3_rf_162302633_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/birmingham-guide-3.html',
+        guideDescription: 'Cómo llegar, dónde alojarte y el circuito de tres días por la cuna del metal — pubs, fábricas y los venues donde nació Black Sabbath.',
+        guideTags: ['Cómo llegar', 'Hoteles', 'Circuito'],
+      },
+      {
+        id: 'delta-blues',
+        img: 'https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&dpr=1',
+        typeColor: '#4f74a8',
+        category: 'Blues',
+        title: 'El Delta del Blues',
+        kicker: 'Clarksdale · Memphis · Nashville',
+        description: 'En el cruce de las carreteras 61 y 49 nació la leyenda de Robert Johnson. Un lugar donde la geografía y el mito comparten la misma dirección postal.',
+        spotify: 'https://open.spotify.com/episode/5S1JYCN5I3bn73tlLgsae6',
+        ivoox: 'https://www.ivoox.com/en/episodio-1-el-blues-clarksdale-audios-mp3_rf_89424917_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/delta-del-blues-guide.html',
+        guideDescription: 'No hay aeropuerto en Clarksdale, y eso es parte del trato. El circuito por la Highway 61, de Memphis a Nashville.',
+        guideTags: ['Cómo llegar', 'La Encrucijada', 'Circuito'],
+      },
+      {
+        id: 'liverpool',
+        img: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&dpr=1',
+        typeColor: '#c42438',
+        category: 'Rock and Roll',
+        title: 'Liverpool',
+        kicker: 'England · Merseyside · 1960',
+        description: 'Cuatro chicos de barrios de ladrillo rojo convirtieron la melancolía del Mersey en algo que el mundo nunca olvidaría: The Beatles y Mathew Street.',
+        spotify: 'https://open.spotify.com/episode/3rPUkwmgMQoDQE3crPk8gq',
+        ivoox: 'https://www.ivoox.com/en/episodio-3-rock-and-roll-liverpool-audios-mp3_rf_89429520_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/liverpool-guide-2.html',
+        guideDescription: 'De Quarrymen a Beatlemanía: Woolton, Allerton, Wavertree y Dingle — los cuatro barrios que cambiaron la música pop.',
+        guideTags: ['Cómo llegar', 'Hoteles', 'Circuito'],
+      },
+      {
+        id: 'londres',
+        img: 'https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&dpr=1',
+        typeColor: '#9b4fd0',
+        category: 'Rock Psicodélico',
+        title: 'Londres',
+        kicker: 'England · Swinging London · 1966–1970',
+        description: 'Entre 1965 y 1967 algo se rompió: las guitarras empezaron a sonar diferente. Pink Floyd en el Roundhouse, Hendrix en el Marquee, los Stones en el Crawdaddy.',
+        spotify: 'https://open.spotify.com/episode/3gcahQ7GIvvtrOZrKfFL58',
+        ivoox: 'https://www.ivoox.com/en/episodio-6-el-rock-psicodelico-londres-audios-mp3_rf_93288705_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/london-guide_1.html',
+        guideDescription: 'Swinging London: los escenarios de la contracultura que tomó la ciudad entre 1966 y 1970 — Notting Hill, Soho y Camden.',
+        guideTags: ['Cómo llegar', 'Hoteles', 'Circuito'],
+      },
+      {
+        id: 'los-angeles',
+        img: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=800&h=450&q=80',
+        typeColor: '#9b4fd0',
+        category: 'Rock Psicodélico',
+        title: 'Los Ángeles',
+        kicker: 'California · Sunset Strip · 1965–1969',
+        description: 'De Laurel Canyon al Sunset Strip: The Doors, The Byrds y la escena que convirtió a Los Ángeles en el otro polo del rock psicodélico americano.',
+        spotify: 'https://open.spotify.com/episode/1VUIjxKiEMcEYwuOctdjq9',
+        ivoox: 'https://www.ivoox.com/en/episodio-5-rock-psicodelico-los-angeles-audios-mp3_rf_89933220_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/los-angeles-guide.html',
+        guideDescription: 'Cada barrio de LA es casi una ciudad distinta: el rock de West Hollywood, la playa de Santa Mónica o el Arts District. El circuito completo desde LAX.',
+        guideTags: ['Cómo llegar', 'Hoteles', 'Circuito'],
+      },
+      {
+        id: 'san-francisco',
+        img: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&h=450&q=80',
+        typeColor: '#9b4fd0',
+        category: 'Rock Psicodélico',
+        title: 'San Francisco',
+        kicker: 'California · Haight-Ashbury · Summer of Love',
+        description: 'Haight-Ashbury, el Fillmore y el Verano del Amor: la ciudad donde Grateful Dead y Jefferson Airplane le pusieron banda sonora a la contracultura.',
+        spotify: 'https://open.spotify.com/episode/0vr3DXtAmLYH1EIrkKVSEd',
+        ivoox: 'https://www.ivoox.com/en/episodio-4-rock-psicodelico-san-francisco-audios-mp3_rf_89430062_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/san-francisco-guide.html',
+        guideDescription: 'Una ciudad compacta y transitable a pie — BART, tranvías históricos y cable cars. El circuito psicodélico por Haight-Ashbury, día a día.',
+        guideTags: ['Cómo llegar', 'Transporte', 'Circuito'],
+      },
+      {
+        id: 'australia',
+        img: 'https://images.pexels.com/photos/1878293/pexels-photo-1878293.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&dpr=1',
+        typeColor: '#e57315',
+        category: 'Especial',
+        title: 'Australia al ritmo de AC/DC',
+        kicker: 'Sídney · Melbourne · Adelaida',
+        description: 'Una guía de viaje completa que sigue los pasos de la banda más electrizante del planeta, ciudad por ciudad.',
+        spotify: 'https://open.spotify.com/episode/4yFQsqp7AfIG9NW1935c6X',
+        ivoox: 'https://www.ivoox.com/en/australia-ac-dc-sidney-melbourne-audios-mp3_rf_175173301_1.html',
+        fountain: FOUNTAIN_SHOW,
+        guideHref: './guias/guia-australia-acdc-2.html',
+        guideDescription: 'Sídney (5 días), Melbourne (4 días) y Adelaida (3 días) — vuelos, festivales y el circuito completo por AC/DC.',
+        guideTags: ['Vuelos', 'Festivales', 'Circuito'],
+      },
+      {
+        id: 'australia-2',
+        img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&h=450&q=80',
+        typeColor: '#e57315',
+        category: 'Especial · Nuevo',
+        title: 'Australia al ritmo de AC/DC — Parte II',
+        kicker: 'Adelaida · Perth',
+        description: 'La ruta continúa: de Adelaida a Perth siguiendo los pasos de los hermanos Young hasta el otro extremo del continente australiano.',
+        spotify: 'https://open.spotify.com/episode/0GGLLV7GGVr7rJ5dKooWlS',
+        ivoox: 'https://www.ivoox.com/en/australia-ac-dc-adelaide-perth-audios-mp3_rf_177599903_1.html',
+        fountain: 'https://www.fountain.fm/episode/ZFKdDipSuWEuISkJwRFc',
+        guideHref: './guias/guia-australia-acdc-2.html',
+        guideDescription: 'La misma guía completa de Australia: vuelos, festivales y el circuito ciudad por ciudad — ahora con la segunda parte del episodio.',
+        guideTags: ['Vuelos', 'Festivales', 'Circuito'],
+      },
+    ];
+
+    // El resto del catálogo publicado: todavía sin guía de viaje propia.
+    // Links de iVoox verificados uno por uno; Spotify usa el deep-link real
+    // donde se pudo confirmar, y si no, el link del show completo.
+    const MORE_EPISODES = [
+      { id: 'back-to-the-beginning', category: 'Especial', title: 'Back to the Beginning — Reseña del evento (Birmingham)', spotify: 'https://open.spotify.com/episode/59MRilmn5BmBdzSQZndNd2', ivoox: 'https://www.ivoox.com/en/back-to-the-beginning-resena-del-evento-audios-mp3_rf_162302149_1.html' },
+      { id: 'venezuela', category: 'Destino', title: 'Venezuela — Puerto Ordáz y Delta del Orinoco', spotify: 'https://open.spotify.com/episode/4h7BEReBdl47pXrpdA8S8P', ivoox: 'https://www.ivoox.com/en/venezuela-puerto-ordaz-delta-del-orinoco-audios-mp3_rf_122634199_1.html' },
+      { id: 'ny-1', category: 'Música Afrocaribeña', title: 'Música Afrocaribeña — New York (1ra parte)', spotify: 'https://open.spotify.com/episode/7hElUe7uoZI8wUA7mP5LN9', ivoox: 'https://www.ivoox.com/en/musica-afrocaribena-new-york-1ra-parte-audios-mp3_rf_115814013_1.html' },
+      { id: 'ny-2', category: 'Música Afrocaribeña', title: 'Música Afrocaribeña — New York (2da parte)', spotify: 'https://open.spotify.com/episode/1AoUMoA6jTCM3gtKe1SIfN', ivoox: 'https://www.ivoox.com/en/musica-afrocaribena-new-york-2da-parte-audios-mp3_rf_119031727_1.html' },
+      { id: 'rep-dominicana', category: 'Música Afrocaribeña', title: 'Música Afrocaribeña — República Dominicana', spotify: null, ivoox: 'https://www.ivoox.com/en/episodio-3-8211-2da-temporada-musica-afrocaribena-audios-mp3_rf_111550581_1.html' },
+      { id: 'cuba', category: 'Música Afrocaribeña', title: 'Música Afrocaribeña — Cuba', spotify: null, ivoox: 'https://www.ivoox.com/en/musica-afrocaribena-cuba-audios-mp3_rf_106888096_1.html' },
+      { id: 'puerto-rico', category: 'Música Afrocaribeña', title: 'Música Afrocaribeña — Puerto Rico', spotify: null, ivoox: 'https://www.ivoox.com/en/musica-afrocaribena-puerto-rico-audios-mp3_rf_99460980_1.html' },
+      { id: 'cordillera', category: 'Especial', title: 'Festival Cordillera — Bogotá', spotify: null, ivoox: 'https://www.ivoox.com/en/episodio-especial-8211-festival-cordillera-bogota-audios-mp3_rf_91996985_1.html' },
+      { id: 'rock-cleveland', category: 'Rock and Roll', title: 'Rock and Roll — Cleveland', spotify: null, ivoox: 'https://www.ivoox.com/en/episodio-2-rock-and-roll-cleveland-audios-mp3_rf_89428270_1.html' },
+    ].map(ep => ({ ...ep, spotify: ep.spotify || SPOTIFY_SHOW, ivoox: ep.ivoox || IVOOX_SHOW, fountain: FOUNTAIN_SHOW }));
+
+    const SOCIALS = [
+      { label: 'Instagram', href: 'https://www.instagram.com/elpasaportesinfonico?igsh=MXQ3MXh6OTNweHQ5bw==' },
+      { label: 'YouTube',   href: 'https://www.youtube.com/@elpasaportesinfonico4071' },
+      { label: 'Facebook',  href: 'https://www.facebook.com/profile.php?id=100079151904836&locale=es_LA' },
+      { label: 'TikTok',    href: 'https://www.tiktok.com/@elpasaportesinfonico' },
+      { label: 'X',         href: 'https://x.com/elpassinfonico' },
+    ];
+
+    const CONTACT_EMAIL = 'elpasaportesinfonico@gmail.com';
+
+    // ── Nav ──────────────────────────────────────────────────────────────────
+    function Nav() {
+      return (
+        <nav className="nav">
+          <a className="nav__brand" href="#top">
+            <img src="./assets/logo-white.png" alt="El Pasaporte Sinfónico" />
+            <span>El Pasaporte Sinfónico</span>
+          </a>
+          <div className="nav__links">
+            {NAV_LINKS.map(l => <a key={l.href} href={l.href}>{l.label}</a>)}
+          </div>
+          <Button variant="ghost" size="sm" href="#episodios">▶ Escuchar</Button>
+        </nav>
+      );
+    }
+
+    // ── Hero ─────────────────────────────────────────────────────────────────
+    function Hero() {
+      return (
+        <header className="hero" id="top">
+          <div className="hero__bg" />
+          <div className="hero__inner">
+            <span className="hero__kicker">Un podcast de viajes y música</span>
+            <h1 className="hero__title">El Pasaporte Sinfónico</h1>
+            <span className="hero__kicker">Música · Turismo regenerativo · Historias reales</span>
+            <p className="hero__lead">
+              Cada episodio recorre la ciudad que le dio forma a un género — el bar donde nació
+              una banda, la fábrica que inspiró un riff, el barrio que hoy le devuelve algo a la
+              tierra que lo vio crecer.
+            </p>
+            <div className="hero__cta">
+              <Button variant="primary" href="#episodios">Escuchar episodios</Button>
+              <Button variant="ghost" href="#guias">Ver guías de viaje</Button>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // ── Manifiesto ───────────────────────────────────────────────────────────
+    function Manifiesto() {
+      return (
+        <section className="section">
+          <div className="inner manifesto">
+            <Quote source="— El Pasaporte Sinfónico">
+              Cada ciudad suena distinto si sabes escucharla. Nosotros seguimos el rastro: el
+              escenario donde todo empezó, las calles que lo inspiraron, y una forma de viajar
+              que deja algo bueno a su paso.
+            </Quote>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Episodios ────────────────────────────────────────────────────────────
+    function Episodios() {
+      return (
+        <section className="section" id="episodios">
+          <div className="inner">
+            <SectionHeader
+              tag="Episodios"
+              title="Cada ciudad tiene<br><em>una banda sonora</em>"
+              lead="Escucha donde prefieras. Los episodios con guía de viaje completa están destacados; el resto del catálogo está más abajo."
+            />
+            <div className="grid-3">
+              {FEATURED_EPISODES.map(ep => (
+                <Card
+                  key={ep.id}
+                  type={ep.category}
+                  typeColor={ep.typeColor}
+                  title={ep.title}
+                  meta={ep.kicker}
+                  description={ep.description}
+                >
+                  <div className="ep-card__img">
+                    <img src={ep.img} alt={ep.title} loading="lazy" />
+                  </div>
+                  <div className="ep-card__platforms">
+                    <Button variant="quiet" size="sm" href={ep.spotify} target="_blank" rel="noopener noreferrer">Spotify</Button>
+                    <Button variant="quiet" size="sm" href={ep.ivoox} target="_blank" rel="noopener noreferrer">iVoox</Button>
+                    <Button variant="quiet" size="sm" href={ep.fountain} target="_blank" rel="noopener noreferrer">Fountain.fm</Button>
+                  </div>
+                  <a className="ep-card__guidelink" href={ep.guideHref} target="_blank" rel="noopener noreferrer">📖 Ver guía de viaje →</a>
+                </Card>
+              ))}
+            </div>
+
+            <div className="more-episodes">
+              <p className="more-episodes__label">Todo el catálogo · {MORE_EPISODES.length + FEATURED_EPISODES.length} episodios publicados</p>
+              <ul className="ep-list">
+                {MORE_EPISODES.map(ep => (
+                  <li className="ep-row" key={ep.id}>
+                    <div className="ep-row__main">
+                      <span className="ep-row__category">{ep.category}</span>
+                      <h4 className="ep-row__title">{ep.title}</h4>
+                    </div>
+                    <div className="ep-row__actions">
+                      <div className="ep-row__platforms">
+                        <Button variant="quiet" size="sm" href={ep.spotify} target="_blank" rel="noopener noreferrer">Spotify</Button>
+                        <Button variant="quiet" size="sm" href={ep.ivoox} target="_blank" rel="noopener noreferrer">iVoox</Button>
+                        <Button variant="quiet" size="sm" href={ep.fountain} target="_blank" rel="noopener noreferrer">Fountain.fm</Button>
+                      </div>
+                      <span className="ep-row__guide-soon">Pronto publicaremos la guía para este episodio</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Guías ────────────────────────────────────────────────────────────────
+    function Guias() {
+      return (
+        <section className="section--alt" id="guias">
+          <div className="inner">
+            <SectionHeader
+              tag="Guías de viaje"
+              title="La guía completa de<br><em>cada episodio</em>"
+              lead="Transporte, alojamiento y el circuito día a día — todo lo que recorrimos en el episodio, listo para que lo repitas."
+            />
+            <div className="grid-3">
+              {FEATURED_EPISODES.filter((ep, i, arr) => arr.findIndex(e => e.guideHref === ep.guideHref) === i).map(ep => (
+                <Card
+                  key={ep.id}
+                  type="Guía completa"
+                  typeColor={ep.typeColor}
+                  title={ep.title}
+                  description={ep.guideDescription}
+                  links={ep.guideTags}
+                  href={ep.guideHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="ep-card__img" style={{ marginTop: '.5rem' }}>
+                    <img src={ep.img} alt={ep.title} loading="lazy" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            <div className="resources">
+              <p className="resources__label">Recursos para planear tu viaje</p>
+              <div className="resources__links">
+                <Button variant="ghost" size="sm" href="https://www.booking.com/" target="_blank" rel="noopener noreferrer">Booking.com</Button>
+                <Button variant="ghost" size="sm" href="https://www.skyscanner.net/" target="_blank" rel="noopener noreferrer">Skyscanner</Button>
+                <Button variant="ghost" size="sm" href="https://www.getyourguide.com/" target="_blank" rel="noopener noreferrer">GetYourGuide</Button>
+                <Button variant="ghost" size="sm" href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Airbnb</Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Redes ────────────────────────────────────────────────────────────────
+    function Redes() {
+      return (
+        <section className="section" id="redes">
+          <div className="inner">
+            <SectionHeader
+              align="center"
+              tag="Síguenos"
+              title="El viaje sigue<br><em>entre episodios</em>"
+              lead="Adelantos, fotos del circuito y el detrás de cámaras de cada grabación."
+            />
+            <div className="social-row">
+              {SOCIALS.map(s => (
+                <Button key={s.label} variant="ghost" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</Button>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ── Contacto ─────────────────────────────────────────────────────────────
+    function Contacto() {
+      const [form, setForm] = useState({ nombre: '', email: '', motivo: 'Colaboración', mensaje: '' });
+      const [sent, setSent] = useState(false);
+      const [copied, setCopied] = useState(false);
+
+      function handleChange(e) {
+        const { name, value } = e.target;
+        setForm(f => ({ ...f, [name]: value }));
+      }
+
+      const subject = `[${form.motivo}] Contacto desde la web — ${form.nombre}`;
+      const body = `${form.mensaje}\n\n—\n${form.nombre}\n${form.email}`;
+      const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        // Pintamos la confirmación + el mensaje copiable ANTES de tocar
+        // mailto:. Algunos navegadores interrumpen el JS en plena ejecución
+        // al disparar el selector de app externa, así que si mailto: no
+        // hace nada (o corta la función a la mitad), el respaldo ya quedó
+        // visible de todas formas.
+        setCopied(false);
+        setSent(true);
+        setTimeout(() => { window.location.href = mailtoHref; }, 0);
+      }
+
+      function handleCopy() {
+        const text = `Para: ${CONTACT_EMAIL}\nAsunto: ${subject}\n\n${body}`;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => setCopied(true)).catch(() => setCopied(false));
+        }
+      }
+
+      return (
+        <section className="section--alt" id="contacto">
+          <div className="inner">
+            <SectionHeader
+              tag="Contacto"
+              title="Hablemos de tu<br><em>próximo viaje sonoro</em>"
+              lead="Colaboraciones, prensa, auspicios o una idea para el próximo episodio — escríbenos."
+            />
+
+            {sent ? (
+              <div className="form-sent">
+                <p className="form-sent__title">¿No se abrió tu correo?</p>
+                <p className="form-sent__lead">
+                  No pasa nada — copia el mensaje y envíalo a <strong>{CONTACT_EMAIL}</strong> desde donde prefieras.
+                </p>
+                <pre className="form-sent__preview">{`Para: ${CONTACT_EMAIL}\nAsunto: ${subject}\n\n${body}`}</pre>
+                <div className="form-sent__actions">
+                  <Button variant="primary" onClick={handleCopy}>{copied ? '✓ Mensaje copiado' : 'Copiar mensaje'}</Button>
+                  <Button variant="ghost" href={mailtoHref}>Intentar abrir correo de nuevo</Button>
+                  <Button variant="quiet" onClick={() => setSent(false)}>← Volver al formulario</Button>
+                </div>
+              </div>
+            ) : (
+              <form className="form" onSubmit={handleSubmit}>
+                <div className="form__row">
+                  <label className="form__field">
+                    <span className="form__label">Nombre</span>
+                    <input className="form__input" type="text" name="nombre" required value={form.nombre} onChange={handleChange} />
+                  </label>
+                  <label className="form__field">
+                    <span className="form__label">Email</span>
+                    <input className="form__input" type="email" name="email" required value={form.email} onChange={handleChange} />
+                  </label>
+                </div>
+                <label className="form__field">
+                  <span className="form__label">Motivo</span>
+                  <select className="form__input" name="motivo" value={form.motivo} onChange={handleChange}>
+                    <option>Colaboración</option>
+                    <option>Prensa y medios</option>
+                    <option>Auspicio o sponsoreo</option>
+                    <option>Sugerencia de episodio</option>
+                    <option>Otro</option>
+                  </select>
+                </label>
+                <label className="form__field">
+                  <span className="form__label">Mensaje</span>
+                  <textarea className="form__input form__textarea" name="mensaje" rows="5" required value={form.mensaje} onChange={handleChange} />
+                </label>
+                <Button variant="primary" size="lg" type="submit">Enviar mensaje</Button>
+                <p className="form__note">
+                  Al enviar intentamos abrir tu cliente de correo, dirigido a {CONTACT_EMAIL}. Si no tienes uno configurado, te dejamos el mensaje listo para copiar.
+                </p>
+              </form>
+            )}
+          </div>
+        </section>
+      );
+    }
+
+    // ── Footer ───────────────────────────────────────────────────────────────
+    function Footer() {
+      return (
+        <footer className="footer">
+          <img src="./assets/logo-white.png" alt="El Pasaporte Sinfónico" />
+          <p className="footer__tag">El podcast donde la música viaja</p>
+          <div className="footer__links">
+            {NAV_LINKS.map(l => <a key={l.href} href={l.href}>{l.label}</a>)}
+            {SOCIALS.map(s => <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>)}
+          </div>
+          <p className="footer__copy">© 2026 El Pasaporte Sinfónico · Turismo sonoro y regenerativo</p>
+        </footer>
+      );
+    }
+
+    // ── PhotoStrip ───────────────────────────────────────────────────────────
+    function PhotoStrip({ src, alt, text }) {
+      return (
+        <div className="photo-strip">
+          <img src={src} alt={alt} loading="lazy" />
+          <div className="photo-strip__overlay">
+            <p className="photo-strip__text" dangerouslySetInnerHTML={{ __html: text }} />
+          </div>
+        </div>
+      );
+    }
+
+    // ── App ──────────────────────────────────────────────────────────────────
+    function App() {
+      return (
+        <>
+          <Nav />
+          <Hero />
+          <Manifiesto />
+          <PhotoStrip
+            src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?auto=format&fit=crop&w=1920&q=80"
+            alt="Mapa vintage de viaje"
+            text="Porque la mejor manera de entender un género es <em>visitando la ciudad que lo inventó.</em>"
+          />
+          <Episodios />
+          <PhotoStrip
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1920&q=80"
+            alt="Concierto en vivo"
+            text="Escucha el episodio, sigue la guía y <em>planea tu propio circuito sonoro.</em>"
+          />
+          <Guias />
+          <Redes />
+          <Contacto />
+          <Footer />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
